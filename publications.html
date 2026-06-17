@@ -6,294 +6,374 @@
 -->
 <html>
 	<head>
-		<title>MAdS Lab publications</title>
+		<title>MAdS LAB Publications</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="assets/css/custom.css" />
+		<style>
+			#main ol li {
+				margin-bottom: 1em;
+			}
+
+			/* Shrink the header */
+			#header {
+				min-height: 0 !important;
+				padding: 0 !important;
+			}
+
+			/* Full screen hero */
+			#page-hero {
+				height: calc(100vh - 44px);
+				background-size: cover;
+				background-position: center;
+				background-image: url('images/IMG_3546.jpg');
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+				background-color: #278191;
+			}
+			#page-hero:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(39, 129, 145, 0.6);
+			}
+			#page-hero .hero-content {
+				position: relative;
+				z-index: 1;
+				text-align: center;
+				color: white;
+				padding: 2em;
+				margin-top: -15em;
+				width: 100%;
+			}
+			#page-hero .hero-content h2 {
+				font-size: 3.5em;
+				font-weight: 500;
+				margin: 0 0 0.3em;
+				color: white !important;
+				text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+			}
+			#page-hero .hero-content .hero-tagline {
+				font-size: 1.2em;
+				font-style: italic;
+				opacity: 0.85;
+				margin: 0;
+				text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+			}
+			#page-hero .hero-content p {
+				text-align: center !important;
+			}
+			#page-hero .hero-scroll {
+				position: absolute;
+				bottom: 5em;
+				left: 50%;
+				transform: translateX(-50%);
+				color: white;
+				text-align: center;
+				cursor: pointer;
+				z-index: 1;
+				text-decoration: none;
+			}
+			#page-hero .hero-scroll span {
+				display: block;
+				font-size: 0.7em;
+				letter-spacing: 2px;
+				text-transform: uppercase;
+				opacity: 0.6;
+				margin-bottom: 0.3em;
+			}
+			#page-hero .hero-scroll .arrow {
+				font-size: 2em;
+				opacity: 0.8;
+				animation: bounce 1.5s infinite;
+			}
+			@keyframes bounce {
+				0%, 100% { transform: translateY(0); }
+				50% { transform: translateY(8px); }
+			}
+			#page-hero-caption {
+				position: absolute;
+				bottom: 0.5em;
+				left: 0;
+				width: 100%;
+				text-align: center;
+				z-index: 3;
+				font-size: 0.75em;
+				color: rgba(255,255,255,0.6) !important;
+				font-style: italic;
+			}
+			#page-hero-caption {
+				position: absolute;
+				bottom: 1em;
+				left: 0;
+				width: 100%;
+				text-align: center;
+				z-index: 2;
+				font-size: 0.75em;
+				color: rgba(255,255,255,0.6);
+				font-style: italic;
+			}
+		</style>
 	</head>
 	<body class="no-sidebar is-preload">
 		<div id="page-wrapper">
 
-			<!-- Header -->
-				<div id="header">
-
-					<!-- Inner -->
-						<div class="inner">
-							<header>
-								<h1><a href="index.html" id="logo">MAdS Lab</a></h1>
-							</header>
-						</div>
-
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li><a href="index.html">Home</a></li>
-								<li>
-									<a href="#">Dropdown</a>
-									<ul>
-										<li><a href="#">Lorem ipsum dolor</a></li>
-										<li><a href="#">Magna phasellus</a></li>
-										<li><a href="#">Etiam dolore nisl</a></li>
-										<li>
-											<a href="#">And a submenu &hellip;</a>
-											<ul>
-												<li><a href="#">Lorem ipsum dolor</a></li>
-												<li><a href="#">Phasellus consequat</a></li>
-												<li><a href="#">Magna phasellus</a></li>
-												<li><a href="#">Etiam dolore nisl</a></li>
-											</ul>
-										</li>
-										<li><a href="#">Veroeros feugiat</a></li>
-									</ul>
-								</li>
-								<li><a href="team.html">Team</a></li>
-								<li><a href="research.html">Research</a></li>
-								<li><a href="news.html">News</a></li>
-								<li><a href="publications.html">Publications</a></li>
-								<li><a href="contact.html">Contact</a></li>
-							</ul>
-						</nav>
-
+			<!-- Header (nav only) -->
+			<div id="header">
+				<div class="inner">
+					<header>
+						<!-- <h1><a href="index.html" id="logo">MAdS LAB</a></h1> -->
+					</header>
 				</div>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Welcome</a></li>
+						<li><a href="research.html">Research</a></li>
+						<li><a href="team.html">Team</a></li>
+						<li class="active"><a href="publications.html">Publications</a></li>
+						<li><a href="news.html">News</a></li>
+						<li><a href="resources.html">Resources</a></li>
+						<li><a href="culture.html">Culture</a></li>
+						<li><a href="contact.html">Contact</a></li>
+						<li><a href="lab.html">IntraLab</a></li>
+					</ul>
+				</nav>
+			</div>
+
+			<!-- Full Screen Hero -->
+			<div id="page-hero">
+				<div class="hero-content">
+					<h2>Publications</h2>
+					<p class="hero-tagline">Our contributions to science</p>
+				</div>
+				<a class="hero-scroll scrolly" href="#main">
+					<span>Scroll Down</span>
+					<div class="arrow">&#8964;</div>
+				</a>
+				<div id="page-hero-caption">Caption: Coming soon | Credit: Coming soon</div>
+			</div>
 
 			<!-- Main -->
-				<div class="wrapper style1">
+			<div class="wrapper style1">
+				<div class="container">
+					<article id="main" class="special">
+						<header>
+							<h2>Publications</h2>
+							<p style="font-size: 1.2em; font-style: italic; color: #666; margin-bottom: 0.2em;">We are committed to open science and encourage the sharing of research before formal peer review.</p>
+							<p style="font-size: 1.2em; font-style: italic; color: #666; margin-bottom: 0.2em; margin-top: 0;">Preprints of our work are available on <a href="https://www.biorxiv.org" target="_blank">bioRxiv</a>. Code and data associated with our publications are shared on <a href="https://github.com/MAdSLab-NU" target="_blank">GitHub</a> whenever possible.</p>
+						</header>
 
-					<div class="container">
-						<article id="main" class="special">
+						<section>
 							<header>
-								<h2><a href="#">Publications</a></h2>
-								<p>
-									Morbi convallis lectus malesuada sed fermentum dolore amet
-								</p>
+								<h3>Recent Publications</h3>
+								<p style="font-size: 0.8em; text-align: left; color: #888;">* denotes equal contribution</p>
 							</header>
-							<a href="#" class="image featured"><img src="images/pic06.jpg" alt="" /></a>
-							<p>
-								Commodo id natoque malesuada sollicitudin elit suscipit. Curae suspendisse mauris posuere accumsan massa
-								posuere lacus convallis tellus interdum. Amet nullam fringilla nibh nulla convallis ut venenatis purus
-								lobortis. Auctor etiam porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum
-								consequat integer interdum integer purus sapien. Nibh eleifend nulla nascetur pharetra commodo mi augue
-								interdum tellus. Ornare cursus augue feugiat sodales velit lorem. Semper elementum ullamcorper lacinia
-								natoque aenean scelerisque vel lacinia mollis quam sodales congue.
-							</p>
-							<section>
-								<header>
-									<h3>Ultrices tempor sagittis nisl</h3>
-								</header>
-								<p>
-									Nascetur volutpat nibh ullamcorper vivamus at purus. Cursus ultrices porttitor sollicitudin imperdiet
-									at pretium tellus in euismod a integer sodales neque. Nibh quis dui quis mattis eget imperdiet venenatis
-									feugiat. Neque primis ligula cum erat aenean tristique luctus risus ipsum praesent iaculis. Fermentum elit
-									fringilla consequat dis arcu. Pellentesque mus tempor vitae pretium sodales porttitor lacus. Phasellus
-									egestas odio nisl duis sociis purus faucibus morbi. Eget massa mus etiam sociis pharetra magna.
-								</p>
-								<p>
-									Eleifend auctor turpis magnis sed porta nisl pretium. Aenean suspendisse nulla eget sed etiam parturient
-									orci cursus nibh. Quisque eu nec neque felis laoreet diam morbi egestas. Dignissim cras rutrum consectetur
-									ut penatibus fermentum nibh erat malesuada varius.
-								</p>
-							</section>
-							<section>
-								<header>
-									<h3>Augue euismod feugiat tempus</h3>
-								</header>
-								<p>
-									Pretium tellus in euismod a integer sodales neque. Nibh quis dui quis mattis eget imperdiet venenatis
-									feugiat. Neque primis ligula cum erat aenean tristique luctus risus ipsum praesent iaculis. Fermentum elit
-									ut nunc urna volutpat donec cubilia commodo risus morbi. Lobortis vestibulum velit malesuada ante
-									egestas odio nisl duis sociis purus faucibus morbi. Eget massa mus etiam sociis pharetra magna.
-								</p>
-							</section>
-						</article>
-						<hr />
-						<div class="row">
-							<article class="col-4 col-12-mobile special">
-								<a href="#" class="image featured"><img src="images/pic07.jpg" alt="" /></a>
-								<header>
-									<h3><a href="#">Gravida aliquam penatibus</a></h3>
-								</header>
-								<p>
-									Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam
-									porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
-								</p>
-							</article>
-							<article class="col-4 col-12-mobile special">
-								<a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
-								<header>
-									<h3><a href="#">Sed quis rhoncus placerat</a></h3>
-								</header>
-								<p>
-									Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam
-									porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
-								</p>
-							</article>
-							<article class="col-4 col-12-mobile special">
-								<a href="#" class="image featured"><img src="images/pic09.jpg" alt="" /></a>
-								<header>
-									<h3><a href="#">Magna laoreet et aliquam</a></h3>
-								</header>
-								<p>
-									Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam
-									porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
-								</p>
-							</article>
-						</div>
-					</div>
+							<ol reversed start="24">
+								<li>
+									Thomson BD, Marquez MD, Rawson S, Santos TMA, Harrison SC, Kahne DE.
+									Structures of folding intermediates on BAM show diverse substrates fold by a uniform mechanism.
+									<em>Proc Natl Acad Sci</em> 2026; 123(14):e2534936123.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/41280068/" target="_blank">PMID: 41280068</a>.
+									<a href="https://doi.org/10.1101/2025.10.16.682720" target="_blank">(bioRxiv)</a>.
+								</li>
+								<li>
+									Santos TMA, Thomson BD, Marquez MD, Pan L, Monfared TH, Kahne DE.
+									Native β-barrel substrates pass through two shared intermediates during folding on the BAM complex.
+									<em>Proc Natl Acad Sci</em> 2024; 121(42):e2409672121.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/39378083/" target="_blank">PMID: 39378083</a>.
+									<a href="https://doi.org/10.1101/2024.05.09.593409" target="_blank">(bioRxiv)</a>.
+								</li>
+							</ol>
+						</section>
 
+						<section>
+							<header>
+								<h3>Prior to Joining Northeastern University</h3>
+							</header>
+							<ol reversed start="22">
+								<li>
+									Ortiz B, Jennings J, Gross W, Santos TMA, Lin TY, Weibel DB, Lynn D.
+									Soft materials that intercept, respond to, and sequester bacterial siderophores.
+									<em>Chem Mater</em> 2021; 33(13):5401–5412.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/35341019/" target="_blank">PMID: 35341019</a>.
+								</li>
+								<li>
+									Lee J, Tomasek D*, Santos TMA*, May MD*, Meuskens I, Kahne D.
+									Formation of a β-barrel membrane protein is catalyzed by the luminal surface of the assembly machine protein BamA.
+									<em>Elife</em> 2019; 8:e49787.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/31724945/" target="_blank">PMID: 31724945</a>.
+								</li>
+								<li>
+									Santos TMA, Lammers MG, Zhou M, Sparks IA, Rajendran M, Fang D, De Jesus CLY, Carneiro GFR, Cui Q, Weibel DB.
+									Small molecule chelators reveal that iron starvation inhibits late stages of bacterial cytokinesis.
+									<em>ACS Chem Biol</em> 2018; 13(1):235–246.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/29227619/" target="_blank">PMID: 29227619</a>.
+								</li>
+								<li>
+									Hurley KA*, Santos TMA*, Fensterwald MR, Rajendran M, Moore JT, Balmond EI, Blahnik BJ, Faulkner KC, Foss MH, Heinrich VA, Lammers MG, Moore LC, Reynolds GD, Shearn-Nance GP, Stearns BA, Yao ZW, Shaw JT, Weibel DB.
+									Targeting quinolone- and aminocoumarin-resistant bacteria with new gyramide analogs that inhibit DNA gyrase.
+									<em>MedChemComm</em> 2017; 8(5):942–951.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/30034678/" target="_blank">PMID: 30034678</a>.
+								</li>
+								<li>
+									Hurley KA*, Santos TMA*, Nepomuceno GM, Huynh V, Shaw JT, Weibel DB.
+									Targeting the bacterial division protein FtsZ.
+									<em>J Med Chem</em> 2016; 59(15):6975–6998.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/26756351/" target="_blank">PMID: 26756351</a>.
+								</li>
+								<li>
+									Lin TY, Santos TMA, Kontur W, Donohue TJ, Weibel DB.
+									A cardiolipin-deficient mutant of Rhodobacter sphaeroides has an altered cell shape that impairs biofilm formation.
+									<em>J Bacteriol</em> 2015; 197(21):3446–3455.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/26283770/" target="_blank">PMID: 26283770</a>.
+									<br/><em>Highlighted as "Article of Significant Interest Selected by the Editors."</em>
+								</li>
+								<li>
+									Yin N, Stilwell MD, Santos TMA, Wang H, Weibel DB.
+									Agarose particle-templated porous bacterial cellulose and its application in cartilage growth in vitro.
+									<em>Acta Biomater</em> 2015; 12:129–138.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/25449918/" target="_blank">PMID: 25449918</a>.
+								</li>
+								<li>
+									Foditsch C, Santos TMA, Teixeira AGV, Pereira RVV, Dias JM, Gaeta N, Bicalho RC.
+									Isolation and characterization of Faecalibacterium prausnitzii from calves and piglets.
+									<em>PLoS ONE</em> 2014; 9(12):e116465.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/25551453/" target="_blank">PMID: 25551453</a>.
+								</li>
+								<li>
+									Santos TMA, Lin TY, Rajendran M, Anderson SM, Weibel DB.
+									Polar localization of Escherichia coli chemoreceptors requires an intact Tol-Pal complex.
+									<em>Mol Microbiol</em> 2014; 92(5):985–1004.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/24720726/" target="_blank">PMID: 24720726</a>.
+									<br/><em>Highlighted by Faculty of 1000.</em>
+								</li>
+								<li>
+									Yin N, Santos TMA, Auer GK, Crooks JA, Oliver PM, Weibel DB.
+									Bacterial cellulose as a substrate for bacterial cell culture.
+									<em>Appl Environ Microbiol</em> 2014; 80(6):1926–1932.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/24441155/" target="_blank">PMID: 24441155</a>.
+								</li>
+								<li>
+									Machado VS, Bicalho ML, Meira-Junior EB, et al.
+									Subcutaneous immunization with inactivated bacterial components and purified protein of Escherichia coli, Fusobacterium necrophorum and Trueperella pyogenes prevents puerperal metritis in Holstein dairy cows.
+									<em>PLoS ONE</em> 2014; 9(3):e91734.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/24638139/" target="_blank">PMID: 24638139</a>.
+								</li>
+								<li>
+									Oliveira MNV*, Santos TMA*, Vale HMM, Cordero AFP, Tótola MR, Costa MD, Ferreira AB, Delvaux JC, Moraes CA, Borges AC.
+									Endophytic microbial diversity in coffee cherries of Coffea arabica from Southeastern Brazil.
+									<em>Can J Microbiol</em> 2013; 59(4):221–230.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/23586745/" target="_blank">PMID: 23586745</a>.
+								</li>
+								<li>
+									Santos TMA, Bicalho RC.
+									Diversity and succession of bacterial communities in uteri of postpartum metritic, endometritic and healthy dairy cows.
+									<em>PLoS ONE</em> 2012; 7(12):e53048.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/23300859/" target="_blank">PMID: 23300859</a>.
+									<br/><em>Highlighted Among the Top 10% Most Cited PLoS ONE Articles.</em>
+								</li>
+								<li>
+									Santos TMA, Pereira RV, Caixeta LS, Guard CL, Bicalho RC.
+									Microbial diversity in bovine papillomatous digital dermatitis in Holstein dairy cows from upstate New York.
+									<em>FEMS Microbiol Ecol</em> 2012; 79(2):518–529.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/22093037/" target="_blank">PMID: 22093037</a>.
+								</li>
+								<li>
+									Bicalho MLS, Machado VS, Nydam DV, Santos TMA, Bicalho RC.
+									Evaluation of oral administration of bacteriophages to neonatal calves: Phage survival and impact on fecal Escherichia coli.
+									<em>Livest Sci</em> 2012; 144(3):294–299.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/32362952/" target="_blank">PMID: 32362952</a>.
+								</li>
+								<li>
+									Santos TMA, Ledbetter EC, Caixeta LS, Bicalho MLS, Bicalho RC.
+									Isolation and characterization of two bacteriophages with strong in vitro antimicrobial activity against Pseudomonas aeruginosa isolated from canine ocular infection.
+									<em>Am J Vet Res</em> 2011; 72(8):1079–1086.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/21801066/" target="_blank">PMID: 21801066</a>.
+								</li>
+								<li>
+									Pereira RVV, Santos TMA, Bicalho ML, Caixeta LS, Machado VS, Bicalho RC.
+									Antimicrobial resistance and prevalence of virulence factor genes in fecal Escherichia coli of Holstein calves fed milk with and without antimicrobials.
+									<em>J Dairy Sci</em> 2011; 94(9):4556–4565.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/21854928/" target="_blank">PMID: 21854928</a>.
+								</li>
+								<li>
+									Santos TMA, Gilbert RO, Bicalho RC.
+									Metagenomic analysis of the uterine bacterial microbiota in healthy and metritic postpartum dairy cows.
+									<em>J Dairy Sci</em> 2011; 94(1):291–302.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/21183039/" target="_blank">PMID: 21183039</a>.
+								</li>
+								<li>
+									Santos TMA, Bicalho RC.
+									Complete genome sequence of vB_EcoM_ECO1230-10: A coliphage with therapeutic potential for bovine metritis.
+									<em>Vet Microbiol</em> 2011; 148(2-4):267–275.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/20875932/" target="_blank">PMID: 20875932</a>.
+								</li>
+								<li>
+									Santos TMA, Caixeta LS, Machado VS, Rauf A, Gilbert RO, Bicalho RC.
+									Antimicrobial resistance and presence of virulence factor genes in Arcanobacterium pyogenes isolated from uterus of postpartum dairy cows.
+									<em>Vet Microbiol</em> 2010; 145(1-2):84–89.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/20346602/" target="_blank">PMID: 20346602</a>.
+								</li>
+								<li>
+									Santos TMA, Gilbert RO, Caixeta LS, Machado VS, Teixeira LM, Bicalho RC.
+									Susceptibility of Escherichia coli isolated from uteri of postpartum dairy cows to antibiotic and environmental bacteriophages. Part II: In vitro antimicrobial activity evaluation of a bacteriophage cocktail and several antibiotics.
+									<em>J Dairy Sci</em> 2010; 93(1):105–114.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/20059909/" target="_blank">PMID: 20059909</a>.
+								</li>
+								<li>
+									Bicalho RC, Santos TMA, Gilbert RO, Caixeta LS, Teixeira LM, Bicalho MLS, Machado VS.
+									Susceptibility of Escherichia coli isolated from uteri of postpartum dairy cows to antibiotic and environmental bacteriophages. Part I: Isolation and lytic activity estimation of bacteriophages.
+									<em>J Dairy Sci</em> 2010; 93(1):93–104.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/20059908/" target="_blank">PMID: 20059908</a>.
+								</li>
+							</ol>
+						</section>
+
+					</article>
 				</div>
+			</div>
 
 			<!-- Footer -->
-				<div id="footer">
-					<div class="container">
-						<div class="row">
-
-							<!-- Tweets -->
-								<section class="col-4 col-12-mobile">
-									<header>
-										<h2 class="icon brands fa-twitter circled"><span class="label">Tweets</span></h2>
-									</header>
-									<ul class="divided">
-										<li>
-											<article class="tweet">
-												Amet nullam fringilla nibh nulla convallis tique ante sociis accumsan.
-												<span class="timestamp">5 minutes ago</span>
-											</article>
-										</li>
-										<li>
-											<article class="tweet">
-												Hendrerit rutrum quisque.
-												<span class="timestamp">30 minutes ago</span>
-											</article>
-										</li>
-										<li>
-											<article class="tweet">
-												Curabitur donec nulla massa laoreet nibh. Lorem praesent montes.
-												<span class="timestamp">3 hours ago</span>
-											</article>
-										</li>
-										<li>
-											<article class="tweet">
-												Lacus natoque cras rhoncus curae dignissim ultricies. Convallis orci aliquet.
-												<span class="timestamp">5 hours ago</span>
-											</article>
-										</li>
-									</ul>
-								</section>
-
-							<!-- Posts -->
-								<section class="col-4 col-12-mobile">
-									<header>
-										<h2 class="icon solid fa-file circled"><span class="label">Posts</span></h2>
-									</header>
-									<ul class="divided">
-										<li>
-											<article class="post stub">
-												<header>
-													<h3><a href="#">Nisl fermentum integer</a></h3>
-												</header>
-												<span class="timestamp">3 hours ago</span>
-											</article>
-										</li>
-										<li>
-											<article class="post stub">
-												<header>
-													<h3><a href="#">Phasellus portitor lorem</a></h3>
-												</header>
-												<span class="timestamp">6 hours ago</span>
-											</article>
-										</li>
-										<li>
-											<article class="post stub">
-												<header>
-													<h3><a href="#">Magna tempus consequat</a></h3>
-												</header>
-												<span class="timestamp">Yesterday</span>
-											</article>
-										</li>
-										<li>
-											<article class="post stub">
-												<header>
-													<h3><a href="#">Feugiat lorem ipsum</a></h3>
-												</header>
-												<span class="timestamp">2 days ago</span>
-											</article>
-										</li>
-									</ul>
-								</section>
-
-							<!-- Photos -->
-								<section class="col-4 col-12-mobile">
-									<header>
-										<h2 class="icon solid fa-camera circled"><span class="label">Photos</span></h2>
-									</header>
-									<div class="row gtr-25">
-										<div class="col-6">
-											<a href="#" class="image fit"><img src="images/pic10.jpg" alt="" /></a>
-										</div>
-										<div class="col-6">
-											<a href="#" class="image fit"><img src="images/pic11.jpg" alt="" /></a>
-										</div>
-										<div class="col-6">
-											<a href="#" class="image fit"><img src="images/pic12.jpg" alt="" /></a>
-										</div>
-										<div class="col-6">
-											<a href="#" class="image fit"><img src="images/pic13.jpg" alt="" /></a>
-										</div>
-										<div class="col-6">
-											<a href="#" class="image fit"><img src="images/pic14.jpg" alt="" /></a>
-										</div>
-										<div class="col-6">
-											<a href="#" class="image fit"><img src="images/pic15.jpg" alt="" /></a>
-										</div>
-									</div>
-								</section>
-
-						</div>
-						<hr />
-						<div class="row">
-							<div class="col-12">
-
-								<!-- Contact -->
-									<section class="contact">
-										<header>
-											<h3>Nisl turpis nascetur interdum?</h3>
-										</header>
-										<p>Urna nisl non quis interdum mus ornare ridiculus egestas ridiculus lobortis vivamus tempor aliquet.</p>
-										<ul class="icons">
-											<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-											<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-											<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-											<li><a href="#" class="icon brands fa-pinterest"><span class="label">Pinterest</span></a></li>
-											<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-											<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">Linkedin</span></a></li>
-										</ul>
-									</section>
-
-								<!-- Copyright -->
-									<div class="copyright">
-										<ul class="menu">
-											<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-										</ul>
-									</div>
-
+			<div id="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="copyright">
+								<ul class="menu">
+									<li>&copy; MAdS LAB. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
 							</div>
-
 						</div>
 					</div>
 				</div>
+			</div>
 
 		</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+		<script>
+			document.querySelector('.hero-scroll').addEventListener('click', function(e) {
+				e.preventDefault();
+				document.querySelector('#main').scrollIntoView({ behavior: 'smooth' });
+			});
+		</script>
 
 	</body>
 </html>

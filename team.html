@@ -6,294 +6,546 @@
 -->
 <html>
 	<head>
-		<title>MAdS Lab team</title>
+		<title>MAdS LAB Team</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="assets/css/custom.css" />
+		<style>
+			.team-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 2em;
+				padding-left: 2em;
+			}
+			.team-member {
+				display: flex;
+				align-items: center;
+			}
+			.team-member .img-wrapper {
+				width: 250px;
+				height: 250px;
+				border-radius: 50%;
+				overflow: hidden;
+				flex-shrink: 0;
+				margin-right: 1.5em;
+			}
+			.team-member .img-wrapper img {
+				width: 130%;
+				height: 130%;
+				object-fit: cover;
+				object-position: center top;
+				margin-left: -15%;
+				margin-top: -5%;
+				transition: opacity 0.3s;
+			}
+			.img-wrapper {
+				position: relative;
+			}
+			.img-wrapper:hover::after {
+				content: 'See full profile';
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				background-color: rgba(0,0,0,0.6);
+				color: white;
+				font-size: 0.85em;
+				padding: 0.4em 0.8em;
+				border-radius: 4px;
+				white-space: nowrap;
+				pointer-events: none;
+			}
+			.img-wrapper:hover img {
+				opacity: 0.7;
+			}
+			.team-member .placeholder {
+				width: 250px;
+				height: 250px;
+				border-radius: 50%;
+				background-color: #ddd;
+				flex-shrink: 0;
+				margin-right: 1.5em;
+			}
+			.team-member .info h4 {
+				margin: 0 0 0.2em;
+				font-size: 1em;
+			}
+			.team-member .info p {
+				margin: 0;
+				font-size: 0.9em;
+				color: #666;
+			}
+			.team-member .info .award {
+				font-size: 0.85em;
+				color: #888;
+				font-style: italic;
+			}
+			.pi-info {
+				margin: 0 !important;
+				padding: 0 !important;
+				line-height: 1.4 !important;
+			}
+			.alumni-list {
+				list-style: none;
+				padding-left: 2em;
+			}
+			.alumni-list li {
+				margin-bottom: 0.3em;
+				font-size: 0.95em;
+			}
+			.alumni-list li .alumni-name {
+				font-weight: bold;
+			}
+			.alumni-list li .alumni-info {
+				color: #666;
+				font-size: 0.9em;
+				display: inline;
+			}
+			.alumni-list li .award {
+				font-size: 0.85em;
+				color: #888;
+				font-style: italic;
+			}
+
+			/* Shrink the header */
+			#header {
+				min-height: 0 !important;
+				padding: 0 !important;
+			}
+
+			/* Full screen hero */
+			#page-hero {
+				height: calc(100vh - 44px);
+				background-size: cover;
+				background-position: center;
+				background-image: url('images/PMT07131.jpg');
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+				background-color: #278191;
+			}
+			#page-hero:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(39, 129, 145, 0.6);
+			}
+			#page-hero .hero-content {
+				position: relative;
+				z-index: 1;
+				text-align: center;
+				color: white;
+				padding: 2em;
+				margin-top: -15em;
+				width: 100%;
+			}
+			#page-hero .hero-content h2 {
+				font-size: 3.5em;
+				font-weight: 500;
+				margin: 0 0 0.3em;
+				color: white !important;
+				text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+			}
+			#page-hero .hero-content .hero-tagline {
+				font-size: 1.2em;
+				font-style: italic;
+				opacity: 0.85;
+				margin: 0;
+				text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+			}
+			#page-hero .hero-content p {
+				text-align: center !important;
+			}
+			#page-hero .hero-scroll {
+				position: absolute;
+				bottom: 5em;
+				left: 50%;
+				transform: translateX(-50%);
+				color: white;
+				text-align: center;
+				cursor: pointer;
+				z-index: 1;
+				text-decoration: none;
+			}
+			#page-hero .hero-scroll span {
+				display: block;
+				font-size: 0.7em;
+				letter-spacing: 2px;
+				text-transform: uppercase;
+				opacity: 0.6;
+				margin-bottom: 0.3em;
+			}
+			#page-hero .hero-scroll .arrow {
+				font-size: 2em;
+				opacity: 0.8;
+				animation: bounce 1.5s infinite;
+			}
+			@keyframes bounce {
+				0%, 100% { transform: translateY(0); }
+				50% { transform: translateY(8px); }
+			}
+			#page-hero-caption {
+				position: absolute;
+				bottom: 0.5em;
+				left: 0;
+				width: 100%;
+				text-align: center;
+				z-index: 3;
+				font-size: 0.75em;
+				color: rgba(255,255,255,0.6) !important;
+				font-style: italic;
+			}
+			#page-hero-caption {
+				position: absolute;
+				bottom: 1em;
+				left: 0;
+				width: 100%;
+				text-align: center;
+				z-index: 2;
+				font-size: 0.75em;
+				color: rgba(255,255,255,0.6);
+				font-style: italic;
+			}
+		</style>
 	</head>
 	<body class="no-sidebar is-preload">
 		<div id="page-wrapper">
 
-			<!-- Header -->
-				<div id="header">
-
-					<!-- Inner -->
-						<div class="inner">
-							<header>
-								<h1><a href="index.html" id="logo">MAdS Lab</a></h1>
-							</header>
-						</div>
-
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li><a href="index.html">Home</a></li>
-								<li>
-									<a href="#">Dropdown</a>
-									<ul>
-										<li><a href="#">Lorem ipsum dolor</a></li>
-										<li><a href="#">Magna phasellus</a></li>
-										<li><a href="#">Etiam dolore nisl</a></li>
-										<li>
-											<a href="#">And a submenu &hellip;</a>
-											<ul>
-												<li><a href="#">Lorem ipsum dolor</a></li>
-												<li><a href="#">Phasellus consequat</a></li>
-												<li><a href="#">Magna phasellus</a></li>
-												<li><a href="#">Etiam dolore nisl</a></li>
-											</ul>
-										</li>
-										<li><a href="#">Veroeros feugiat</a></li>
-									</ul>
-								</li>
-								<li><a href="team.html">Team</a></li>
-								<li><a href="research.html">Research</a></li>
-								<li><a href="news.html">News</a></li>
-								<li><a href="publications.html">Publications</a></li>
-								<li><a href="contact.html">Contact</a></li>
-							</ul>
-						</nav>
-
+			<!-- Header (nav only) -->
+			<div id="header">
+				<div class="inner">
+					<header>
+						<!-- <h1><a href="index.html" id="logo">MAdS LAB</a></h1> -->
+					</header>
 				</div>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Welcome</a></li>
+						<li><a href="research.html">Research</a></li>
+						<li class="active"><a href="team.html">Team</a></li>
+						<li><a href="publications.html">Publications</a></li>
+						<li><a href="news.html">News</a></li>
+						<li><a href="resources.html">Resources</a></li>
+						<li><a href="culture.html">Culture</a></li>
+						<li><a href="contact.html">Contact</a></li>
+						<li><a href="lab.html">IntraLab</a></li>
+					</ul>
+				</nav>
+			</div>
+
+			<!-- Full Screen Hero -->
+			<div id="page-hero">
+				<div class="hero-content">
+					<h2>Team</h2>
+					<p class="hero-tagline">We are MAdS about science</p>
+				</div>
+				<a class="hero-scroll scrolly" href="#main">
+					<span>Scroll Down</span>
+					<div class="arrow">&#8964;</div>
+				</a>
+				<div id="page-hero-caption"> MAdS LAB 2026 | Credit: Photo by Paige Tolan, Northeastern University</div>
+			</div>
 
 			<!-- Main -->
-				<div class="wrapper style1">
+			<div class="wrapper style1">
+				<div class="container">
+					<article id="main" class="special">
 
-					<div class="container">
-						<article id="main" class="special">
-							<header>
-								<h2><a href="#">Team</a></h2>
-								<p>
-									Morbi convallis lectus malesuada sed fermentum dolore amet
-								</p>
-							</header>
-							<a href="#" class="image featured"><img src="images/pic06.jpg" alt="" /></a>
-							<p>
-								Commodo id natoque malesuada sollicitudin elit suscipit. Curae suspendisse mauris posuere accumsan massa
-								posuere lacus convallis tellus interdum. Amet nullam fringilla nibh nulla convallis ut venenatis purus
-								lobortis. Auctor etiam porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum
-								consequat integer interdum integer purus sapien. Nibh eleifend nulla nascetur pharetra commodo mi augue
-								interdum tellus. Ornare cursus augue feugiat sodales velit lorem. Semper elementum ullamcorper lacinia
-								natoque aenean scelerisque vel lacinia mollis quam sodales congue.
-							</p>
-							<section>
-								<header>
-									<h3>Ultrices tempor sagittis nisl</h3>
-								</header>
-								<p>
-									Nascetur volutpat nibh ullamcorper vivamus at purus. Cursus ultrices porttitor sollicitudin imperdiet
-									at pretium tellus in euismod a integer sodales neque. Nibh quis dui quis mattis eget imperdiet venenatis
-									feugiat. Neque primis ligula cum erat aenean tristique luctus risus ipsum praesent iaculis. Fermentum elit
-									fringilla consequat dis arcu. Pellentesque mus tempor vitae pretium sodales porttitor lacus. Phasellus
-									egestas odio nisl duis sociis purus faucibus morbi. Eget massa mus etiam sociis pharetra magna.
-								</p>
-								<p>
-									Eleifend auctor turpis magnis sed porta nisl pretium. Aenean suspendisse nulla eget sed etiam parturient
-									orci cursus nibh. Quisque eu nec neque felis laoreet diam morbi egestas. Dignissim cras rutrum consectetur
-									ut penatibus fermentum nibh erat malesuada varius.
-								</p>
-							</section>
-							<section>
-								<header>
-									<h3>Augue euismod feugiat tempus</h3>
-								</header>
-								<p>
-									Pretium tellus in euismod a integer sodales neque. Nibh quis dui quis mattis eget imperdiet venenatis
-									feugiat. Neque primis ligula cum erat aenean tristique luctus risus ipsum praesent iaculis. Fermentum elit
-									ut nunc urna volutpat donec cubilia commodo risus morbi. Lobortis vestibulum velit malesuada ante
-									egestas odio nisl duis sociis purus faucibus morbi. Eget massa mus etiam sociis pharetra magna.
-								</p>
-							</section>
-						</article>
-						<hr />
-						<div class="row">
-							<article class="col-4 col-12-mobile special">
-								<a href="#" class="image featured"><img src="images/pic07.jpg" alt="" /></a>
-								<header>
-									<h3><a href="#">Gravida aliquam penatibus</a></h3>
-								</header>
-								<p>
-									Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam
-									porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
-								</p>
-							</article>
-							<article class="col-4 col-12-mobile special">
-								<a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
-								<header>
-									<h3><a href="#">Sed quis rhoncus placerat</a></h3>
-								</header>
-								<p>
-									Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam
-									porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
-								</p>
-							</article>
-							<article class="col-4 col-12-mobile special">
-								<a href="#" class="image featured"><img src="images/pic09.jpg" alt="" /></a>
-								<header>
-									<h3><a href="#">Magna laoreet et aliquam</a></h3>
-								</header>
-								<p>
-									Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam
-									porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
-								</p>
-							</article>
-						</div>
-					</div>
+						<header>
+							<h2>Team</h2>
+							<p style="font-size: 1.2em; font-style: italic; color: #666; margin-bottom: 0.2em;">Meet the MAdScientists!</p>
+						</header>
 
-				</div>
+						<!-- Current Members -->
+						<section>
+							<h3 style="text-align: left; margin-bottom: 1em; padding-left: 2em;">Current Members</h3>
+							<div class="team-grid">
 
-			<!-- Footer -->
-				<div id="footer">
-					<div class="container">
-						<div class="row">
-
-							<!-- Tweets -->
-								<section class="col-4 col-12-mobile">
-									<header>
-										<h2 class="icon brands fa-twitter circled"><span class="label">Tweets</span></h2>
-									</header>
-									<ul class="divided">
-										<li>
-											<article class="tweet">
-												Amet nullam fringilla nibh nulla convallis tique ante sociis accumsan.
-												<span class="timestamp">5 minutes ago</span>
-											</article>
-										</li>
-										<li>
-											<article class="tweet">
-												Hendrerit rutrum quisque.
-												<span class="timestamp">30 minutes ago</span>
-											</article>
-										</li>
-										<li>
-											<article class="tweet">
-												Curabitur donec nulla massa laoreet nibh. Lorem praesent montes.
-												<span class="timestamp">3 hours ago</span>
-											</article>
-										</li>
-										<li>
-											<article class="tweet">
-												Lacus natoque cras rhoncus curae dignissim ultricies. Convallis orci aliquet.
-												<span class="timestamp">5 hours ago</span>
-											</article>
-										</li>
-									</ul>
-								</section>
-
-							<!-- Posts -->
-								<section class="col-4 col-12-mobile">
-									<header>
-										<h2 class="icon solid fa-file circled"><span class="label">Posts</span></h2>
-									</header>
-									<ul class="divided">
-										<li>
-											<article class="post stub">
-												<header>
-													<h3><a href="#">Nisl fermentum integer</a></h3>
-												</header>
-												<span class="timestamp">3 hours ago</span>
-											</article>
-										</li>
-										<li>
-											<article class="post stub">
-												<header>
-													<h3><a href="#">Phasellus portitor lorem</a></h3>
-												</header>
-												<span class="timestamp">6 hours ago</span>
-											</article>
-										</li>
-										<li>
-											<article class="post stub">
-												<header>
-													<h3><a href="#">Magna tempus consequat</a></h3>
-												</header>
-												<span class="timestamp">Yesterday</span>
-											</article>
-										</li>
-										<li>
-											<article class="post stub">
-												<header>
-													<h3><a href="#">Feugiat lorem ipsum</a></h3>
-												</header>
-												<span class="timestamp">2 days ago</span>
-											</article>
-										</li>
-									</ul>
-								</section>
-
-							<!-- Photos -->
-								<section class="col-4 col-12-mobile">
-									<header>
-										<h2 class="icon solid fa-camera circled"><span class="label">Photos</span></h2>
-									</header>
-									<div class="row gtr-25">
-										<div class="col-6">
-											<a href="#" class="image fit"><img src="images/pic10.jpg" alt="" /></a>
-										</div>
-										<div class="col-6">
-											<a href="#" class="image fit"><img src="images/pic11.jpg" alt="" /></a>
-										</div>
-										<div class="col-6">
-											<a href="#" class="image fit"><img src="images/pic12.jpg" alt="" /></a>
-										</div>
-										<div class="col-6">
-											<a href="#" class="image fit"><img src="images/pic13.jpg" alt="" /></a>
-										</div>
-										<div class="col-6">
-											<a href="#" class="image fit"><img src="images/pic14.jpg" alt="" /></a>
-										</div>
-										<div class="col-6">
-											<a href="#" class="image fit"><img src="images/pic15.jpg" alt="" /></a>
-										</div>
-									</div>
-								</section>
-
-						</div>
-						<hr />
-						<div class="row">
-							<div class="col-12">
-
-								<!-- Contact -->
-									<section class="contact">
-										<header>
-											<h3>Nisl turpis nascetur interdum?</h3>
-										</header>
-										<p>Urna nisl non quis interdum mus ornare ridiculus egestas ridiculus lobortis vivamus tempor aliquet.</p>
-										<ul class="icons">
-											<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-											<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-											<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-											<li><a href="#" class="icon brands fa-pinterest"><span class="label">Pinterest</span></a></li>
-											<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-											<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">Linkedin</span></a></li>
-										</ul>
-									</section>
-
-								<!-- Copyright -->
-									<div class="copyright">
-										<ul class="menu">
-											<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-										</ul>
-									</div>
-
+							<div class="team-member">
+								<a href="team/bakar-abbasi.html"><div class="img-wrapper"><img src="images/PMT07103.jpg" alt="Bakar Abbasi" /></div></a>
+								<div class="info">
+									<h4><a href="team/bakar-abbasi.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Bakar Abbasi</a></h4>
+									<p>PhD Student (Chemistry)</p>
+									<p>Coming soon.</p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
 							</div>
 
+							<div class="team-member">
+								<a href="team/liana-annable.html"><div class="img-wrapper"><img src="images/PMT07077.jpg" alt="Liana Annable" /></div></a>
+								<div class="info">
+									<h4><a href="team/liana-annable.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Liana Annable</a></h4>
+									<p>PhD Student (Chemistry)</p>
+									<p>Coming soon.</p>
+									<p><em><strong>Fun fact:</strong> I have my scuba diving license and have dived in the Pacific and Atlantic ocean.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/amy-ballesteros.html"><div class="img-wrapper"><img src="images/PMT07048.jpg" alt="Amy Ballesteros" /></div></a>
+								<div class="info">
+									<h4><a href="team/amy-ballesteros.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Amy Ballesteros</a></h4>
+									<p>PhD Student (Chemistry)</p>
+									<p>Coming soon.</p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/pandarinadh-chadarajupalli.html"><div class="img-wrapper"><img src="images/pic01.jpg" alt="Pandarinadh Chadarajupalli" /></div></a>
+								<div class="info">
+									<h4><a href="team/pandarinadh-chadarajupalli.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Pandarinadh Chadarajupalli</a></h4>
+									<p>Master's Student (Bioinformatics)</p>
+									<p>Coming soon.</p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/pooshana-dhanasekaran.html"><div class="img-wrapper"><img src="images/pic01.jpg" alt="Pooshana Dhanasekaran" /></div></a>
+								<div class="info">
+									<h4><a href="team/pooshana-dhanasekaran.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Pooshana Dhanasekaran</a></h4>
+									<p>Master's Student (Biotechnology)</p>
+									<p>Coming soon.</p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/arezou-dilmaghanimarand.html"><div class="img-wrapper"><img src="images/PMT07035.jpg" alt="Arezou Dilmaghani-Marand" /></div></a>
+								<div class="info">
+									<h4><a href="team/arezou-dilmaghanimarand.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Arezou Dilmaghani-Marand</a></h4>
+									<p>PhD Student (Chemistry)</p>
+									<p>Coming soon.</p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/yachne-elysee.html"><div class="img-wrapper"><img src="images/PMT07063.jpg" alt="Yachne Elysee" /></div></a>
+								<div class="info">
+									<h4><a href="team/yachne-elysee.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Yachne Elysee</a></h4>
+									<p>Undergraduate Student</p>
+									<p>(Major: Pharmaceutical Sciences)</p>
+									<p>Coming soon.</p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/pankti-lakhani.html"><div class="img-wrapper"><img src="images/pic01.jpg" alt="Pankti Lakhani" /></div></a>
+								<div class="info">
+									<h4><a href="team/pankti-lakhani.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Pankti Lakhani</a></h4>
+									<p>Master's Student (Biotechnology)</p>
+									<p>Coming soon.</p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/ben-loew.html"><div class="img-wrapper"><img src="images/PMT07109.jpg" alt="Ben Loew" /></div></a>
+								<div class="info">
+									<h4><a href="team/ben-loew.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Ben Loew</a></h4>
+									<p>Undergraduate Student</p>
+									<p>(Major: Biochemistry)</p>
+									<p>Coming soon.</p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/luiza-monteiro.html"><div class="img-wrapper"><img src="images/pic01.jpg" alt="Luiza Monteiro" /></div></a>
+								<div class="info">
+									<h4><a href="team/luiza-monteiro.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Luiza Monteiro</a></h4>
+									<p>Laboratory Technician</p>
+									<p>Coming soon.</p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/santhiyaa-ramaraj.html"><div class="img-wrapper"><img src="images/PMT07070.jpg" alt="Santhiyaa Ramaraj" /></div></a>
+								<div class="info">
+									<h4><a href="team/santhiyaa-ramaraj.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Santhiyaa Ramaraj</a></h4>
+									<p>Master's Student (Bioinformatics)</p>
+									<p>Coming soon.</p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/thiago-sousa.html"><div class="img-wrapper"><img src="images/PMT07056.jpg" alt="Thiago Sousa" /></div></a>
+								<div class="info">
+									<h4><a href="team/thiago-sousa.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Thiago Sousa</a></h4>
+									<p>Postdoctoral Researcher</p>
+									<p>Coming soon.</p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/angela-tan.html"><div class="img-wrapper"><img src="images/PMT07085.jpg" alt="Angela Tan" /></div></a>
+								<div class="info">
+									<h4><a href="team/angela-tan.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Angela Tan</a></h4>
+									<p>Master's Student (Biotechnology)</p>
+									<p>Coming soon.</p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							</div>
+						</section>
+
+						<!-- PI -->
+						<section>
+							<h3 style="text-align: left; margin-bottom: 1em; padding-left: 2em;">Principal Investigator</h3>
+							<div style="padding-left: 2em;">
+							<div class="team-member">
+								<a href="team/thiago-santos.html"><div class="img-wrapper"><img src="images/PMT06548.jpg" alt="Thiago Santos" /></div></a>
+								<div class="info">
+									<h4><a href="team/thiago-santos.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Thiago Santos</a></h4>
+									<p class="pi-info">Assistant Professor</p>
+									<p class="pi-info">Department of Chemistry &amp; Chemical Biology</p>
+									<p class="pi-info">Department of Biology</p>
+									<p>I lead this group of talented scientists, though they are the ones keeping me on my toes.</p>
+									<p><em><strong>Fun fact:</strong> I am an avid fermenter, always on the lookout for new foods and beverages to ferment.</em></p>
+								</div>
+							</div>
+							</div>
+						</section>
+
+						<!-- Alumni -->
+						<section>
+							<h3 style="text-align: left; margin-bottom: 1em; padding-left: 2em;">Alumni</h3>
+							<ul class="alumni-list">
+
+								<li>
+									<span class="alumni-name">Michael Arias</span> | <span class="alumni-info">High School Student (BC High), 2025–26 | Current Position: TBD</span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Atticus Conn</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/atticusconn" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Amalia Costa</span> | <span class="alumni-info">Undergraduate Student, 2024–26 | Current position: <a href="https://www.linkedin.com/in/amalia-costa-484354217" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Anya Duarte</span> | <span class="alumni-info">Undergraduate Student, 2025–26 | Current position: <a href="https://www.linkedin.com/in/anya-duarte-495002334" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Grace Giarrizzo</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/grace-giarrizzo-900732223" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Andreah Harris</span> | <span class="alumni-info">Undergraduate Student, 2024 | Current position: <a href="https://www.linkedin.com/in/andreah-harris-a1b891229" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Michael Liotta</span> | <span class="alumni-info">Undergraduate Student, 2026 | Current position: <a href="https://www.linkedin.com/in/michael-c-liotta" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Riley Raddohl</span> | <span class="alumni-info">Undergraduate Student, 2025–26 | Current position: <a href="https://www.linkedin.com/in/riley-raddohl" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Dylan Sacks</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/dylan-sacks" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Lucy Shaffer</span> | <span class="alumni-info">Undergraduate Student, 2025–26 | Current position: <a href="https://www.linkedin.com/in/lucyshaffer" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Alyssa Shemtov</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/alyssa-shemtov" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Caitlin Sia</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/caitlin-alexandra-sia" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Vignesh Vijayakumar</span> | <span class="alumni-info">Master's Student, 2024–25 | Current position: <a href="https://in.linkedin.com/in/vignesh-kumaar-vijayakumar-08318a78" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Hannah Xu</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/hannah-xu-835091261" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+							</ul>
+						</section>
+
+						<!-- Friends & Visitors -->
+						<section>
+							<h3 style="text-align: left; margin-bottom: 1em; padding-left: 2em;">Visiting Friends &amp; Collaborators</h3>
+							<ul class="alumni-list">
+
+								<li>
+									<span class="alumni-name">Gleucinei Castro</span> | <span class="alumni-info">Visiting Ph.D. Student (UEA, Brazil), 2025–26 | Current position: Graduate Student at UEA, Brazil</span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Prof. Irene Coelho</span> | <span class="alumni-info">Visiting Professor, 2024 | Professor, Universidade Federal Rural do Rio de Janeiro, Brazil</span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Prof. Ozlem Oyardi</span> | <span class="alumni-info">Visiting Professor, 2026 | Associate Professor, Gazi University, Turkey</span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Thiago Sousa</span> | <span class="alumni-info">Visiting Ph.D. Student (UFAM, Brazil), 2024 | Current position: Postdoctoral Researcher — MAdS LAB</span>
+								</li>
+
+							</ul>
+						</section>
+
+					</article>
+				</div>
+			</div>
+
+			<!-- Footer -->
+			<div id="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="copyright">
+								<ul class="menu">
+									<li>&copy; MAdS LAB. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
+			</div>
 
 		</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+		<script>
+			document.querySelector('.hero-scroll').addEventListener('click', function(e) {
+				e.preventDefault();
+				document.querySelector('#main').scrollIntoView({ behavior: 'smooth' });
+			});
+		</script>
 
 	</body>
 </html>

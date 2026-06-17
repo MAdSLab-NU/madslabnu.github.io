@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>MAdS LAB | IntraLab</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="assets/css/custom.css" />
+		<style>
+			/* Shrink the header */
+			#header {
+				min-height: 0 !important;
+				padding: 0 !important;
+			}
+
+			/* Full screen hero */
+			#page-hero {
+				height: calc(100vh - 44px);
+				background-color: #278191;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: flex-start;
+				position: relative;
+			}
+			#page-hero .hero-content {
+				position: relative;
+				z-index: 1;
+				text-align: center;
+				color: white;
+				padding: 2em;
+				margin-top: 9.75em;
+			}
+			#page-hero .hero-content h2 {
+				font-size: 3.5em;
+				font-weight: 500;
+				margin: 0 0 0.3em;
+				color: white !important;
+				text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+			}
+			#page-hero .hero-content .hero-tagline {
+				font-size: 1.2em;
+				font-style: italic;
+				opacity: 0.85;
+				margin: 0 0 1.5em;
+				text-align: center !important;
+			}
+			#page-hero .hero-content .password-prompt p {
+				font-size: 0.95em;
+				opacity: 0.8;
+				margin-bottom: 1em;
+				text-align: center;
+			}
+			#page-hero .hero-content input {
+				padding: 0.5em 1em;
+				font-size: 1em;
+				border: none;
+				border-radius: 4px;
+				width: 250px;
+				margin-right: 0.5em;
+			}
+			#page-hero .hero-content button {
+				padding: 0.5em 1.2em;
+				font-size: 1em;
+				background-color: rgba(255,255,255,0.2);
+				color: white;
+				border: 1px solid rgba(255,255,255,0.4);
+				border-radius: 4px;
+				cursor: pointer;
+			}
+			#page-hero .hero-content button:hover {
+				background-color: rgba(255,255,255,0.3);
+			}
+			#error-msg {
+				color: #ffcccc;
+				margin-top: 0.8em;
+				display: none;
+				text-align: center;
+			}
+			#lab-content {
+				display: none;
+			}
+			.lab-section {
+				margin-bottom: 2em;
+			}
+		</style>
+	</head>
+	<body class="no-sidebar is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header (nav only) -->
+			<div id="header">
+				<div class="inner">
+					<header>
+						<!-- <h1><a href="index.html" id="logo">MAdS LAB</a></h1> -->
+					</header>
+				</div>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Welcome</a></li>
+						<li><a href="research.html">Research</a></li>
+						<li><a href="team.html">Team</a></li>
+						<li><a href="publications.html">Publications</a></li>
+						<li><a href="news.html">News</a></li>
+						<li><a href="resources.html">Resources</a></li>
+						<li><a href="culture.html">Culture</a></li>
+						<li><a href="contact.html">Contact</a></li>
+						<li class="active"><a href="lab.html">IntraLab</a></li>
+					</ul>
+				</nav>
+			</div>
+
+			<!-- Hero with password -->
+			<div id="page-hero">
+				<div class="hero-content">
+					<h2>IntraLab</h2>
+					<p class="hero-tagline">For MAdS LAB members only</p>
+					<div class="password-prompt">
+						<p>This page is restricted to MAdS LAB members. Please enter the password to continue.</p>
+						<input type="password" id="password-input" placeholder="Enter password" />
+						<button onclick="checkPassword()">Enter</button>
+						<p id="error-msg">Incorrect password. Please try again.</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Main (hidden until password entered) -->
+			<div class="wrapper style1" id="main-wrapper" style="display: none;">
+				<div class="container">
+					<article id="main" class="special">
+
+						<div id="lab-content">
+							<header style="text-align: center;">
+								<h2>🧫 🔬 Welcome, MAdScientists! 🧪 🦠</h2>
+								<p style="font-size: 1.2em; font-style: italic; color: #666;">This page is your one-stop shop for all lab resources.</p>
+							</header>
+
+							<section class="lab-section">
+								<header><h3>Lab Protocols</h3></header>
+								<p><em>Coming soon. Protocols and methods used in the lab will be shared here.</em></p>
+							</section>
+
+							<section class="lab-section">
+								<header><h3>Meeting Notes</h3></header>
+								<p><em>Coming soon. Lab meeting notes and summaries will be posted here.</em></p>
+							</section>
+
+							<section class="lab-section">
+								<header><h3>Onboarding Documents</h3></header>
+								<p><em>Coming soon. New member onboarding guides and lab expectations will be available here.</em></p>
+							</section>
+
+							<section class="lab-section">
+								<header><h3>Lab Calendar</h3></header>
+								<p><em>Coming soon. Lab schedule, deadlines, and events will be listed here.</em></p>
+							</section>
+
+							<section class="lab-section">
+								<header><h3>Internal Resources</h3></header>
+								<p><em>Coming soon. Additional internal resources will be shared here.</em></p>
+							</section>
+
+						</div>
+
+					</article>
+				</div>
+			</div>
+
+			<!-- Footer -->
+			<div id="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="copyright">
+								<ul class="menu">
+									<li>&copy; MAdS LAB. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+		<script>
+			function checkPassword() {
+				const input = document.getElementById('password-input').value;
+				if (input === 'MAdSLab2024@NUCCB!') {
+					document.getElementById('page-hero').style.display = 'none';
+					document.getElementById('main-wrapper').style.display = 'block';
+					document.getElementById('lab-content').style.display = 'block';
+				} else {
+					document.getElementById('error-msg').style.display = 'block';
+				}
+			}
+
+			document.getElementById('password-input').addEventListener('keypress', function(e) {
+				if (e.key === 'Enter') checkPassword();
+			});
+		</script>
+
+	</body>
+</html>

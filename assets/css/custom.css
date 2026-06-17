@@ -1,0 +1,112 @@
+/* Custom nav layout */
+#header nav#nav > ul {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    width: 100% !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    justify-content: center !important;
+    gap: 0.2em !important;
+}
+
+#header nav#nav > ul > li:first-child {
+    margin-right: auto !important;
+    padding-left: 3em !important;
+}
+
+#header nav#nav > ul > li:last-child {
+    margin-left: 1em !important;
+    padding-right: 3em !important;
+}
+
+#header nav#nav > ul > li:last-child a {
+    padding: 0.5em 1.5em !important;
+    color: rgba(255,255,255,0.6) !important;
+    font-weight: 500 !important;
+}
+
+/* Nav font and padding */
+#header nav#nav > ul > li > a {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    padding-top: 1.5em !important;
+    padding-bottom: 1.5em !important;
+}
+
+/* Hero title size and position */
+#header .inner {
+    position: relative;
+    z-index: 1;
+    top: 1%;
+    transform: translateY(-50%);
+}
+
+/* MAdS LAB title size */
+#header .inner h1 {
+    font-size: 5em !important;
+}
+
+/* Tagline size */
+#header .inner p {
+    font-size: 1.8em !important;
+}
+
+/* Header background color */
+#header {
+    background-color: #278191 !important;
+    background-image: none !important;
+}
+
+#header:before {
+    background-color: #278191 !important;
+    background-image: none !important;
+}
+
+#header:after {
+    background-color: #278191 !important;
+    background-image: none !important;
+}
+
+/* Page title color */
+#main header h2 {
+    color: #278191 !important;
+}
+
+/* Nav bar height */
+#nav {
+    padding: 2em 0 2em 0 !important;
+}
+
+/* Header height for inner pages */
+body.no-sidebar #header {
+    padding: 1.5em 0 1.5em 0 !important;
+}
+
+/* Center hero tagline text */
+#page-hero .hero-content p {
+    text-align: center !important;
+}
+
+/* Hero image caption */
+#page-hero-caption {
+    position: absolute;
+    bottom: 1em;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+    font-size: 0.75em;
+    color: rgba(255,255,255,0.6);
+    font-style: italic;
+}
+
+/* Active nav link */
+#nav ul li.active a {
+    font-weight: 700 !important;
+    color: white !important;
+}
+
+#nav ul li.active {
+    border-color: transparent !important;
+}

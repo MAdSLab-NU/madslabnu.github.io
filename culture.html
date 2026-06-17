@@ -1,0 +1,426 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>MAdS LAB Culture</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="assets/css/custom.css" />
+		<style>
+			/* Masonry grid */
+			.masonry-grid {
+				columns: 3;
+				column-gap: 12px;
+				margin-top: 1.5em;
+			}
+			.masonry-item {
+				break-inside: avoid;
+				margin-bottom: 12px;
+				border-radius: 8px;
+				overflow: hidden;
+				cursor: pointer;
+				position: relative;
+			}
+			.masonry-item img {
+				width: 100%;
+				display: block;
+				border-radius: 8px;
+				transition: opacity 0.3s;
+			}
+			.masonry-item:hover img {
+				opacity: 0.85;
+			}
+			.masonry-placeholder {
+				width: 100%;
+				background-color: #ddd;
+				border-radius: 8px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #999;
+				font-size: 0.85em;
+				font-style: italic;
+			}
+
+			/* Lightbox */
+			#lightbox {
+				display: none;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0,0,0,0.9);
+				z-index: 9999;
+				align-items: center;
+				justify-content: center;
+				flex-direction: column;
+			}
+			#lightbox.active {
+				display: flex;
+			}
+			#lightbox img {
+				max-width: 85%;
+				max-height: 75vh;
+				border-radius: 4px;
+				object-fit: contain;
+			}
+			#lightbox-caption {
+				color: rgba(255,255,255,0.8);
+				font-size: 0.9em;
+				font-style: italic;
+				margin-top: 1em;
+				text-align: center;
+				max-width: 600px;
+			}
+			#lightbox-close {
+				position: absolute;
+				top: 1.5em;
+				right: 1.5em;
+				color: white;
+				font-size: 2em;
+				cursor: pointer;
+				background: none;
+				border: none;
+				line-height: 1;
+			}
+			#lightbox-prev, #lightbox-next {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				color: white;
+				font-size: 2em;
+				cursor: pointer;
+				background: none;
+				border: none;
+				padding: 0.5em;
+			}
+			#lightbox-prev { left: 1em; }
+			#lightbox-next { right: 1em; }
+
+			/* Shrink the header */
+			#header {
+				min-height: 0 !important;
+				padding: 0 !important;
+			}
+
+			/* Full screen hero */
+			#page-hero {
+				height: calc(100vh - 44px);
+				background-size: cover;
+				background-position: center;
+				background-image: url('images/neu_m0472544f copy(1).jpg');
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+				background-color: #278191;
+			}
+			#page-hero:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(39, 129, 145, 0.6);
+			}
+			#page-hero .hero-content {
+				position: relative;
+				z-index: 1;
+				text-align: center;
+				color: white;
+				padding: 2em;
+				margin-top: -15em;
+				width: 100%;
+			}
+			#page-hero .hero-content h2 {
+				font-size: 3.5em;
+				font-weight: 500;
+				margin: 0 0 0.3em;
+				color: white !important;
+				text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+			}
+			#page-hero .hero-content .hero-tagline {
+				font-size: 1.2em;
+				font-style: italic;
+				opacity: 0.85;
+				margin: 0;
+				text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+				text-align: center !important;
+			}
+			#page-hero .hero-scroll {
+				position: absolute;
+				bottom: 5em;
+				left: 50%;
+				transform: translateX(-50%);
+				color: white;
+				text-align: center;
+				cursor: pointer;
+				z-index: 1;
+				text-decoration: none;
+			}
+			#page-hero .hero-scroll span {
+				display: block;
+				font-size: 0.7em;
+				letter-spacing: 2px;
+				text-transform: uppercase;
+				opacity: 0.6;
+				margin-bottom: 0.3em;
+			}
+			#page-hero .hero-scroll .arrow {
+				font-size: 2em;
+				opacity: 0.8;
+				animation: bounce 1.5s infinite;
+			}
+			@keyframes bounce {
+				0%, 100% { transform: translateY(0); }
+				50% { transform: translateY(8px); }
+			}
+			#page-hero-caption {
+				position: absolute;
+				bottom: 0.5em;
+				left: 0;
+				width: 100%;
+				text-align: center;
+				z-index: 3;
+				font-size: 0.75em;
+				color: rgba(255,255,255,0.6) !important;
+				font-style: italic;
+			}
+			#page-hero-caption {
+				position: absolute;
+				bottom: 1em;
+				left: 0;
+				width: 100%;
+				text-align: center;
+				z-index: 2;
+				font-size: 0.75em;
+				color: rgba(255,255,255,0.6);
+				font-style: italic;
+			}
+		</style>
+	</head>
+	<body class="no-sidebar is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header (nav only) -->
+			<div id="header">
+				<div class="inner">
+					<header>
+						<!-- <h1><a href="index.html" id="logo">MAdS LAB</a></h1> -->
+					</header>
+				</div>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Welcome</a></li>
+						<li><a href="research.html">Research</a></li>
+						<li><a href="team.html">Team</a></li>
+						<li><a href="publications.html">Publications</a></li>
+						<li><a href="news.html">News</a></li>
+						<li><a href="resources.html">Resources</a></li>
+						<li class="active"><a href="culture.html">Culture</a></li>
+						<li><a href="contact.html">Contact</a></li>
+						<li><a href="lab.html">IntraLab</a></li>
+					</ul>
+				</nav>
+			</div>
+
+			<!-- Full Screen Hero -->
+			<div id="page-hero">
+				<div class="hero-content">
+					<h2>Culture</h2>
+					<p class="hero-tagline">Who we are at and beyond the bench</p>
+				</div>
+				<a class="hero-scroll scrolly" href="#main">
+					<span>Scroll Down</span>
+					<div class="arrow">&#8964;</div>
+				</a>
+				<div id="page-hero-caption">Northeastern University campus mural by artist Felipe Ortiz. | Credit: Photo by Matthew Modoono, Northeastern University</div>
+			</div>
+
+			<!-- Main -->
+			<div class="wrapper style1">
+				<div class="container">
+					<article id="main" class="special">
+
+						<header>
+							<h2>Culture</h2>
+							<p style="font-size: 1.2em; font-style: italic; color: #666; margin-bottom: 0.2em;">More info coming soon</p>
+						</header>
+
+						<section>
+							<header>
+								<h3 style="color: #278191;">Our Values</h3>
+								<p style="font-size: 1em; color: #666; margin-bottom: 0.2em;">More info coming soon</p>
+							</header>
+
+							<h4>Scientific Rigor</h4>
+							<p>We are committed to careful, reproducible, and high-quality science. We take the time to do experiments right, interpret data honestly, and hold ourselves to the highest standards of scientific integrity.</p>
+
+							<h4>Collaboration</h4>
+							<p>Great science rarely happens in isolation. We actively collaborate within the lab and with colleagues across disciplines, institutions, and career stages. We believe that diverse perspectives lead to better science.</p>
+
+							<h4>Open Science</h4>
+							<p>We are committed to transparency in our research. We share data, code, and preprints openly whenever possible, and we encourage the broader scientific community to build on our work.</p>
+
+							<h4>Diversity &amp; Inclusion</h4>
+							<p>We are committed to building a lab where scientists from all backgrounds feel welcome, respected, and supported. We believe that diversity strengthens science, and we actively work to create an inclusive environment.</p>
+
+							<h4>Mentorship</h4>
+							<p>We are invested in the growth and success of every lab member. We provide individualized mentorship, support career development at all levels, and celebrate the achievements of our team.</p>
+
+							<h4>Work-Life Balance</h4>
+							<p>We believe that sustainable science requires taking care of yourself. We respect personal time, encourage healthy boundaries, and support the mental and physical wellbeing of all lab members.</p>
+
+							<h4>Curiosity</h4>
+							<p>We encourage creative thinking, bold ideas, and the freedom to explore. Some of the best science comes from asking unexpected questions.</p>
+
+							<h4>Integrity</h4>
+							<p>We hold ourselves to the highest standards of honesty in our science, in our interactions with each other, and in our engagement with the broader community.</p>
+
+						</section>
+
+						<section>
+							<header>
+								<h3 style="color: #278191;">Our Pearls of Wisdom</h3>
+								<p style="font-size: 1em; color: #666; margin-bottom: 0.2em;">The following words of wisdom have been purposely taken out of context, and they still make a lot of sense.</p>
+							</header>
+
+							<ul style="list-style-type: disc; padding-left: 1.5em; margin-top: 0.3em;">
+								<li>Five years is not enough for science! (Liana Anabble, Oct. 2024).</li>
+							</ul>
+
+						</section>
+
+						<!-- Photos -->
+						<section>
+							<header>
+								<h3 style="color: #278191;">Our Photos</h3>
+								<p style="font-size: 1em; color: #666; margin-bottom: 0.2em;">These are some of our favorite moments captured and some beautiful MicrobiArt!</p>
+							</header>
+
+							<div class="masonry-grid" id="masonry-grid">
+								<div class="masonry-item" onclick="openLightbox(0)">
+									<img src="images/PMT07131.jpg" alt="Group photo - ISEC - Spring 2026" />
+								</div>
+
+								<div class="masonry-item" onclick="openLightbox(1)">
+									<img src="images/PMT07013.jpg" alt="Group photo 2 - ISEC - Spring 2026" />
+								</div>
+
+								<div class="masonry-item" onclick="openLightbox(2)">
+									<img src="images/Mcclure2.jpg" alt="Microbial Art - Nila McClure" />
+								</div>
+
+								<div class="masonry-item" onclick="openLightbox(3)">
+									<img src="images/Mcclure3.jpg" alt="Microbial Art - Freya McClure" />
+								</div>
+
+								<div class="masonry-item" onclick="openLightbox(4)">
+									<img src="images/Mcclure0.jpg" alt="Art - Nila McClure" />
+								</div>
+
+								<div class="masonry-item" onclick="openLightbox(5)">
+									<img src="images/Mcclure1.jpg" alt="Art - Nila McClure" />
+								</div>
+
+							</div>
+						</section>
+
+					</article>
+				</div>
+			</div>
+
+			<!-- Lightbox -->
+			<div id="lightbox">
+				<button id="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
+				<button id="lightbox-prev" onclick="changeSlide(-1)">&#x2039;</button>
+				<img id="lightbox-img" src="" alt="" />
+				<div id="lightbox-caption"></div>
+				<button id="lightbox-next" onclick="changeSlide(1)">&#x203A;</button>
+			</div>
+
+			<!-- Footer -->
+			<div id="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="copyright">
+								<ul class="menu">
+									<li>&copy; MAdS LAB. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+		<script>
+			const photos = [
+				{ src: 'images/PMT07131.jpg', caption: 'Group photo - Spring 2026 | Credit: Paige Tolan, NU - COS' },
+				{ src: 'images/PMT07013.jpg', caption: 'Group photo - Spring 2026 | Credit: Paige Tolan, NU - COS' },
+				{ src: 'images/Mcclure2.jpg', caption: 'Microbial Art | Credit: Nila McClure' },
+				{ src: 'images/Mcclure3.jpg', caption: 'Microbial Art | Credit: Freya McClure' },
+				{ src: 'images/Mcclure0.jpg', caption: 'Art | Credit: Nila McClure' },
+				{ src: 'images/Mcclure1.jpg', caption: 'Art | Credit: Nila McClure' },
+			];
+
+			let currentPhoto = 0;
+
+			function openLightbox(index) {
+				currentPhoto = index;
+				document.getElementById('lightbox-img').src = photos[index].src;
+				document.getElementById('lightbox-caption').textContent = photos[index].caption;
+				document.getElementById('lightbox').classList.add('active');
+			}
+
+			function closeLightbox() {
+				document.getElementById('lightbox').classList.remove('active');
+			}
+
+			function changeSlide(direction) {
+				currentPhoto = (currentPhoto + direction + photos.length) % photos.length;
+				document.getElementById('lightbox-img').src = photos[currentPhoto].src;
+				document.getElementById('lightbox-caption').textContent = photos[currentPhoto].caption;
+			}
+
+			document.getElementById('lightbox').addEventListener('click', function(e) {
+				if (e.target === this) closeLightbox();
+			});
+
+			document.addEventListener('keydown', function(e) {
+				if (document.getElementById('lightbox').classList.contains('active')) {
+					if (e.key === 'ArrowLeft') changeSlide(-1);
+					if (e.key === 'ArrowRight') changeSlide(1);
+					if (e.key === 'Escape') closeLightbox();
+				}
+			});
+
+			document.querySelector('.hero-scroll').addEventListener('click', function(e) {
+				e.preventDefault();
+				document.querySelector('#main').scrollIntoView({ behavior: 'smooth' });
+			});
+		</script>
+
+	</body>
+</html>
