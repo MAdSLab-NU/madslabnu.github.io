@@ -82,7 +82,7 @@
 				letter-spacing: 2px;
 				text-transform: uppercase;
 				opacity: 0.6;
-				margin-bottom: 0.3em;
+				margin-bottom: 0.1em;
 			}
 			#page-hero .hero-scroll .arrow {
 				font-size: 2em;
@@ -114,34 +114,6 @@
 				font-size: 0.75em;
 				color: rgba(255,255,255,0.6);
 				font-style: italic;
-			}
-
-			/* News: big year headings, months underneath */
-			.news-year {
-				font-size: 2.4em;
-				font-weight: 600;
-				color: #278191;
-				border-bottom: 2px solid #278191;
-				padding-bottom: 0.15em;
-				margin: 1.6em 0 0.7em;
-				line-height: 1.2;
-			}
-			.news-year:first-child {
-				margin-top: 0.5em;
-			}
-			.news-month {
-				margin-bottom: 1.5em;
-			}
-			.news-month strong {
-				font-size: 1.1em;
-			}
-			.news-month ul {
-				list-style-type: disc;
-				padding-left: 1.5em;
-				margin-top: 0.3em;
-			}
-			.news-month li {
-				margin-bottom: 0.5em;
 			}
 		</style>
 	</head>
@@ -270,6 +242,12 @@
 					</article>
 				</div>
 			</div>
+
+			<!-- Go to Top Button -->
+			<button id="go-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+				<div class="arrow-up">&#8963;</div>
+				<span>Back to top</span>
+			</button>
 
 			<!-- Footer -->
 			<div id="footer">

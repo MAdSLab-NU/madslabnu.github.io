@@ -83,11 +83,6 @@ body.no-sidebar #header {
     padding: 1.5em 0 1.5em 0 !important;
 }
 
-/* Center hero tagline text */
-#page-hero .hero-content p {
-    text-align: center !important;
-}
-
 /* Hero image caption */
 #page-hero-caption {
     position: absolute;
@@ -103,10 +98,97 @@ body.no-sidebar #header {
 
 /* Active nav link */
 #nav ul li.active a {
-    font-weight: 700 !important;
-    color: white !important;
+    font-weight: 300 !important;
+    color: #ffeb99 !important;
 }
 
 #nav ul li.active {
     border-color: transparent !important;
+}
+
+/* Go to top button */
+#go-to-top {
+    display: block;
+    background: none;
+    border: none;
+    color: #278191;
+    cursor: pointer;
+    text-align: center;
+    padding: 1em 0;
+    width: 100%;
+    font-size: 1em;
+}
+#go-to-top span {
+    display: block;
+    font-size: 0.55em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 1;
+    margin-top: -0.5em;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    color: #278191;
+}
+#go-to-top .arrow-up {
+    font-size: 1em;
+    opacity: 0.8;
+    display: block;
+    animation: bounceUp 1.5s infinite;
+    color: #278191;
+}
+#go-to-top:hover {
+    opacity: 0.8;
+}
+@keyframes bounceUp {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+/* Scroll down button */
+#page-hero .hero-scroll {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0 !important;
+}
+#page-hero .hero-scroll span {
+    font-size: 0.55em !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    margin-bottom: 0 !important;
+    color: #ffeb99 !important;
+    opacity: 1 !important;
+}
+#page-hero .hero-scroll .arrow {
+    font-size: 1.2em !important;
+    color: #ffeb99 !important;
+    margin-top: -1em !important;
+}
+
+/* Left align body text */
+#main p {
+    text-align: left !important;
+}
+
+/* Keep hero and special areas centered */
+#page-hero .hero-content p,
+.funding-section p,
+#main .funding-section p,
+.special > header p,
+#main > header p,
+#footer p {
+    text-align: center !important;
+}
+
+/* Center funding logos */
+.funding-grid {
+    justify-content: center !important;
+}
+/* Page title & tagline size — applies to Research, Team, Publications,
+   News, Resources, Culture, Contact, IntraLab (all pages using the
+   #page-hero .hero-content structure) */
+#page-hero .hero-content h2 {
+    font-size: 4.2em !important;
+}
+#page-hero .hero-content .hero-tagline {
+    font-size: 2.4em !important;
 }
