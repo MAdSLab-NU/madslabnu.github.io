@@ -52,6 +52,9 @@
 			.hero-slide.active {
 				opacity: 0.3;
 			}
+			#header {
+				background-color: #2c3e50;
+			}
 			#header .inner {
 				position: relative;
 				z-index: 1;
@@ -61,6 +64,9 @@
 			}
 			#header .inner p {
 				text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+			}
+			#hero-tagline {
+				font-size: 2.4em !important;
 			}
 			#hero-dots {
 				position: absolute;
@@ -96,6 +102,8 @@
 				font-size: 0.75em;
 				color: rgba(255,255,255,0.6);
 				font-style: italic;
+				display: block;
+				min-height: 1.4em;
 			}
 			/* Solid teal nav bar */
 			#header nav#nav {
@@ -111,7 +119,7 @@
 
 				<!-- Hero Slider -->
 				<div id="hero-slider">
-					<div class="hero-slide active" style="background-image: url('images/IMG_3534.jpg');"></div>
+					<div class="hero-slide" style="background-image: url('images/IMG_3534.jpg');"></div>
 					<div class="hero-slide" style="background-image: url('images/IMG_3537.jpg');"></div>
 					<div class="hero-slide" style="background-image: url('images/Mcclure3.jpg');"></div>
 					<div class="hero-slide" style="background-image: url('images/Mcclure2.jpg');"></div>
@@ -120,12 +128,12 @@
 				<!-- Hero Dots -->
 				<div id="hero-dots">
 					<div style="display: flex; gap: 0.6em;">
-						<span class="hero-dot active" onclick="goToSlide(0)"></span>
+						<span class="hero-dot" onclick="goToSlide(0)"></span>
 						<span class="hero-dot" onclick="goToSlide(1)"></span>
 						<span class="hero-dot" onclick="goToSlide(2)"></span>
 						<span class="hero-dot" onclick="goToSlide(3)"></span>
 					</div>
-					<span id="hero-caption-text" style="font-size: 0.7em; color: rgba(255,255,255,0.6); font-style: italic;">Caption 1 | Credit: Name</span>
+					<span id="hero-caption-text" style="font-size: 0.7em; color: rgba(255,255,255,0.6); font-style: italic;">&nbsp;</span>
 				</div>
 
 				<!-- Inner -->
@@ -133,7 +141,7 @@
 					<header>
 						<h1><a href="index.html" id="logo">MAdS LAB</a></h1>
 						<!-- <hr /> -->
-						<p id="hero-tagline">We are MAdS about science</p>
+						<p id="hero-tagline" style="font-size: 2.4em !important;">We are MAdS about science</p>
 					</header>
 				</div>
 
@@ -160,7 +168,7 @@
 					<div class="funding-section">
 						<header>
 							<h2>Funding</h2>
-							<p>We are grateful for the support of the following funding sources:</p>
+							<p style="text-align: center;">We are grateful for the support of the following funding sources:</p>
 						</header>
 						<div class="funding-grid">
 								<img src="images/Howard_Hughes_Medical_Institute_logo.png" alt="HHMI funding logo" style="height: 60px;" />
@@ -170,6 +178,12 @@
 					</div>
 				</article>
 			</div>
+
+			<!-- Go to Top Button -->
+		<button id="go-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+			<div class="arrow-up">&#8963;</div>
+			<span>Back to top</span>
+		</button>
 
 			<!-- Footer -->
 			<div id="footer">
@@ -204,17 +218,21 @@
 			const dots = document.querySelectorAll('.hero-dot');
 			const taglines = [
 				'Deciphering the molecular mechanisms of essential bacterial physiology',
-				'Harnessing biochemistry and microbiology to combat antibiotic resistance',
+				'Combining biochemistry and microbiology to combat antibiotic resistance',
 				'Uncovering the chemical biology of bacterial natural products',
 				'Mining natural environments for undiscovered natural products'
 			];
 			const captions = [
-				'Caption 1 | Credit: Name',
-				'Caption 2 | Credit: Name',
-				'Unknown Title | Credit: Painting by artist Freya McClure',
-				'Unknown Title | Credit: Painting by artist Nila McClure',
+				'Busy lab bench | Credit: Amy Ballesteros',
+				'Busy lab bench | Credit: Amy Ballesteros',
+				'MicrobiArt, Unknown Title | Credit: Coloring by artist Freya McClure',
+				'MicrobiArt, Unknown Title | Credit: Painting by artist Nila McClure',
 			];
 			let current = 0;
+
+			// Intro tagline "We are MAdS about science" is hardcoded in the HTML
+			// and shows with no image/caption. After a few seconds, fade in the
+			// first slide and start the normal rotation.
 
 			function goToSlide(n) {
 				slides[current].classList.remove('active');
@@ -226,10 +244,21 @@
 				document.getElementById('hero-caption-text').textContent = captions[current];
 			}
 
-			setInterval(() => {
-				goToSlide((current + 1) % slides.length);
-			}, 4000);
+			function startSlider() {
+				slides[current].classList.add('active');
+				dots[current].classList.add('active');
+				document.getElementById('hero-tagline').textContent = taglines[current];
+				document.getElementById('hero-caption-text').textContent = captions[current];
+
+				setInterval(() => {
+					goToSlide((current + 1) % slides.length);
+				}, 4000);
+			}
+
+			// Wait 3 seconds before starting the slider
+			setTimeout(startSlider, 3000);
 		</script>
 
+	
 	</body>
 </html>

@@ -14,11 +14,19 @@
 		<link rel="stylesheet" href="assets/css/custom.css" />
 		<style>
 			.research-area {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 2em;
+				align-items: center;
 				margin-bottom: 3em;
+			}
+			.research-area-text h4 {
+				color: inherit;
+				margin-bottom: 0.5em;
 			}
 			.research-figure {
 				text-align: center;
-				margin: 2em 0;
+				margin: 0;
 			}
 			.research-figure .placeholder {
 				width: 100%;
@@ -38,6 +46,7 @@
 				flex-wrap: wrap;
 				gap: 1.5em;
 				align-items: center;
+				justify-content: center;
 				margin-top: 1em;
 			}
 			.funding-grid img {
@@ -82,13 +91,6 @@
 				padding: 2em;
 				margin-top: -15em;
 				width: 100%;
-			}
-			#page-hero .hero-content .hero-lab {
-				font-size: 0.85em;
-				letter-spacing: 3px;
-				text-transform: uppercase;
-				opacity: 0.7;
-				margin: 0 0 0.5em;
 			}
 			#page-hero .hero-content h2 {
 				font-size: 3.5em;
@@ -146,17 +148,6 @@
 				color: rgba(255,255,255,0.6) !important;
 				font-style: italic;
 			}
-			#page-hero-caption {
-				position: absolute;
-				bottom: 1em;
-				left: 0;
-				width: 100%;
-				text-align: center;
-				z-index: 2;
-				font-size: 0.75em;
-				color: rgba(255,255,255,0.6);
-				font-style: italic;
-			}
 		</style>
 	</head>
 	<body class="no-sidebar is-preload">
@@ -187,7 +178,6 @@
 			<!-- Full Screen Hero -->
 			<div id="page-hero">
 				<div class="hero-content">
-					<!-- <p class="hero-lab">MAdS LAB</p> -->
 					<h2>Research</h2>
 					<p class="hero-tagline">Deciphering the molecular mechanisms of essential bacterial physiology</p>
 				</div>
@@ -195,7 +185,7 @@
 					<span>Scroll Down</span>
 					<div class="arrow">&#8964;</div>
 				</a>
-				<div id="page-hero-caption">Caption: Coming soon | Credit: Coming soon</div>
+				<div id="page-hero-caption">MAdS LAB circa 2026 | Credit: Paige Tolan, COS</div>
 			</div>
 
 			<!-- Main -->
@@ -205,26 +195,24 @@
 
 						<header>
 							<h2>Research</h2>
-							<p style="font-size: 1.2em; font-style: italic; color: #666;">Decoding the molecular machinery of bacterial outer membrane biogenesis.</p>
+							<p style="font-size: 1.2em; font-style: italic; color: #666;">Deciphering the molecular mechanisms of essential bacterial physiology</p>
 						</header>
 
 						<!-- Overview -->
 						<section>
-							<header><h3>Overview</h3></header>
-							<p>The MAdS LAB investigates the biochemical principles of membrane protein biogenesis in bacterial cells. We focus on the outer membrane (OM) of Gram-negative bacteria, where a conserved multiprotein complex — the β-barrel assembly machine (BAM) — folds and inserts essential transmembrane proteins. By combining genetics, biochemistry, and structural biology, we seek to define the mechanistic rules of assembly and understand how this process can be disrupted by naturally evolved inhibitors.</p>
-							<figure class="research-figure">
-								<span class="placeholder"></span>
-								<figcaption>Figure placeholder — add an overview figure here.</figcaption>
-							</figure>
+							<!-- <header><h3 style="color: #278191;">Overview</h3></header> -->
+							<p style="font-size: 1.2em; font-style: italic; text-align: center !important;">Our group combines biochemistry and microbiology to investigate how bacteria build and maintain the integrity of their cell envelope. We seek to elucidate the molecular details of these processes and understand how they can be disrupted by natural product inhibitors. Insights from these studies will inform the development of novel antibiotics to treat multidrug-resistant bacterial infections.</p>
 						</section>
 
 						<!-- Research Areas -->
 						<section>
-							<header><h3>Research Areas</h3></header>
+							<header><h3 style="color: #278191; margin-bottom: 1em;">Research Areas</h3></header>
 
 							<div class="research-area">
-								<h4>Area 1 — Mechanisms of β-barrel Assembly</h4>
-								<p>How does the BAM complex fold and insert hundreds of structurally diverse β-barrel proteins into the bacterial outer membrane? Using genetic, biochemical, and structural approaches — including cryo-electron microscopy — our lab investigates the molecular rules governing this essential and conserved process. We are particularly interested in understanding how BAM catalyzes the assembly of structurally diverse substrates and how different regions of the BAM machine coordinate to promote β-barrel biogenesis.</p>
+								<div class="research-area-text">
+									<h4>Area 1 — Mechanisms of β-barrel Assembly</h4>
+									<p>How does the BAM complex fold and insert hundreds of structurally diverse β-barrel proteins into the bacterial outer membrane? Using genetic, biochemical, and structural approaches — including cryo-electron microscopy — our lab investigates the molecular rules governing this essential and conserved process. We are particularly interested in understanding how BAM catalyzes the assembly of structurally diverse substrates and how different regions of the BAM machine coordinate to promote β-barrel biogenesis.</p>
+								</div>
 								<figure class="research-figure">
 									<span class="placeholder"></span>
 									<figcaption>Figure placeholder — add a figure for Area 1.</figcaption>
@@ -232,8 +220,10 @@
 							</div>
 
 							<div class="research-area">
-								<h4>Area 2 — Bacteriocins as Probes of Outer Membrane Biogenesis</h4>
-								<p>Bacteriocins are narrow-spectrum antimicrobial proteins that selectively kill bacteria by targeting the BAM complex. Our lab studies how these naturally evolved toxins inhibit β-barrel assembly, revealing both fundamental principles of membrane biogenesis and potential strategies for targeted antibacterial development. By defining the molecular determinants of bacteriocin selectivity, we seek to uncover new insights into how outer membrane assembly can be perturbed and controlled.</p>
+								<div class="research-area-text">
+									<h4>Area 2 — Bacteriocins as Probes of Outer Membrane Biogenesis</h4>
+									<p>Bacteriocins are narrow-spectrum antimicrobial proteins that selectively kill bacteria by targeting the BAM complex. Our lab studies how these naturally evolved toxins inhibit β-barrel assembly, revealing both fundamental principles of membrane biogenesis and potential strategies for targeted antibacterial development. By defining the molecular determinants of bacteriocin selectivity, we seek to uncover new insights into how outer membrane assembly can be perturbed and controlled.</p>
+								</div>
 								<figure class="research-figure">
 									<span class="placeholder"></span>
 									<figcaption>Figure placeholder — add a figure for Area 2.</figcaption>
@@ -241,8 +231,10 @@
 							</div>
 
 							<div class="research-area">
-								<h4>Area 3 — (Meta)genome Mining for Novel Natural Products</h4>
-								<p>Bacterial genomes encode a vast and largely untapped reservoir of natural products. Our lab uses computational and experimental approaches to mine bacterial (meta)genomes for novel bacteriocins and other antimicrobial compounds, with a focus on identifying molecules that target outer membrane biogenesis. This work bridges genomics, chemical biology, and microbiology to discover new chemical tools for studying and manipulating bacterial physiology.</p>
+								<div class="research-area-text">
+									<h4>Area 3 — (Meta)genome Mining for Novel Natural Products</h4>
+									<p>Bacterial genomes encode a vast and largely untapped reservoir of natural products. Our lab uses computational and experimental approaches to mine bacterial (meta)genomes for novel bacteriocins and other antimicrobial compounds, with a focus on identifying molecules that target outer membrane biogenesis. This work bridges genomics, chemical biology, and microbiology to discover new chemical tools for studying and manipulating bacterial physiology.</p>
+								</div>
 								<figure class="research-figure">
 									<span class="placeholder"></span>
 									<figcaption>Figure placeholder — add a figure for Area 3.</figcaption>
@@ -253,7 +245,7 @@
 
 						<!-- Funding -->
 						<section>
-							<header><h3>Funding</h3></header>
+							<header><h3 style="color: #278191;">Funding</h3></header>
 							<p>We are grateful for the support of the following funding sources:</p>
 							<div class="funding-grid">
 								<img src="images/Howard_Hughes_Medical_Institute_logo.png" alt="HHMI funding logo" style="height: 60px;" />
@@ -265,6 +257,12 @@
 					</article>
 				</div>
 			</div>
+
+			<!-- Go to Top Button -->
+			<button id="go-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+				<div class="arrow-up">&#8963;</div>
+				<span>Back to top</span>
+			</button>
 
 			<!-- Footer -->
 			<div id="footer">

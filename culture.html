@@ -173,7 +173,7 @@
 				letter-spacing: 2px;
 				text-transform: uppercase;
 				opacity: 0.6;
-				margin-bottom: 0.3em;
+				margin-bottom: 0.1em;
 			}
 			#page-hero .hero-scroll .arrow {
 				font-size: 2em;
@@ -347,6 +347,12 @@
 				<div id="lightbox-caption"></div>
 				<button id="lightbox-next" onclick="changeSlide(1)">&#x203A;</button>
 			</div>
+
+			<!-- Go to Top Button -->
+			<button id="go-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+				<div class="arrow-up">&#8963;</div>
+				<span>Back to top</span>
+			</button>
 
 			<!-- Footer -->
 			<div id="footer">
