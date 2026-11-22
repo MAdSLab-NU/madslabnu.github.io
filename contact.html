@@ -95,17 +95,6 @@
 			}
 			#page-hero-caption {
 				position: absolute;
-				bottom: 0.5em;
-				left: 0;
-				width: 100%;
-				text-align: center;
-				z-index: 3;
-				font-size: 0.75em;
-				color: rgba(255,255,255,0.6) !important;
-				font-style: italic;
-			}
-			#page-hero-caption {
-				position: absolute;
 				bottom: 1em;
 				left: 0;
 				width: 100%;
@@ -114,6 +103,38 @@
 				font-size: 0.75em;
 				color: rgba(255,255,255,0.6);
 				font-style: italic;
+			}
+			/* Three-column contact block: office | map | deliveries */
+			.contact-columns {
+				display: grid;
+				grid-template-columns: 1fr minmax(0, 350px) 1fr;
+				gap: 2em;
+				align-items: start;
+				margin-bottom: 1.5em;
+			}
+			.contact-columns p {
+				margin: 0;
+				white-space: nowrap;
+			}
+			.contact-columns p:last-child {
+				justify-self: center;
+			}
+			.contact-columns iframe {
+				border: 0;
+				border-radius: 0.5em;
+				width: 100%;
+				height: 250px;
+			}
+			@media screen and (max-width: 1000px) {
+				.contact-columns {
+					grid-template-columns: 1fr;
+				}
+				.contact-columns p {
+					white-space: normal;
+				}
+				.contact-columns p:last-child {
+					justify-self: start;
+				}
 			}
 		</style>
 	</head>
@@ -170,69 +191,68 @@
 								Thiago Santos<br />
 								<a href="mailto:t.santos@northeastern.edu">t.santos@northeastern.edu</a><br />
 							</p>
-							<p style="line-height: 1.4; margin-bottom: 0.5em;">
-								EXP 530A<br />
-								<a href="https://cos.northeastern.edu/nucos-department/chemistry-chemical-biology/" target="_blank">Department of Chemistry &amp; Chemical Biology (CCB)</a><br />
-								<a href="https://cos.northeastern.edu/nucos-department/biology/" target="_blank">Department of Biology</a><br />
-								Northeastern University, Boston, MA 02120
-							</p>
-							<div style="margin-top: 1em; margin-bottom: 1.5em;">
-								<a href="https://maps.google.com/?q=815+Columbus+Ave,+Boston,+MA+02120" target="_blank" style="display: inline-flex; flex-direction: column; align-items: center; gap: 6px; text-decoration: none; color: #888;">
-									<i class="fas fa-map-marker-alt" style="font-size: 28px;"></i>
-									<span style="font-size: 11px;">Google Maps</span>
-								</a>
+							<div class="contact-columns">
+								<p style="line-height: 1.4;">
+									<strong><i>Office:</i></strong><br />
+									EXP 530A<br />
+									<a href="https://cos.northeastern.edu/nucos-department/chemistry-chemical-biology/" target="_blank">Department of Chemistry and Chemical Biology</a><br />
+									<a href="https://cos.northeastern.edu/nucos-department/biology/" target="_blank">Department of Biology</a><br />
+									Northeastern University, Boston, MA 02120
+								</p>
+								<iframe src="https://maps.google.com/maps?q=815+Columbus+Ave,+Boston,+MA+02120&output=embed" loading="lazy" title="Map to EXP building"></iframe>
+								<p style="line-height: 1.4;">
+									<strong><i>Please address deliveries to:</i></strong><br />
+									716 Columbus Avenue<br />
+									EXP 106K<br />
+									Boston, MA 02115<br />
+									USA
+								</p>
 							</div>
-							<p>
-								<strong><i>Please address deliveries to:</i></strong><br />
-								716 Columbus Avenue<br />
-								EXP 106K<br />
-								Boston, MA 02115<br />
-								USA
-							</p>
 						</section>
 
-						<section>
+						<section style="border-top: 1px solid #ddd; padding-top: 2em;">
 							<header>
 								<h3 style="color: #278191;">Join Us</h3>
 							</header>
-							<p><em>Note: Please reach out to inquire about research opportunities before submitting a formal application.</em></p>
 							<p>
-								We are always excited to connect with curious and motivated scientists at the undergraduate, graduate, and postdoctoral levels. Our research spans many disciplines, including protein biochemistry, chemical biology, microbiology, molecular biology, and bioinformatics. Scientists from diverse scientific and personal backgrounds are especially encouraged to apply.
+								We are always excited to connect with curious, motivated scientists at the undergraduate, graduate, and postdoctoral levels. Our research spans protein biochemistry, chemical biology, microbiology, molecular biology, and bioinformatics, and we especially encourage scientists from diverse scientific and personal backgrounds to apply.
 							</p>
 							<p>
-								Before applying, we encourage you to read about our <a href="culture.html">Culture</a>.
+								Before applying, we invite you to learn about our lab <a href="culture.html">Culture</a>. <em>Please reach out to discuss research opportunities before submitting a formal application.</em>
 							</p>
-						</section>
 
-						<section>
-							<header>
-								<h3><em>Northeastern Undergraduates and Master's Students</em></h3>
-							</header>
-							<p>
-								Occasionally, we have positions available for undergraduate and master's students, including computational biology projects. To apply, please send <a href="mailto:t.santos@northeastern.edu">Thiago</a> a resume including relevant coursework, Co-op experience, and/or previous research experience, along with a brief statement of research interests.
-							</p>
-						</section>
+							<div class="card-grid">
+								<div class="info-card">
+									<i class="fa fa-graduation-cap"></i>
+									<h4>Undergraduate &amp; Master's Students</h4>
+									<p>We occasionally have openings for Northeastern undergraduate and master's students. Send your resume (relevant coursework, co-op experience, and any previous research) with a brief statement of your research interests.</p>
+									<div class="card-actions">
+										<a class="card-button" href="mailto:t.santos@northeastern.edu">Email</a>
+									</div>
+								</div>
+								<div class="info-card">
+									<i class="fa fa-flask"></i>
+									<h4>Prospective Graduate Students</h4>
+									<p>Apply through the Chemistry or Biology PhD programs. Once admitted, you are welcome to rotate in our lab and join if it is a good fit for your graduate training.</p>
+									<div class="card-actions">
+										<a class="card-button" href="https://cos.northeastern.edu/connected-science-community-and-chemistry-phd-program/" target="_blank">Chemistry PhD</a>
+										<a class="card-button" href="https://cos.northeastern.edu/connected-science-community-and-biology-phd-program/" target="_blank">Biology PhD</a>
+									</div>
+								</div>
+								<div class="info-card">
+									<i class="fa fa-microscope"></i>
+									<h4>Prospective Postdocs</h4>
+									<p>Send your CV, a cover letter describing your academic background, research interests, goals for postdoctoral training, and contact information for three professional references.</p>
+									<div class="card-actions">
+										<a class="card-button" href="mailto:t.santos@northeastern.edu">Email</a>
+									</div>
+								</div>
+							</div>
 
-						<section>
-							<header>
-								<h3><em>Prospective Graduate Students</em></h3>
-							</header>
-							<p>
-								Please apply through the <a href="https://cos.northeastern.edu/connected-science-community-and-chemistry-phd-program/" target="_blank">CCB</a> or <a href="https://cos.northeastern.edu/connected-science-community-and-biology-phd-program/" target="_blank">Biology</a> graduate programs. Upon admission, you will have the opportunity to rotate in the group and join if it is a good fit for your graduate training.
-							</p>
-						</section>
-
-						<section>
-							<header>
-								<h3><em>Prospective Postdoctoral Researchers</em></h3>
-							</header>
-							<p>
-								Please email <a href="mailto:t.santos@northeastern.edu">Thiago</a> your CV and a cover letter describing your professional background and experience, your research interests and goals for postdoctoral training, and the contact information of three academic references.
-							</p>
-						</section>
-
-						<section>
-							<p>All group members are highly encouraged to apply for external funding. See our <a href="resources.html">Resources</a> page for opportunities.</p>
+							<div class="callout">
+								<i class="fa fa-lightbulb"></i>
+								<p>We strongly encourage all lab members to pursue external funding. See our <a href="resources.html">Resources</a> page for opportunities.</p>
+							</div>
 						</section>
 
 					</article>
@@ -240,10 +260,10 @@
 			</div>
 
 			<!-- Go to Top Button -->
-		<button id="go-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
-			<div class="arrow-up">&#8963;</div>
-			<span>Back to top</span>
-		</button>
+			<button id="go-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+				<div class="arrow-up">&#8963;</div>
+				<span>Back to top</span>
+			</button>
 
 			<!-- Footer -->
 			<div id="footer">
@@ -279,6 +299,5 @@
 			});
 		</script>
 
-	
 	</body>
 </html>

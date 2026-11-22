@@ -202,6 +202,53 @@
 				color: rgba(255,255,255,0.6);
 				font-style: italic;
 			}
+			/* Current members: three columns, photo above text */
+			.team-grid {
+				grid-template-columns: repeat(3, 1fr);
+				gap: 2.5em 2em;
+				padding-left: 0;
+			}
+			.team-grid .team-member {
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+			}
+			.team-grid .team-member .img-wrapper {
+				width: 250px;
+				height: 250px;
+				margin: 0 0 1em;
+			}
+			.team-grid .team-member .info p {
+				text-align: center !important;
+			}
+
+			/* Tablets: two columns */
+			@media screen and (max-width: 1000px) {
+				.team-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+
+			/* Phones: one column */
+			@media screen and (max-width: 736px) {
+				.team-grid {
+					grid-template-columns: 1fr;
+				}
+				.team-member {
+					flex-direction: column;
+					text-align: center;
+				}
+				.team-member .img-wrapper {
+					width: 180px;
+					height: 180px;
+					margin: 0 auto 1em;
+				}
+				#main h3,
+				.alumni-list,
+				#main section > div[style*="padding-left"] {
+					padding-left: 0 !important;
+				}
+			}
 		</style>
 	</head>
 	<body class="no-sidebar is-preload">
@@ -328,7 +375,7 @@
 							</div>
 
 							<div class="team-member">
-								<a href="team/amatullah-tawawalla.html"><div class="img-wrapper"><img src="images/pic01.jpg" alt="Amatullah Tawawalla" /></div></a>
+								<a href="team/amatullah-tawawalla.html"><div class="img-wrapper"><img src="images/pic01.jpg" alt="Amu Tawawalla" /></div></a>
 								<div class="info">
 									<h4><a href="team/amatullah-tawawalla.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Amu Tawawalla</a></h4>
 									<p>PhD Student (Chemistry)</p>
@@ -484,59 +531,63 @@
 							<ul class="alumni-list">
 
 								<li>
-									<span class="alumni-name">Michael Arias</span> | <span class="alumni-info">High School Student (BC High), 2025–26 | Current position: TBD</span>
+									<span class="alumni-name">Pooshana Dhanasekaran</span> | <span class="alumni-info">Master's Student, 2026 | Current position: TBD</span>
 								</li>
 
 								<li>
-									<span class="alumni-name">Atticus Conn</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/atticusconn" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+									<span class="alumni-name">Michael Arias</span> | <span class="alumni-info">High School Student (BC High), 2025–26 | Current position: Undergraduate Student at Cornell University</span>
 								</li>
 
 								<li>
-									<span class="alumni-name">Amalia Costa</span> | <span class="alumni-info">Undergraduate Student, 2024–26 | Current position: <a href="https://www.linkedin.com/in/amalia-costa-484354217" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+									<span class="alumni-name">Atticus Conn</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/atticusconn" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
 								</li>
 
 								<li>
-									<span class="alumni-name">Anya Duarte</span> | <span class="alumni-info">Undergraduate Student, 2025–26 | Current position: <a href="https://www.linkedin.com/in/anya-duarte-495002334" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+									<span class="alumni-name">Amalia Costa</span> | <span class="alumni-info">Undergraduate Student, 2024–26 | Current position: <a href="https://www.linkedin.com/in/amalia-costa-484354217" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
 								</li>
 
 								<li>
-									<span class="alumni-name">Grace Giarrizzo</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/grace-giarrizzo-900732223" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+									<span class="alumni-name">Anya Duarte</span> | <span class="alumni-info">Undergraduate Student, 2025–26 | Current position: <a href="https://www.linkedin.com/in/anya-duarte-495002334" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
 								</li>
 
 								<li>
-									<span class="alumni-name">Andreah Harris</span> | <span class="alumni-info">Undergraduate Student, 2024 | Current position: <a href="https://www.linkedin.com/in/andreah-harris-a1b891229" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+									<span class="alumni-name">Grace Giarrizzo</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/grace-giarrizzo-900732223" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
 								</li>
 
 								<li>
-									<span class="alumni-name">Michael Liotta</span> | <span class="alumni-info">Undergraduate Student, 2026 | Current position: <a href="https://www.linkedin.com/in/michael-c-liotta" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+									<span class="alumni-name">Andreah Harris</span> | <span class="alumni-info">Undergraduate Student, 2024 | Current position: <a href="https://www.linkedin.com/in/andreah-harris-a1b891229" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
 								</li>
 
 								<li>
-									<span class="alumni-name">Riley Raddohl</span> | <span class="alumni-info">Undergraduate Student, 2025–26 | Current position: <a href="https://www.linkedin.com/in/riley-raddohl" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+									<span class="alumni-name">Michael Liotta</span> | <span class="alumni-info">Undergraduate Student, 2026 | Current position: <a href="https://www.linkedin.com/in/michael-c-liotta" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
 								</li>
 
 								<li>
-									<span class="alumni-name">Dylan Sacks</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/dylan-sacks" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+									<span class="alumni-name">Riley Raddohl</span> | <span class="alumni-info">Undergraduate Student, 2025–26 | Current position: <a href="https://www.linkedin.com/in/riley-raddohl" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
 								</li>
 
 								<li>
-									<span class="alumni-name">Lucy Shaffer</span> | <span class="alumni-info">Undergraduate Student, 2025–26 | Current position: <a href="https://www.linkedin.com/in/lucyshaffer" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+									<span class="alumni-name">Dylan Sacks</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/dylan-sacks" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
 								</li>
 
 								<li>
-									<span class="alumni-name">Alyssa Shemtov</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/alyssa-shemtov" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+									<span class="alumni-name">Lucy Shaffer</span> | <span class="alumni-info">Undergraduate Student, 2025–26 | Current position: <a href="https://www.linkedin.com/in/lucyshaffer" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
 								</li>
 
 								<li>
-									<span class="alumni-name">Caitlin Sia</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/caitlin-alexandra-sia" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+									<span class="alumni-name">Alyssa Shemtov</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/alyssa-shemtov" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
 								</li>
 
 								<li>
-									<span class="alumni-name">Vignesh Vijayakumar</span> | <span class="alumni-info">Master's Student, 2024–25 | Current position: <a href="https://in.linkedin.com/in/vignesh-kumaar-vijayakumar-08318a78" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+									<span class="alumni-name">Caitlin Sia</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/caitlin-alexandra-sia" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
 								</li>
 
 								<li>
-									<span class="alumni-name">Hannah Xu</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/hannah-xu-835091261" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+									<span class="alumni-name">Vignesh Vijayakumar</span> | <span class="alumni-info">Master's Student, 2024–25 | Current position: <a href="https://in.linkedin.com/in/vignesh-kumaar-vijayakumar-08318a78" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Hannah Xu</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/hannah-xu-835091261" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
 								</li>
 
 							</ul>
