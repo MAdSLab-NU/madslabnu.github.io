@@ -192,3 +192,14 @@ body.no-sidebar #header {
 #page-hero .hero-content .hero-tagline {
     font-size: 2.4em !important;
 }
+
+/* Smaller footer */
+#footer {
+	padding: 1.5em 0 !important;
+}
+#footer .copyright {
+	margin-top: 0 !important;
+	padding-top: 0 !important;
+	border-top: none !important;
+	font-size: 0.7em;
+}
