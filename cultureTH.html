@@ -1,0 +1,603 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>MAdS LAB Culture</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="assets/css/custom.css" />
+		<style>
+			/* Values: four cards per row */
+			.card-grid.values-grid {
+				grid-template-columns: repeat(4, 1fr);
+			}
+			@media screen and (max-width: 1280px) {
+				.card-grid.values-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+			@media screen and (max-width: 736px) {
+				.card-grid.values-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			/* Pearls of Wisdom quotes */
+			.pearls {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+				gap: 1.5em;
+				margin-top: 1.5em;
+			}
+			.pearl {
+				position: relative;
+				background: rgba(39, 129, 145, 0.05);
+				border-radius: 0.75em;
+				padding: 2.2em 1.5em 1.2em;
+				margin: 0;
+				border: 0;
+				font-style: normal;
+			}
+			.pearl:before {
+				content: '\201C';
+				position: absolute;
+				top: -0.15em;
+				left: 0.3em;
+				font-family: Georgia, 'Times New Roman', serif;
+				font-size: 4em;
+				line-height: 1;
+				color: rgba(39, 129, 145, 0.35);
+			}
+			.pearl p {
+				font-size: 1.1em;
+				font-style: italic;
+				color: #483949;
+				margin: 0 0 0.6em;
+			}
+			.pearl cite {
+				display: block;
+				font-size: 0.85em;
+				font-style: normal;
+				color: #888;
+			}
+
+			/* Masonry grid */
+			.masonry-grid {
+				columns: 3;
+				column-gap: 12px;
+				margin-top: 1.5em;
+			}
+			@media screen and (max-width: 1000px) {
+				.masonry-grid {
+					columns: 2;
+				}
+			}
+			@media screen and (max-width: 600px) {
+				.masonry-grid {
+					columns: 1;
+				}
+			}
+			.masonry-item {
+				break-inside: avoid;
+				margin-bottom: 12px;
+				border-radius: 8px;
+				overflow: hidden;
+				cursor: pointer;
+				position: relative;
+			}
+			.masonry-item img {
+				width: 100%;
+				display: block;
+				border-radius: 8px;
+				transition: opacity 0.3s;
+			}
+			.masonry-item:hover img {
+				opacity: 0.85;
+			}
+			/* Hover captions on photos */
+			.masonry-caption {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				padding: 2em 0.9em 0.7em;
+				background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+				color: #fff;
+				font-size: 0.85em;
+				line-height: 1.4;
+				border-radius: 0 0 8px 8px;
+				opacity: 0;
+				transform: translateY(8px);
+				transition: opacity 0.3s ease, transform 0.3s ease;
+				pointer-events: none;
+			}
+			.masonry-item:hover .masonry-caption,
+			.masonry-item:focus-within .masonry-caption {
+				opacity: 1;
+				transform: translateY(0);
+			}
+			/* Touch screens have no hover, so captions always show */
+			@media (hover: none) {
+				.masonry-caption {
+					opacity: 1;
+					transform: none;
+				}
+			}
+			.masonry-placeholder {
+				width: 100%;
+				background-color: #ddd;
+				border-radius: 8px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #999;
+				font-size: 0.85em;
+				font-style: italic;
+			}
+
+			/* Lightbox */
+			#lightbox {
+				display: none;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0,0,0,0.9);
+				z-index: 9999;
+				align-items: center;
+				justify-content: center;
+				flex-direction: column;
+			}
+			#lightbox.active {
+				display: flex;
+			}
+			#lightbox img {
+				max-width: 85%;
+				max-height: 75vh;
+				border-radius: 4px;
+				object-fit: contain;
+			}
+			#lightbox-caption {
+				color: rgba(255,255,255,0.8);
+				font-size: 0.9em;
+				font-style: italic;
+				margin-top: 1em;
+				text-align: center;
+				max-width: 600px;
+			}
+			#lightbox-close {
+				position: absolute;
+				top: 1.5em;
+				right: 1.5em;
+				color: white;
+				font-size: 2em;
+				cursor: pointer;
+				background: none;
+				border: none;
+				line-height: 1;
+			}
+			#lightbox-prev, #lightbox-next {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				color: white;
+				font-size: 2em;
+				cursor: pointer;
+				background: none;
+				border: none;
+				padding: 0.5em;
+			}
+			#lightbox-prev { left: 1em; }
+			#lightbox-next { right: 1em; }
+
+			/* Shrink the header */
+			#header {
+				min-height: 0 !important;
+				padding: 0 !important;
+			}
+
+			/* Full screen hero */
+			#page-hero {
+				height: calc(100vh - 44px);
+				background-size: cover;
+				background-position: center;
+				background-image: url('images/neu_m0472544f copy(1).jpg');
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+				background-color: #278191;
+			}
+			#page-hero:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(39, 129, 145, 0.6);
+			}
+			#page-hero .hero-content {
+				position: relative;
+				z-index: 1;
+				text-align: center;
+				color: white;
+				padding: 2em;
+				margin-top: -15em;
+				width: 100%;
+			}
+			#page-hero .hero-content h2 {
+				font-size: 3.5em;
+				font-weight: 500;
+				margin: 0 0 0.3em;
+				color: white !important;
+				text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+			}
+			#page-hero .hero-content .hero-tagline {
+				font-size: 1.2em;
+				font-style: italic;
+				opacity: 0.85;
+				margin: 0;
+				text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+				text-align: center !important;
+			}
+			#page-hero .hero-scroll {
+				position: absolute;
+				bottom: 5em;
+				left: 50%;
+				transform: translateX(-50%);
+				color: white;
+				text-align: center;
+				cursor: pointer;
+				z-index: 1;
+				text-decoration: none;
+			}
+			#page-hero .hero-scroll span {
+				display: block;
+				font-size: 0.7em;
+				letter-spacing: 2px;
+				text-transform: uppercase;
+				opacity: 0.6;
+				margin-bottom: 0.1em;
+			}
+			#page-hero .hero-scroll .arrow {
+				font-size: 2em;
+				opacity: 0.8;
+				animation: bounce 1.5s infinite;
+			}
+			@keyframes bounce {
+				0%, 100% { transform: translateY(0); }
+				50% { transform: translateY(8px); }
+			}
+			#page-hero-caption {
+				position: absolute;
+				bottom: 1em;
+				left: 0;
+				width: 100%;
+				text-align: center;
+				z-index: 2;
+				font-size: 0.75em;
+				color: rgba(255,255,255,0.6);
+				font-style: italic;
+			}
+		</style>
+	</head>
+	<body class="no-sidebar is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header (nav only) -->
+			<div id="header">
+				<div class="inner">
+					<header>
+						<!-- <h1><a href="index.html" id="logo">MAdS LAB</a></h1> -->
+					</header>
+				</div>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Welcome</a></li>
+						<li><a href="research.html">Research</a></li>
+						<li><a href="team.html">Team</a></li>
+						<li><a href="publications.html">Publications</a></li>
+						<li><a href="news.html">News</a></li>
+						<li><a href="resources.html">Resources</a></li>
+						<li class="active"><a href="culture.html">Culture</a></li>
+						<li><a href="contact.html">Contact</a></li>
+						<li><a href="lab.html">IntraLab</a></li>
+					</ul>
+				</nav>
+			</div>
+
+			<!-- Full Screen Hero -->
+			<div id="page-hero">
+				<div class="hero-content">
+					<h2>Culture</h2>
+					<p class="hero-tagline">Who we are at the bench and beyond</p>
+				</div>
+				<a class="hero-scroll scrolly" href="#main">
+					<span>Scroll Down</span>
+					<div class="arrow">&#8964;</div>
+				</a>
+				<div id="page-hero-caption">Northeastern University campus mural by artist Felipe Ortiz. | Credit: Photo by Matthew Modoono, Northeastern University</div>
+			</div>
+
+			<!-- Main -->
+			<div class="wrapper style1">
+				<div class="container">
+					<article id="main" class="special">
+
+						<header>
+							<h2>Culture</h2>
+							<p style="font-size: 1.2em; font-style: italic; color: #666; margin-bottom: 0.2em;">These values guide our approach to how we do science and how we work together.</p>
+						</header>
+
+						<!-- Values -->
+						<section>
+							<header>
+								<h3 style="color: #278191;">Our Values</h3>
+							</header>
+
+							<div class="card-grid values-grid">
+								<!-- Row 1: How we do science (question → method → ethics → sharing) -->
+								<div class="info-card">
+									<i class="fas fa-question"></i>
+									<h4>Curiosity</h4>
+									<p>We encourage creative thinking, bold ideas, and the freedom to explore. Some of the best science comes from asking unexpected questions.</p>
+								</div>
+								<div class="info-card">
+									<i class="fas fa-search"></i>
+									<h4>Scientific Rigor</h4>
+									<p>We are committed to careful, reproducible, and high-quality science. We take the time to design experiments thoughtfully and interpret data objectively.</p>
+								</div>
+								<div class="info-card">
+									<i class="fas fa-shield-alt"></i>
+									<h4>Integrity</h4>
+									<p>We act with honesty and accountability. We give credit generously, acknowledge and learn from our mistakes, and treat everyone with respect.</p>
+								</div>
+								<div class="info-card">
+									<i class="fas fa-lock-open"></i>
+									<h4>Open Science</h4>
+									<p>We share data, code, and preprints openly whenever possible. We encourage the broader scientific community to build on our work.</p>
+								</div>
+
+								<!-- Row 2: How we work together (team → belonging → growth → care) -->
+								<div class="info-card">
+									<i class="fas fa-handshake"></i>
+									<h4>Collaboration</h4>
+									<p>We collaborate within our group and across disciplines, institutions, and career stages. Different perspectives lead to better science.</p>
+								</div>
+								<div class="info-card">
+									<i class="fas fa-users"></i>
+									<h4>Scientific Inclusivity</h4>
+									<p>We foster a positive learning environment where scientists from all backgrounds feel welcome, respected, and supported. Diversity makes our science stronger.</p>
+								</div>
+								<div class="info-card">
+									<i class="fas fa-seedling"></i>
+									<h4>Mentorship</h4>
+									<p>We invest in the growth and success of every group member. We provide individualized mentorship, support career development, and celebrate the achievements of our team.</p>
+								</div>
+								<div class="info-card">
+									<i class="fas fa-heart"></i>
+									<h4>Well-Being</h4>
+									<p>We work hard but believe sustainable science requires taking care of ourselves. We prioritize a safe lab, respect personal time, and support the mental and physical well-being of our scientists.</p>
+								</div>
+							</div>
+
+							<div class="callout">
+								<i class="fas fa-file-alt"></i>
+								<p>Want to know more about how we work? Read our <a href="assets/LAB-COMPACT-FILE.pdf" target="_blank">Lab Compact</a>, which describes our shared expectations and commitments in detail.</p>
+							</div>
+						</section>
+
+						<!-- Pearls of Wisdom -->
+						<section style="border-top: 1px solid #ddd; padding-top: 2em;">
+							<header>
+								<h3 style="color: #278191;">Our Pearls of Wisdom</h3>
+								<p style="font-size: 1em; color: #666; margin-bottom: 0.2em;">The following words of wisdom have been purposely taken out of context, and they still make a lot of sense.</p>
+							</header>
+
+							<div class="pearls">
+								<blockquote class="pearl">
+									<p>Five years is not enough for science!</p>
+									<cite>Liana Annable, 2024</cite>
+								</blockquote>
+								<blockquote class="pearl">
+									<p>(More PoW coming soon)</p>
+									<cite></cite>
+								</blockquote>
+							</div>
+						</section>
+
+						<!-- Outreach -->
+						<section style="border-top: 1px solid #ddd; padding-top: 2em;">
+							<header>
+								<h3 style="color: #278191;">Outreach</h3>
+								<p style="font-size: 1em; color: #666; margin-bottom: 0.2em;">Making science accessible and exciting to general audiences is as important as training the next generation of scientists. We believe scientists have a responsibility to inform, engage, and inspire the public. Outreach humanizes scientists, builds public support for science, and empowers people to think critically and make informed decisions.</p>
+							</header>
+
+							<div class="masonry-grid">
+								<!-- Placeholders: replace each with a photo when ready (see template below) -->
+								<div class="masonry-item">
+									<div class="masonry-placeholder" style="height: 220px;">Photo YSP (Coming soon)</div>
+									<div class="masonry-caption">Microbial Chefs Lecture, July 2026: Class on microbial fermentation to high-school students enrolled in the Young Scholars Program at Northeastern University</div>
+								</div>
+								<div class="masonry-item">
+									<div class="masonry-placeholder" style="height: 300px;">(Coming soon)</div>
+									<div class="masonry-caption">(Coming soon)</div>
+								</div>
+								<div class="masonry-item">
+									<div class="masonry-placeholder" style="height: 260px;">(Coming soon)</div>
+									<div class="masonry-caption">(Coming soon)</div>
+								</div>
+
+								<!-- To add an outreach photo:
+								     1. Put the image in the images folder.
+								     2. Add a block like this (numbers start at 0 and go up by 1):
+								<div class="masonry-item" onclick="openLightbox('outreach', 0)">
+									<img src="images/FILE-NAME.jpg" alt="Short description of the photo" />
+									<div class="masonry-caption">Event name, Month Year: what we did</div>
+								</div>
+								     3. Add a matching line to the "outreach" list in the script at the bottom of the page
+								        (its caption appears when the photo is opened full size).
+								-->
+							</div>
+						</section>
+
+						<!-- Photos -->
+						<section style="border-top: 1px solid #ddd; padding-top: 2em;">
+							<header>
+								<h3 style="color: #278191;">Our Photos</h3>
+								<p style="font-size: 1em; color: #666; margin-bottom: 0.2em;">A glimpse of our favorite moments together, plus some of our MicrobiArt.</p>
+							</header>
+
+							<div class="masonry-grid" id="masonry-grid">
+								<div class="masonry-item" onclick="openLightbox('gallery', 0)">
+									<img src="images/PMT07131.jpg" alt="Group photo - ISEC - Spring 2026" />
+									<div class="masonry-caption">Group photo - Spring 2026 | Credit: Photo by Paige Tolan, Northeastern University</div>
+								</div>
+
+								<div class="masonry-item" onclick="openLightbox('gallery', 1)">
+									<img src="images/PMT07013.jpg" alt="Group photo 2 - ISEC - Spring 2026" />
+									<div class="masonry-caption">Group photo - Spring 2026 | Credit: Photo by Paige Tolan, Northeastern University</div>
+								</div>
+
+								<div class="masonry-item" onclick="openLightbox('gallery', 2)">
+									<img src="images/Mcclure2.jpg" alt="Microbial Art - Nila McClure" />
+									<div class="masonry-caption">MicrobiArt | A painting gifted by Nila McClure</div>
+								</div>
+
+								<div class="masonry-item" onclick="openLightbox('gallery', 3)">
+									<img src="images/Mcclure3.jpg" alt="Microbial Art - Freya McClure" />
+									<div class="masonry-caption">MicrobiArt | A drawing gifted by Freya McClure</div>
+								</div>
+
+								<div class="masonry-item" onclick="openLightbox('gallery', 4)">
+									<img src="images/Mcclure0.jpg" alt="Art - Nila McClure" />
+									<div class="masonry-caption">Art | A painting gifted by Nila McClure</div>
+								</div>
+
+								<div class="masonry-item" onclick="openLightbox('gallery', 5)">
+									<img src="images/Mcclure1.jpg" alt="Art - Nila McClure" />
+									<div class="masonry-caption">Art | A painting gifted by Nila McClure</div>
+								</div>
+
+							</div>
+						</section>
+
+					</article>
+				</div>
+			</div>
+
+			<!-- Lightbox -->
+			<div id="lightbox">
+				<button id="lightbox-close" onclick="closeLightbox()" aria-label="Close">&#x2715;</button>
+				<button id="lightbox-prev" onclick="changeSlide(-1)" aria-label="Previous photo">&#x2039;</button>
+				<img id="lightbox-img" src="" alt="" />
+				<div id="lightbox-caption"></div>
+				<button id="lightbox-next" onclick="changeSlide(1)" aria-label="Next photo">&#x203A;</button>
+			</div>
+
+			<!-- Go to Top Button -->
+			<button id="go-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+				<div class="arrow-up">&#8963;</div>
+				<span>Back to top</span>
+			</button>
+
+			<!-- Footer -->
+			<div id="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="copyright">
+								<ul class="menu">
+									<li>&copy; MAdS LAB. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+		<script>
+			// Photos shown in the lightbox, grouped by section.
+			// Each group's order must match the order of the photos on the page.
+			const photoGroups = {
+				outreach: [
+					// { src: 'images/FILE-NAME.jpg', caption: 'Event name, Month Year | Credit: Name' },
+				],
+				gallery: [
+					{ src: 'images/PMT07131.jpg', caption: 'Group photo - Spring 2026 | Credit: Photo by Paige Tolan, Northeastern University' },
+					{ src: 'images/PMT07013.jpg', caption: 'Group photo - Spring 2026 | Credit: Photo by Paige Tolan, Northeastern University' },
+					{ src: 'images/Mcclure2.jpg', caption: 'MicrobiArt | A painting gifted by Nila McClure' },
+					{ src: 'images/Mcclure3.jpg', caption: 'MicrobiArt | A drawing gifted by Freya McClure' },
+					{ src: 'images/Mcclure0.jpg', caption: 'Art | A painting gifted by Nila McClure' },
+					{ src: 'images/Mcclure1.jpg', caption: 'Art | A painting gifted by Nila McClure' },
+				],
+			};
+
+			let currentGroup = 'gallery';
+			let currentPhoto = 0;
+
+			function showPhoto() {
+				const photo = photoGroups[currentGroup][currentPhoto];
+				document.getElementById('lightbox-img').src = photo.src;
+				document.getElementById('lightbox-img').alt = photo.caption;
+				document.getElementById('lightbox-caption').textContent = photo.caption;
+			}
+
+			function openLightbox(group, index) {
+				currentGroup = group;
+				currentPhoto = index;
+				showPhoto();
+				document.getElementById('lightbox').classList.add('active');
+			}
+
+			function closeLightbox() {
+				document.getElementById('lightbox').classList.remove('active');
+			}
+
+			function changeSlide(direction) {
+				const total = photoGroups[currentGroup].length;
+				currentPhoto = (currentPhoto + direction + total) % total;
+				showPhoto();
+			}
+
+			document.getElementById('lightbox').addEventListener('click', function(e) {
+				if (e.target === this) closeLightbox();
+			});
+
+			document.addEventListener('keydown', function(e) {
+				if (document.getElementById('lightbox').classList.contains('active')) {
+					if (e.key === 'ArrowLeft') changeSlide(-1);
+					if (e.key === 'ArrowRight') changeSlide(1);
+					if (e.key === 'Escape') closeLightbox();
+				}
+			});
+
+			document.querySelector('.hero-scroll').addEventListener('click', function(e) {
+				e.preventDefault();
+				document.querySelector('#main').scrollIntoView({ behavior: 'smooth' });
+			});
+		</script>
+
+	</body>
+</html>

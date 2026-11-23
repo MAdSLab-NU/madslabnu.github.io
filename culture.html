@@ -67,6 +67,70 @@
 				color: #888;
 			}
 
+			/* Photo category buttons (same style as the News year buttons) */
+			.photo-filter {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 0.6em;
+				margin: 1.5em 0 0.5em;
+			}
+			.photo-filter button {
+				background: transparent;
+				border: 2px solid #278191;
+				color: #278191;
+				border-radius: 2em;
+				padding: 0.35em 1.2em;
+				font-size: 0.85em;
+				font-weight: 600;
+				letter-spacing: 1px;
+				line-height: 1.6;
+				height: auto;
+				cursor: pointer;
+				box-shadow: none;
+				transition: background-color 0.25s, color 0.25s;
+			}
+			.photo-filter button i {
+				margin-right: 0.4em;
+			}
+			.photo-filter button:hover,
+			.photo-filter button.active {
+				background: #278191;
+				color: #fff;
+			}
+
+			/* One block per photo category */
+			.photo-category {
+				margin-top: 2.5em;
+			}
+			.photo-category.hidden {
+				display: none;
+			}
+			.photo-category-title {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.6em;
+				color: #483949;
+				margin: 0 0 0.3em;
+			}
+			.photo-category-title i {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 2.2em;
+				height: 2.2em;
+				border-radius: 50%;
+				background: #278191;
+				color: #fff;
+				font-size: 0.9em;
+			}
+			.photo-category-text {
+				font-size: 0.95em;
+				color: #666;
+				margin: 0 0 0.5em;
+			}
+
 			/* Masonry grid */
 			.masonry-grid {
 				columns: 3;
@@ -141,6 +205,63 @@
 				font-style: italic;
 			}
 
+			/* Photo album: a cover photo with a title; click to see all photos */
+			.album-cover {
+				position: relative;
+				break-inside: avoid;
+				margin-bottom: 12px;
+				border-radius: 8px;
+				overflow: hidden;
+				cursor: pointer;
+				outline: none;
+			}
+			.album-cover img {
+				width: 100%;
+				display: block;
+				border-radius: 8px;
+				transition: transform 0.4s ease;
+			}
+			.album-cover:hover img,
+			.album-cover:focus img {
+				transform: scale(1.04);
+			}
+			.album-cover-title {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				padding: 3em 1em 1em;
+				background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+				color: #fff;
+				text-align: left;
+				border-radius: 0 0 8px 8px;
+			}
+			.album-cover-title strong {
+				display: block;
+				font-size: 1.2em;
+				color: #fff;
+				line-height: 1.3;
+			}
+			.album-cover-title span {
+				font-size: 0.8em;
+				opacity: 0.85;
+			}
+			.album-count {
+				position: absolute;
+				top: 0.8em;
+				right: 0.8em;
+				background: rgba(39, 129, 145, 0.9);
+				color: #fff;
+				font-size: 0.75em;
+				font-weight: 600;
+				letter-spacing: 1px;
+				border-radius: 2em;
+				padding: 0.25em 0.9em;
+			}
+			.album-count i {
+				margin-right: 0.4em;
+			}
+
 			/* Lightbox */
 			#lightbox {
 				display: none;
@@ -171,6 +292,15 @@
 				margin-top: 1em;
 				text-align: center;
 				max-width: 600px;
+			}
+			#lightbox-counter {
+				position: absolute;
+				top: 1.8em;
+				left: 50%;
+				transform: translateX(-50%);
+				color: rgba(255,255,255,0.7);
+				font-size: 0.85em;
+				letter-spacing: 1px;
 			}
 			#lightbox-close {
 				position: absolute;
@@ -450,44 +580,149 @@
 							</div>
 						</section>
 
-						<!-- Photos -->
+						<!-- Photos, by category -->
 						<section style="border-top: 1px solid #ddd; padding-top: 2em;">
 							<header>
 								<h3 style="color: #278191;">Our Photos</h3>
-								<p style="font-size: 1em; color: #666; margin-bottom: 0.2em;">A glimpse of our favorite moments together, plus some of our MicrobiArt.</p>
+								<p style="font-size: 1em; color: #666; margin-bottom: 0.2em;">A glimpse of our favorite moments together, at the bench and beyond.</p>
 							</header>
 
-							<div class="masonry-grid" id="masonry-grid">
-								<div class="masonry-item" onclick="openLightbox('gallery', 0)">
-									<img src="images/PMT07131.jpg" alt="Group photo - ISEC - Spring 2026" />
-									<div class="masonry-caption">Group photo - Spring 2026 | Credit: Photo by Paige Tolan, Northeastern University</div>
-								</div>
+							<!-- Category buttons -->
+							<div class="photo-filter">
+								<button class="active" data-category="all">All</button>
+								<button data-category="presentations"><i class="fas fa-globe-americas"></i>Around the World</button>
+								<button data-category="fun"><i class="fas fa-smile"></i>Lab Fun</button>
+								<button data-category="art"><i class="fas fa-palette"></i>Lab Art</button>
+								<button data-category="events"><i class="fas fa-calendar-alt"></i>Lab Events</button>
+								<button data-category="mascots"><i class="fas fa-paw"></i>Lab Mascots</button>
+							</div>
 
-								<div class="masonry-item" onclick="openLightbox('gallery', 1)">
-									<img src="images/PMT07013.jpg" alt="Group photo 2 - ISEC - Spring 2026" />
-									<div class="masonry-caption">Group photo - Spring 2026 | Credit: Photo by Paige Tolan, Northeastern University</div>
-								</div>
+							<!-- To add a photo to a category:
+							     1. Put the image in the images folder.
+							     2. Inside that category's masonry-grid, replace a placeholder or add a block like this
+							        (the group name must match the category; numbers start at 0 and go up by 1):
+							<div class="masonry-item" onclick="openLightbox('fun', 0)">
+								<img src="images/FILE-NAME.jpg" alt="Short description of the photo" />
+								<div class="masonry-caption">What happened, Month Year | Credit: Name</div>
+							</div>
+							     3. Add a matching line to that group's list in the script at the bottom of the page.
+							-->
 
-								<div class="masonry-item" onclick="openLightbox('gallery', 2)">
-									<img src="images/Mcclure2.jpg" alt="Microbial Art - Nila McClure" />
-									<div class="masonry-caption">MicrobiArt | A painting gifted by Nila McClure</div>
+							<!-- ===== Lab Presentations Around the World ===== -->
+							<div class="photo-category" data-category="presentations">
+								<h4 class="photo-category-title"><i class="fas fa-globe-americas"></i>Lab Presentations Around the World</h4>
+								<p class="photo-category-text">Sharing our science at conferences and meetings, near and far.</p>
+								<div class="masonry-grid">
+									<div class="masonry-item">
+										<div class="masonry-placeholder" style="height: 240px;">(Coming soon)</div>
+										<div class="masonry-caption">Conference, City, Month Year</div>
+									</div>
+									<div class="masonry-item">
+										<div class="masonry-placeholder" style="height: 300px;">(Coming soon)</div>
+										<div class="masonry-caption">Conference, City, Month Year</div>
+									</div>
+									<div class="masonry-item">
+										<div class="masonry-placeholder" style="height: 220px;">(Coming soon)</div>
+										<div class="masonry-caption">Conference, City, Month Year</div>
+									</div>
 								</div>
+							</div>
 
-								<div class="masonry-item" onclick="openLightbox('gallery', 3)">
-									<img src="images/Mcclure3.jpg" alt="Microbial Art - Freya McClure" />
-									<div class="masonry-caption">MicrobiArt | A drawing gifted by Freya McClure</div>
+							<!-- ===== Lab Fun ===== -->
+							<div class="photo-category" data-category="fun">
+								<h4 class="photo-category-title"><i class="fas fa-smile"></i>Lab Fun</h4>
+								<p class="photo-category-text">Science is better together, and so is everything else.</p>
+								<div class="masonry-grid">
+									<div class="masonry-item">
+										<div class="masonry-placeholder" style="height: 260px;">(Coming soon)</div>
+										<div class="masonry-caption">(Coming soon)</div>
+									</div>
+									<div class="masonry-item">
+										<div class="masonry-placeholder" style="height: 220px;">(Coming soon)</div>
+										<div class="masonry-caption">(Coming soon)</div>
+									</div>
+									<div class="masonry-item">
+										<div class="masonry-placeholder" style="height: 300px;">(Coming soon)</div>
+										<div class="masonry-caption">(Coming soon)</div>
+									</div>
 								</div>
+							</div>
 
-								<div class="masonry-item" onclick="openLightbox('gallery', 4)">
-									<img src="images/Mcclure0.jpg" alt="Art - Nila McClure" />
-									<div class="masonry-caption">Art | A painting gifted by Nila McClure</div>
+							<!-- ===== Lab Art ===== -->
+							<div class="photo-category" data-category="art">
+								<h4 class="photo-category-title"><i class="fas fa-palette"></i>Lab Art</h4>
+								<p class="photo-category-text">Our MicrobiArt and other works of art gifted to the lab.</p>
+								<div class="masonry-grid">
+									<div class="masonry-item" onclick="openLightbox('art', 0)">
+										<img src="images/Mcclure2.jpg" alt="Microbial Art - Nila McClure" />
+										<div class="masonry-caption">MicrobiArt | A painting gifted by Nila McClure</div>
+									</div>
+									<div class="masonry-item" onclick="openLightbox('art', 1)">
+										<img src="images/Mcclure3.jpg" alt="Microbial Art - Freya McClure" />
+										<div class="masonry-caption">MicrobiArt | A drawing gifted by Freya McClure</div>
+									</div>
+									<div class="masonry-item" onclick="openLightbox('art', 2)">
+										<img src="images/Mcclure0.jpg" alt="Art - Nila McClure" />
+										<div class="masonry-caption">Art | A painting gifted by Nila McClure</div>
+									</div>
+									<div class="masonry-item" onclick="openLightbox('art', 3)">
+										<img src="images/Mcclure1.jpg" alt="Art - Nila McClure" />
+										<div class="masonry-caption">Art | A painting gifted by Nila McClure</div>
+									</div>
 								</div>
+							</div>
 
-								<div class="masonry-item" onclick="openLightbox('gallery', 5)">
-									<img src="images/Mcclure1.jpg" alt="Art - Nila McClure" />
-									<div class="masonry-caption">Art | A painting gifted by Nila McClure</div>
+							<!-- ===== Lab Events ===== -->
+							<div class="photo-category" data-category="events">
+								<h4 class="photo-category-title"><i class="fas fa-calendar-alt"></i>Lab Events</h4>
+								<p class="photo-category-text">Group photos, celebrations, and milestones.</p>
+								<div class="masonry-grid">
+									<!-- Album: click the cover to see all photos of the "madsgiving" group -->
+									<div class="album-cover" onclick="openLightbox('madsgiving', 0)" tabindex="0" role="button" aria-label="Open album: MAdSGiving">
+										<img src="images/madsgiving-01.jpg" alt="The MAdS team at MAdSGiving 2026" />
+										<span class="album-count"><i class="fas fa-images"></i>6 photos</span>
+										<div class="album-cover-title">
+											<strong>MAdSGiving</strong>
+											<span>Click to see the album</span>
+										</div>
+									</div>
+
+									<!-- Album: click the cover to see all photos of the "moving" group -->
+									<div class="album-cover" onclick="openLightbox('moving', 0)" tabindex="0" role="button" aria-label="Open album: Bye bye, Hurtig. Hello, EXP!">
+										<img src="images/moving-2025-01.jpg" alt="The MAdS team moving to the EXP building" />
+										<span class="album-count"><i class="fas fa-images"></i>6 photos</span>
+										<div class="album-cover-title">
+											<strong>Bye bye, Hurtig. Hello, EXP!</strong>
+											<span>Click to see the album</span>
+										</div>
+									</div>
+
+									<div class="masonry-item" onclick="openLightbox('events', 0)">
+										<img src="images/PMT07131.jpg" alt="Group photo - ISEC - Spring 2026" />
+										<div class="masonry-caption">Group photo - Spring 2026 | Credit: Photo by Paige Tolan, Northeastern University</div>
+									</div>
+									<div class="masonry-item" onclick="openLightbox('events', 1)">
+										<img src="images/PMT07013.jpg" alt="Group photo 2 - ISEC - Spring 2026" />
+										<div class="masonry-caption">Group photo - Spring 2026 | Credit: Photo by Paige Tolan, Northeastern University</div>
+									</div>
 								</div>
+							</div>
 
+							<!-- ===== Lab Mascots ===== -->
+							<div class="photo-category" data-category="mascots">
+								<h4 class="photo-category-title"><i class="fas fa-paw"></i>Lab Mascots</h4>
+								<p class="photo-category-text">Meet the furry (and not-so-furry) members of the MAdS LAB.</p>
+								<div class="masonry-grid">
+									<!-- Album: click the cover to see all photos of the "penny" group -->
+									<div class="album-cover" onclick="openLightbox('penny', 0)" tabindex="0" role="button" aria-label="Open album: Penelope, or Penny to her friends">
+										<img src="images/mascot-penny-01.jpg" alt="Penny, the MAdS LAB mascot" />
+										<span class="album-count"><i class="fas fa-images"></i>2 photos</span>
+										<div class="album-cover-title">
+											<strong>Penelope, or Penny to her friends</strong>
+											<span>Click to see the album</span>
+										</div>
+									</div>
+								</div>
 							</div>
 						</section>
 
@@ -497,6 +732,7 @@
 
 			<!-- Lightbox -->
 			<div id="lightbox">
+				<div id="lightbox-counter"></div>
 				<button id="lightbox-close" onclick="closeLightbox()" aria-label="Close">&#x2715;</button>
 				<button id="lightbox-prev" onclick="changeSlide(-1)" aria-label="Previous photo">&#x2039;</button>
 				<img id="lightbox-img" src="" alt="" />
@@ -544,17 +780,48 @@
 				outreach: [
 					// { src: 'images/FILE-NAME.jpg', caption: 'Event name, Month Year | Credit: Name' },
 				],
-				gallery: [
-					{ src: 'images/PMT07131.jpg', caption: 'Group photo - Spring 2026 | Credit: Photo by Paige Tolan, Northeastern University' },
-					{ src: 'images/PMT07013.jpg', caption: 'Group photo - Spring 2026 | Credit: Photo by Paige Tolan, Northeastern University' },
+				presentations: [
+					// { src: 'images/FILE-NAME.jpg', caption: 'Conference, City, Month Year | Credit: Name' },
+				],
+				fun: [
+					// { src: 'images/FILE-NAME.jpg', caption: 'What happened, Month Year | Credit: Name' },
+				],
+				art: [
 					{ src: 'images/Mcclure2.jpg', caption: 'MicrobiArt | A painting gifted by Nila McClure' },
 					{ src: 'images/Mcclure3.jpg', caption: 'MicrobiArt | A drawing gifted by Freya McClure' },
 					{ src: 'images/Mcclure0.jpg', caption: 'Art | A painting gifted by Nila McClure' },
 					{ src: 'images/Mcclure1.jpg', caption: 'Art | A painting gifted by Nila McClure' },
 				],
+				// Album "MAdSGiving"
+				madsgiving: [
+					{ src: 'images/madsgiving-01.jpg', caption: 'MAdSGiving 2026: our second year, and we’re definitely getting better at celebrating!' },
+					{ src: 'images/madsgiving-02.jpg', caption: 'Good food, great guests, and why not some games?' },
+					{ src: 'images/madsgiving-03.jpg', caption: 'And why not video games, too?' },
+					{ src: 'images/madsgiving-04.jpg', caption: 'MAdSGiving 2025: our first celebration!' },
+					{ src: 'images/madsgiving-05.jpg', caption: 'MAdSGiving 2025: true science chefs in this lab!' },
+					{ src: 'images/madsgiving-06.jpg', caption: 'Delicious and beautiful. We loved it, Arezou!' },
+				],
+				// Album "Bye bye, Hurtig. Hello, EXP!": write each caption between the quotes
+				moving: [
+					{ src: 'images/moving-2025-01.jpg', caption: 'Let’s get our new home organized so we can get back to work!' },
+					{ src: 'images/moving-2025-02.jpg', caption: 'We brought a little piece of Hurtig with us to remember where it all began.' },
+					{ src: 'images/moving-2025-04.jpg', caption: 'Thiago working hard to get everything organized in time!' },
+					{ src: 'images/moving-2025-05.jpg', caption: 'Our last selfie before leaving Hurtig!' },
+					{ src: 'images/moving-2025-06.jpg', caption: 'One last photo before leaving our first lab building, which we will never forget.' },
+					{ src: 'images/moving-2025-07.jpg', caption: 'Our first selfie at EXP!' },
+				],
+				events: [
+					{ src: 'images/PMT07131.jpg', caption: 'Group photo - Spring 2026 | Credit: Photo by Paige Tolan, Northeastern University' },
+					{ src: 'images/PMT07013.jpg', caption: 'Group photo - Spring 2026 | Credit: Photo by Paige Tolan, Northeastern University' },
+				],
+				// Album "Penelope, or Penny to her friends"
+				penny: [
+					{ src: 'images/mascot-penny-01.jpg', caption: 'Meet Penny, our furry friend and officially MAdS Mascot #1! Thanks to Sarah Stanton for introducing us to Penny and for bringing so much joy to the lab.' },
+					{ src: 'images/mascot-penny-02.jpg', caption: 'Liana and Penny became good friends.' },
+				],
 			};
 
-			let currentGroup = 'gallery';
+			let currentGroup = 'art';
 			let currentPhoto = 0;
 
 			function showPhoto() {
@@ -562,6 +829,8 @@
 				document.getElementById('lightbox-img').src = photo.src;
 				document.getElementById('lightbox-img').alt = photo.caption;
 				document.getElementById('lightbox-caption').textContent = photo.caption;
+				const total = photoGroups[currentGroup].length;
+				document.getElementById('lightbox-counter').textContent = total > 1 ? (currentPhoto + 1) + ' / ' + total : '';
 			}
 
 			function openLightbox(group, index) {
@@ -591,6 +860,29 @@
 					if (e.key === 'ArrowRight') changeSlide(1);
 					if (e.key === 'Escape') closeLightbox();
 				}
+			});
+
+			// Open an album with the keyboard (Enter or Space)
+			document.querySelectorAll('.album-cover').forEach(function(cover) {
+				cover.addEventListener('keydown', function(e) {
+					if (e.key === 'Enter' || e.key === ' ') {
+						e.preventDefault();
+						cover.click();
+					}
+				});
+			});
+
+			// Photo category buttons: show one category, or all of them
+			document.querySelectorAll('.photo-filter button').forEach(function(button) {
+				button.addEventListener('click', function() {
+					const category = this.getAttribute('data-category');
+					document.querySelectorAll('.photo-filter button').forEach(function(b) {
+						b.classList.toggle('active', b === button);
+					});
+					document.querySelectorAll('.photo-category').forEach(function(block) {
+						block.classList.toggle('hidden', category !== 'all' && block.getAttribute('data-category') !== category);
+					});
+				});
 			});
 
 			document.querySelector('.hero-scroll').addEventListener('click', function(e) {
