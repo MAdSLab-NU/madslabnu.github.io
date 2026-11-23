@@ -1,0 +1,637 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>MAdS LAB Team</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="assets/css/custom.css" />
+		<style>
+			.team-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 2em;
+				padding-left: 2em;
+			}
+			.team-member {
+				display: flex;
+				align-items: center;
+			}
+			.team-member .img-wrapper {
+				width: 250px;
+				height: 250px;
+				border-radius: 50%;
+				overflow: hidden;
+				flex-shrink: 0;
+				margin-right: 1.5em;
+			}
+			.team-member .img-wrapper img {
+				width: 130%;
+				height: 130%;
+				object-fit: cover;
+				object-position: center top;
+				margin-left: -15%;
+				margin-top: -5%;
+				transition: opacity 0.3s;
+			}
+			.img-wrapper {
+				position: relative;
+			}
+			.img-wrapper:hover::after {
+				content: 'See full profile';
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				background-color: rgba(0,0,0,0.6);
+				color: white;
+				font-size: 0.85em;
+				padding: 0.4em 0.8em;
+				border-radius: 4px;
+				white-space: nowrap;
+				pointer-events: none;
+			}
+			.img-wrapper:hover img {
+				opacity: 0.7;
+			}
+			.team-member .placeholder {
+				width: 250px;
+				height: 250px;
+				border-radius: 50%;
+				background-color: #ddd;
+				flex-shrink: 0;
+				margin-right: 1.5em;
+			}
+			.team-member .info h4 {
+				margin: 0 0 0.2em;
+				font-size: 1em;
+			}
+			.team-member .info p {
+				margin: 0;
+				font-size: 0.9em;
+				color: #666;
+			}
+			.team-member .info .award {
+				font-size: 0.85em;
+				color: #888;
+				font-style: italic;
+			}
+			.pi-info {
+				margin: 0 !important;
+				padding: 0 !important;
+				line-height: 1.4 !important;
+			}
+			.alumni-list {
+				list-style: none;
+				padding-left: 2em;
+			}
+			.alumni-list li {
+				margin-bottom: 0.3em;
+				font-size: 0.95em;
+			}
+			.alumni-list li .alumni-name {
+				font-weight: bold;
+			}
+			.alumni-list li .alumni-info {
+				color: #666;
+				font-size: 0.9em;
+				display: inline;
+			}
+			.alumni-list li .award {
+				font-size: 0.85em;
+				color: #888;
+				font-style: italic;
+			}
+
+			/* Shrink the header */
+			#header {
+				min-height: 0 !important;
+				padding: 0 !important;
+			}
+
+			/* Full screen hero */
+			#page-hero {
+				height: calc(100vh - 44px);
+				background-size: cover;
+				background-position: center;
+				background-image: url('images/PMT07131.jpg');
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+				background-color: #278191;
+			}
+			#page-hero:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(39, 129, 145, 0.6);
+			}
+			#page-hero .hero-content {
+				position: relative;
+				z-index: 1;
+				text-align: center;
+				color: white;
+				padding: 2em;
+				margin-top: -15em;
+				width: 100%;
+			}
+			#page-hero .hero-content h2 {
+				font-size: 3.5em;
+				font-weight: 500;
+				margin: 0 0 0.3em;
+				color: white !important;
+				text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+			}
+			#page-hero .hero-content .hero-tagline {
+				font-size: 1.2em;
+				font-style: italic;
+				opacity: 0.85;
+				margin: 0;
+				text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+			}
+			#page-hero .hero-content p {
+				text-align: center !important;
+			}
+			#page-hero .hero-scroll {
+				position: absolute;
+				bottom: 5em;
+				left: 50%;
+				transform: translateX(-50%);
+				color: white;
+				text-align: center;
+				cursor: pointer;
+				z-index: 1;
+				text-decoration: none;
+			}
+			#page-hero .hero-scroll span {
+				display: block;
+				font-size: 0.7em;
+				letter-spacing: 2px;
+				text-transform: uppercase;
+				opacity: 0.6;
+				margin-bottom: 0.1em;
+			}
+			#page-hero .hero-scroll .arrow {
+				font-size: 2em;
+				opacity: 0.8;
+				animation: bounce 1.5s infinite;
+			}
+			@keyframes bounce {
+				0%, 100% { transform: translateY(0); }
+				50% { transform: translateY(8px); }
+			}
+			#page-hero-caption {
+				position: absolute;
+				bottom: 1em;
+				left: 0;
+				width: 100%;
+				text-align: center;
+				z-index: 2;
+				font-size: 0.75em;
+				color: rgba(255,255,255,0.6);
+				font-style: italic;
+			}
+			/* Team page on tablets and phones */
+			@media screen and (max-width: 1000px) {
+				.team-grid {
+					grid-template-columns: 1fr;
+					padding-left: 0;
+				}
+			}
+			@media screen and (max-width: 736px) {
+				.team-member {
+					flex-direction: column;
+					text-align: center;
+				}
+				.team-member .img-wrapper {
+					width: 180px;
+					height: 180px;
+					margin: 0 auto 1em;
+				}
+				#main h3,
+				.alumni-list,
+				#main section > div[style*="padding-left"] {
+					padding-left: 0 !important;
+				}
+			}
+		</style>
+	</head>
+	<body class="no-sidebar is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header (nav only) -->
+			<div id="header">
+				<div class="inner">
+					<header>
+						<!-- <h1><a href="index.html" id="logo">MAdS LAB</a></h1> -->
+					</header>
+				</div>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Welcome</a></li>
+						<li><a href="research.html">Research</a></li>
+						<li class="active"><a href="team.html">Team</a></li>
+						<li><a href="publications.html">Publications</a></li>
+						<li><a href="news.html">News</a></li>
+						<li><a href="resources.html">Resources</a></li>
+						<li><a href="culture.html">Culture</a></li>
+						<li><a href="contact.html">Contact</a></li>
+						<li><a href="lab.html">IntraLab</a></li>
+					</ul>
+				</nav>
+			</div>
+
+			<!-- Full Screen Hero -->
+			<div id="page-hero">
+				<div class="hero-content">
+					<h2>Team</h2>
+					<p class="hero-tagline">Meet the MAdScientists</p>
+				</div>
+				<a class="hero-scroll scrolly" href="#main">
+					<span>Scroll Down</span>
+					<div class="arrow">&#8964;</div>
+				</a>
+				<div id="page-hero-caption"> MAdS LAB 2026 | Credit: Photo by Paige Tolan, Northeastern University</div>
+			</div>
+
+			<!-- Main -->
+			<div class="wrapper style1">
+				<div class="container">
+					<article id="main" class="special">
+
+						<header>
+							<h2>Team</h2>
+							<p style="font-size: 1.2em; font-style: italic; color: #666; margin-bottom: 0.2em;">Meet the MAdScientists!</p>
+						</header>
+
+						<!-- PI -->
+						<section>
+							<h3 style="text-align: left; margin-bottom: 1em; padding-left: 2em; color: #278191;">Principal Investigator</h3>
+							<div style="padding-left: 2em;">
+							<div class="team-member">
+								<a href="team/thiago-santos.html"><div class="img-wrapper"><img src="images/PMT06548.jpg" alt="Thiago Santos" /></div></a>
+								<div class="info">
+									<h4><a href="team/thiago-santos.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Thiago Santos</a></h4>
+									<p class="pi-info">Assistant Professor</p>
+									<p class="pi-info"><a href="https://cos.northeastern.edu/nucos-department/chemistry-chemical-biology/" target="_blank">Department of Chemistry and Chemical Biology</a></p>
+									<p class="pi-info"><a href="https://cos.northeastern.edu/nucos-department/biology/" target="_blank">Department of Biology</a></p>
+									<p>I lead this group of talented scientists, though they are the ones keeping me on my toes.</p>
+									<p><em><strong>Fun fact:</strong> I am an avid fermenter, always on the lookout for new foods and beverages to ferment.</em></p>
+								</div>
+							</div>
+							</div>
+						</section>
+
+						<!-- Current Members -->
+						<section>
+							<h3 style="text-align: left; margin-bottom: 1em; padding-left: 2em; color: #278191;">Current Members</h3>
+							<div class="team-grid">
+
+							<!-- Postdoc -->
+							<div class="team-member">
+								<a href="team/thiago-sousa.html"><div class="img-wrapper"><img src="images/PMT07056.jpg" alt="Thiago Sousa" /></div></a>
+								<div class="info">
+									<h4><a href="team/thiago-sousa.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Thiago Sousa</a></h4>
+									<p>Postdoctoral Researcher</p>
+									<p><em><strong>Research interest:</strong> Coming soon.</em></p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<!-- PhD Students -->
+							<div class="team-member">
+								<a href="team/bakar-abbasi.html"><div class="img-wrapper"><img src="images/PMT07103.jpg" alt="Bakar Abbasi" /></div></a>
+								<div class="info">
+									<h4><a href="team/bakar-abbasi.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Bakar Abbasi</a></h4>
+									<p>PhD Student (Chemistry)</p>
+									<p><em><strong>Research interest:</strong> Coming soon.</em></p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/liana-annable.html"><div class="img-wrapper"><img src="images/PMT07077.jpg" alt="Liana Annable" /></div></a>
+								<div class="info">
+									<h4><a href="team/liana-annable.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Liana Annable</a></h4>
+									<p>PhD Student (Chemistry)</p>
+									<p><em><strong>Research interest:</strong> Coming soon.</em></p>
+									<p><em><strong>Fun fact:</strong> I have my scuba diving license and have dived in the Pacific and Atlantic ocean.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/amy-ballesteros.html"><div class="img-wrapper"><img src="images/PMT07048.jpg" alt="Amy Ballesteros" /></div></a>
+								<div class="info">
+									<h4><a href="team/amy-ballesteros.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Amy Ballesteros</a></h4>
+									<p>PhD Student (Chemistry)</p>
+									<p><em><strong>Research interest:</strong> Coming soon.</em></p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/arezou-dilmaghanimarand.html"><div class="img-wrapper"><img src="images/PMT07035.jpg" alt="Arezou Dilmaghani-Marand" /></div></a>
+								<div class="info">
+									<h4><a href="team/arezou-dilmaghanimarand.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Arezou Dilmaghani-Marand</a></h4>
+									<p>PhD Student (Chemistry)</p>
+									<p><em><strong>Research interest:</strong> Coming soon.</em></p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/amatullah-tawawalla.html"><div class="img-wrapper"><img src="images/pic01.jpg" alt="Amu Tawawalla" /></div></a>
+								<div class="info">
+									<h4><a href="team/amatullah-tawawalla.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Amu Tawawalla</a></h4>
+									<p>PhD Student (Chemistry)</p>
+									<p><em><strong>Research interest:</strong> Coming soon.</em></p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<!-- Master's Students -->
+							<div class="team-member">
+								<a href="team/jeongwon-bae.html"><div class="img-wrapper"><img src="images/pic01.jpg" alt="Jeongwon Bae" /></div></a>
+								<div class="info">
+									<h4><a href="team/jeongwon-bae.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Jeongwon Bae</a></h4>
+									<p>Master's Student (Biotechnology)</p>
+									<p><em><strong>Research interest:</strong> Coming soon.</em></p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/pandarinadh-chadarajupalli.html"><div class="img-wrapper"><img src="images/pic01.jpg" alt="Pandarinadh Chadarajupalli" /></div></a>
+								<div class="info">
+									<h4><a href="team/pandarinadh-chadarajupalli.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Pandarinadh Chadarajupalli</a></h4>
+									<p>Master's Student (Bioinformatics)</p>
+									<p><em><strong>Research interest:</strong> Coming soon.</em></p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/pankti-lakhani.html"><div class="img-wrapper"><img src="images/pic01.jpg" alt="Pankti Lakhani" /></div></a>
+								<div class="info">
+									<h4><a href="team/pankti-lakhani.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Pankti Lakhani</a></h4>
+									<p>Master's Student (Biotechnology)</p>
+									<p><em><strong>Research interest:</strong> Coming soon.</em></p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/pavithra-mahadevan.html"><div class="img-wrapper"><img src="images/pic01.jpg" alt="Pavithra Mahadevan" /></div></a>
+								<div class="info">
+									<h4><a href="team/pavithra-mahadevan.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Pavithra Mahadevan</a></h4>
+									<p>Master's Student (Biotechnology)</p>
+									<p><em><strong>Research interest:</strong> Coming soon.</em></p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/neha-nadimpally.html"><div class="img-wrapper"><img src="images/pic01.jpg" alt="Neha Nadimpally" /></div></a>
+								<div class="info">
+									<h4><a href="team/neha-nadimpally.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Neha Nadimpally</a></h4>
+									<p>Master's Student (Bioinformatics)</p>
+									<p><em><strong>Research interest:</strong> Coming soon.</em></p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/santhiyaa-ramaraj.html"><div class="img-wrapper"><img src="images/PMT07070.jpg" alt="Santhiyaa Ramaraj" /></div></a>
+								<div class="info">
+									<h4><a href="team/santhiyaa-ramaraj.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Santhiyaa Ramaraj</a></h4>
+									<p>Master's Student (Bioinformatics)</p>
+									<p><em><strong>Research interest:</strong> Coming soon.</em></p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/angela-tan.html"><div class="img-wrapper"><img src="images/PMT07085.jpg" alt="Angela Tan" /></div></a>
+								<div class="info">
+									<h4><a href="team/angela-tan.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Angela Tan</a></h4>
+									<p>Master's Student (Biotechnology)</p>
+									<p><em><strong>Research interest:</strong> Coming soon.</em></p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<!-- Undergraduate Students -->
+							<div class="team-member">
+								<a href="team/yachne-elysee.html"><div class="img-wrapper"><img src="images/PMT07063.jpg" alt="Yachne Elysee" /></div></a>
+								<div class="info">
+									<h4><a href="team/yachne-elysee.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Yachne Elysee</a></h4>
+									<p>Undergraduate Student</p>
+									<p>(Major: Pharmaceutical Sciences)</p>
+									<p><em><strong>Research interest:</strong> Coming soon.</em></p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/jules-hanz-canlapan.html"><div class="img-wrapper"><img src="images/pic01.jpg" alt="Jules Hanz-Canlapan" /></div></a>
+								<div class="info">
+									<h4><a href="team/jules-hanz-canlapan.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Jules Hanz-Canlapan</a></h4>
+									<p>Undergraduate Student</p>
+									<p>(Major: Cell and Molecular Biology)</p>
+									<p><em><strong>Research interest:</strong> Coming soon.</em></p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/ben-loew.html"><div class="img-wrapper"><img src="images/PMT07109.jpg" alt="Ben Loew" /></div></a>
+								<div class="info">
+									<h4><a href="team/ben-loew.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Ben Loew</a></h4>
+									<p>Undergraduate Student</p>
+									<p>(Major: Biochemistry)</p>
+									<p><em><strong>Research interest:</strong> Coming soon.</em></p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/frankie-martinez.html"><div class="img-wrapper"><img src="images/pic01.jpg" alt="Frankie Martinez" /></div></a>
+								<div class="info">
+									<h4><a href="team/frankie-martinez.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Frankie Martinez</a></h4>
+									<p>Undergraduate Student</p>
+									<p>(Major: Biology and Data Science)</p>
+									<p><em><strong>Research interest:</strong> Coming soon.</em></p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<div class="team-member">
+								<a href="team/florie-sahaya.html"><div class="img-wrapper"><img src="images/pic01.jpg" alt="Florie Sahaya" /></div></a>
+								<div class="info">
+									<h4><a href="team/florie-sahaya.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Florie Sahaya</a></h4>
+									<p>Undergraduate Student</p>
+									<p>(Major: Biochemistry)</p>
+									<p><em><strong>Research interest:</strong> Coming soon.</em></p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							<!-- Laboratory Technician -->
+							<div class="team-member">
+								<a href="team/luiza-monteiro.html"><div class="img-wrapper"><img src="images/DSCF3042.jpg" alt="Luiza Monteiro" style="width: 100%; height: 100%; object-fit: cover !important; object-position: 80% 90% !important; margin-left: 0; margin-top: 0;" /></div></a>
+								<div class="info">
+									<h4><a href="team/luiza-monteiro.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #bbb;">Luiza Monteiro</a></h4>
+									<p>Laboratory Technician</p>
+									<p><em><strong>Research interest:</strong> Coming soon.</em></p>
+									<p><em><strong>Fun fact:</strong> Coming soon.</em></p>
+								</div>
+							</div>
+
+							</div>
+						</section>
+
+						<!-- Alumni -->
+						<section>
+							<h3 style="text-align: left; margin-bottom: 1em; padding-left: 2em; color: #278191;">Alumni</h3>
+							<ul class="alumni-list">
+
+								<li>
+									<span class="alumni-name">Michael Arias</span> | <span class="alumni-info">High School Student (BC High), 2025–26 | Current position: Undergraduate Student at Cornell University</span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Atticus Conn</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/atticusconn" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Amalia Costa</span> | <span class="alumni-info">Undergraduate Student, 2024–26 | Current position: <a href="https://www.linkedin.com/in/amalia-costa-484354217" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Anya Duarte</span> | <span class="alumni-info">Undergraduate Student, 2025–26 | Current position: <a href="https://www.linkedin.com/in/anya-duarte-495002334" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Grace Giarrizzo</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/grace-giarrizzo-900732223" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Andreah Harris</span> | <span class="alumni-info">Undergraduate Student, 2024 | Current position: <a href="https://www.linkedin.com/in/andreah-harris-a1b891229" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Michael Liotta</span> | <span class="alumni-info">Undergraduate Student, 2026 | Current position: <a href="https://www.linkedin.com/in/michael-c-liotta" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Riley Raddohl</span> | <span class="alumni-info">Undergraduate Student, 2025–26 | Current position: <a href="https://www.linkedin.com/in/riley-raddohl" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Dylan Sacks</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/dylan-sacks" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Lucy Shaffer</span> | <span class="alumni-info">Undergraduate Student, 2025–26 | Current position: <a href="https://www.linkedin.com/in/lucyshaffer" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Alyssa Shemtov</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/alyssa-shemtov" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Caitlin Sia</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/caitlin-alexandra-sia" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Vignesh Vijayakumar</span> | <span class="alumni-info">Master's Student, 2024–25 | Current position: <a href="https://in.linkedin.com/in/vignesh-kumaar-vijayakumar-08318a78" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Hannah Xu</span> | <span class="alumni-info">Undergraduate Student, 2024–25 | Current position: <a href="https://www.linkedin.com/in/hannah-xu-835091261" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a></span>
+								</li>
+
+							</ul>
+						</section>
+
+						<!-- Visitors and Collaborators -->
+						<section>
+							<h3 style="text-align: left; margin-bottom: 1em; padding-left: 2em; color: #278191;">Visitors and Collaborators</h3>
+							<ul class="alumni-list">
+
+								<li>
+									<span class="alumni-name">Gleucinei Castro</span> | <span class="alumni-info">Visiting Ph.D. Student (UEA, Brazil), 2025–26 | Current position: Graduate Student at UEA, Brazil</span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Prof. Irene Coelho</span> | <span class="alumni-info">Visiting Professor, 2024 | Professor, Universidade Federal Rural do Rio de Janeiro, Brazil</span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Prof. Ozlem Oyardi</span> | <span class="alumni-info">Visiting Professor, 2026 | Associate Professor, Gazi University, Turkey</span>
+								</li>
+
+								<li>
+									<span class="alumni-name">Thiago Sousa</span> | <span class="alumni-info">Visiting Ph.D. Student (UFAM, Brazil), 2024 | Current position: Postdoctoral Researcher — MAdS LAB</span>
+								</li>
+
+							</ul>
+						</section>
+
+					</article>
+				</div>
+			</div>
+
+			<!-- Go to Top Button -->
+			<button id="go-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+				<div class="arrow-up">&#8963;</div>
+				<span>Back to top</span>
+			</button>
+
+			<!-- Footer -->
+			<div id="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="copyright">
+								<ul class="menu">
+									<li>&copy; MAdS LAB. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+		<script>
+			document.querySelector('.hero-scroll').addEventListener('click', function(e) {
+				e.preventDefault();
+				document.querySelector('#main').scrollIntoView({ behavior: 'smooth' });
+			});
+		</script>
+
+	</body>
+</html>

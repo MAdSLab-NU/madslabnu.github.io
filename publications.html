@@ -17,6 +17,71 @@
 				margin-bottom: 1em;
 			}
 
+			/* Title-first publication entries */
+			.pub-title {
+				display: block;
+				font-weight: 400;
+				color: #483949;
+				line-height: 1.4;
+			}
+			.pub-details {
+				display: block;
+				font-size: 0.85em;
+				color: #777;
+				line-height: 1.5;
+				margin-top: 0.25em;
+			}
+			.pub-details strong {
+				font-weight: 400;
+				color: #483949;
+			}
+			.pub-note {
+				color: #278191;
+			}
+
+			/* Highlight PMID links (subtle) */
+			#main ol li a[href*="pubmed.ncbi.nlm.nih.gov"] {
+				display: inline-block;
+				background-color: rgba(39, 129, 145, 0.06);
+				color: rgba(39, 129, 145, 0.75) !important;
+				font-size: 0.95em;
+				font-weight: 400;
+				padding: 0 0.4em;
+				border-radius: 0.3em;
+				border-bottom: none;
+				text-decoration: none;
+			}
+			#main ol li a[href*="pubmed.ncbi.nlm.nih.gov"]:hover {
+				background-color: rgba(39, 129, 145, 0.15);
+				color: #278191 !important;
+			}
+
+			/* Icon links (bioRxiv, GitHub, profiles) */
+			.share-links {
+				display: flex;
+				justify-content: center;
+				gap: 2em;
+				margin: 1em 0 2em;
+			}
+			.share-links a {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 6px;
+				color: #888;
+				border-bottom: none;
+				text-decoration: none;
+			}
+			.share-links i {
+				font-size: 28px;
+			}
+			.share-links span {
+				font-size: 11px;
+			}
+			.share-links a:hover {
+				color: #278191;
+			}
+
 			/* Shrink the header */
 			#header {
 				min-height: 0 !important;
@@ -101,17 +166,6 @@
 			}
 			#page-hero-caption {
 				position: absolute;
-				bottom: 0.5em;
-				left: 0;
-				width: 100%;
-				text-align: center;
-				z-index: 3;
-				font-size: 0.75em;
-				color: rgba(255,255,255,0.6) !important;
-				font-style: italic;
-			}
-			#page-hero-caption {
-				position: absolute;
 				bottom: 1em;
 				left: 0;
 				width: 100%;
@@ -158,7 +212,7 @@
 					<span>Scroll Down</span>
 					<div class="arrow">&#8964;</div>
 				</a>
-				<div id="page-hero-caption">Caption: Coming soon | Credit: Coming soon</div>
+				<div id="page-hero-caption">Paper, paper, paper | Credit: Photo by TMAdS</div>
 			</div>
 
 			<!-- Main -->
@@ -167,29 +221,39 @@
 					<article id="main" class="special">
 						<header>
 							<h2>Publications</h2>
-							<p style="font-size: 1.2em; font-style: italic; color: #666; margin-bottom: 0.2em;">We are committed to open science and encourage the sharing of research before formal peer review.</p>
-							<p style="font-size: 1.2em; font-style: italic; color: #666; margin-bottom: 0.2em; margin-top: 0;">Preprints of our work are available on <a href="https://www.biorxiv.org" target="_blank">bioRxiv</a>. Code and data associated with our publications are shared on <a href="https://github.com/MAdSLab-NU" target="_blank">GitHub</a> whenever possible.</p>
+							<p style="font-size: 1.2em; font-style: italic; color: #666; margin-bottom: 0.2em;">We are committed to open science and encourage sharing research before formal peer review.</p>
+							<p style="font-size: 1.2em; font-style: italic; color: #666; margin-bottom: 0.2em; margin-top: 0;">Preprints of our work are available on bioRxiv. Code and data associated with our publications are shared on GitHub whenever possible.</p>
+							<div class="share-links">
+								<a href="https://www.biorxiv.org" target="_blank"><i class="fa fa-file-alt"></i><span>bioRxiv</span></a>
+								<a href="https://github.com/MAdSLab-NU" target="_blank"><i class="fab fa-github"></i><span>GitHub</span></a>
+							</div>
 						</header>
 
 						<section>
 							<header>
 								<h3 style="color: #278191;">Recent Publications</h3>
-								<p style="font-size: 0.8em; text-align: left; color: #888;">* denotes equal contribution</p>
+								<p style="font-size: 0.8em; text-align: left; color: #888;"><sup>*</sup> denotes equal contribution; <sup>†</sup> denotes corresponding author</p>
 							</header>
-							<ol reversed start="24">
+							<ol reversed start="25">
 								<li>
-									Thomson BD, Marquez MD, Rawson S, Santos TMA, Harrison SC, Kahne DE.
-									Structures of folding intermediates on BAM show diverse substrates fold by a uniform mechanism.
-									<em>Proc Natl Acad Sci</em> 2026; 123(14):e2534936123.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/41926538/" target="_blank">PMID: 41280068</a>.
-									<a href="https://doi.org/10.1101/2025.10.16.682720" target="_blank">(bioRxiv)</a>.
+									<span class="pub-title">(Editorial) Microbial interactions: From mechanisms to applications in the fight against antimicrobial resistance.</span>
+									<span class="pub-details">Pinto UM<sup>†</sup>, <strong>Santos TMA</strong><sup>†</sup>, Tahrioui A<sup>†</sup>.
+									<em>Front Microbiol</em> 2026; 17: 2003200.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/42871453/" target="_blank">PMID: 42871453</a>.</span>
 								</li>
 								<li>
-									Santos TMA, Thomson BD, Marquez MD, Pan L, Monfared TH, Kahne DE.
-									Native β-barrel substrates pass through two shared intermediates during folding on the BAM complex.
-									<em>Proc Natl Acad Sci</em> 2024; 121(42):e2409672121.
+									<span class="pub-title">Structures of folding intermediates on BAM show diverse substrates fold by a uniform mechanism.</span>
+									<span class="pub-details">Thomson BD, Marquez MD, Rawson S, <strong>Santos TMA</strong>, Harrison SC, Kahne DE.
+									<em>Proc Natl Acad Sci</em> 2026; 123(14): e2534936123.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/41926538/" target="_blank">PMID: 41926538</a>.
+									<a href="https://doi.org/10.1101/2025.10.16.682720" target="_blank">(bioRxiv)</a>.</span>
+								</li>
+								<li>
+									<span class="pub-title">Native β-barrel substrates pass through two shared intermediates during folding on the BAM complex.</span>
+									<span class="pub-details"><strong>Santos TMA</strong>, Thomson BD, Marquez MD, Pan L, Monfared TH, Kahne DE.
+									<em>Proc Natl Acad Sci</em> 2024; 121(42): e2409672121.
 									<a href="https://pubmed.ncbi.nlm.nih.gov/39378083/" target="_blank">PMID: 39378083</a>.
-									<a href="https://doi.org/10.1101/2024.05.09.593409" target="_blank">(bioRxiv)</a>.
+									<a href="https://doi.org/10.1101/2024.05.09.593409" target="_blank">(bioRxiv)</a>.</span>
 								</li>
 							</ol>
 						</section>
@@ -200,141 +264,151 @@
 							</header>
 							<ol reversed start="22">
 								<li>
-									Ortiz B, Jennings J, Gross W, Santos TMA, Lin TY, Weibel DB, Lynn D.
-									Soft materials that intercept, respond to, and sequester bacterial siderophores.
-									<em>Chem Mater</em> 2021; 33(13):5401–5412.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/35341019/" target="_blank">PMID: 35341019</a>.
+									<span class="pub-title">Soft materials that intercept, respond to, and sequester bacterial siderophores.</span>
+									<span class="pub-details">Ortiz B, Jennings J, Gross W, <strong>Santos TMA</strong>, Lin TY, Weibel DB, Lynn D.
+									<em>Chem Mater</em> 2021; 33(13): 5401–5412.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/35341019/" target="_blank">PMID: 35341019</a>.</span>
 								</li>
 								<li>
-									Lee J, Tomasek D*, Santos TMA*, May MD*, Meuskens I, Kahne D.
-									Formation of a β-barrel membrane protein is catalyzed by the luminal surface of the assembly machine protein BamA.
-									<em>Elife</em> 2019; 8:e49787.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/31724945/" target="_blank">PMID: 31724945</a>.
+									<span class="pub-title">Formation of a β-barrel membrane protein is catalyzed by the luminal surface of the assembly machine protein BamA.</span>
+									<span class="pub-details">Lee J, Tomasek D<sup>*</sup>, <strong>Santos TMA</strong><sup>*</sup>, May MD<sup>*</sup>, Meuskens I, Kahne D.
+									<em>Elife</em> 2019; 8: e49787.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/31724945/" target="_blank">PMID: 31724945</a>.</span>
 								</li>
 								<li>
-									Santos TMA, Lammers MG, Zhou M, Sparks IA, Rajendran M, Fang D, De Jesus CLY, Carneiro GFR, Cui Q, Weibel DB.
-									Small molecule chelators reveal that iron starvation inhibits late stages of bacterial cytokinesis.
-									<em>ACS Chem Biol</em> 2018; 13(1):235–246.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/29227619/" target="_blank">PMID: 29227619</a>.
+									<span class="pub-title">Small molecule chelators reveal that iron starvation inhibits late stages of bacterial cytokinesis.</span>
+									<span class="pub-details"><strong>Santos TMA</strong>, Lammers MG, Zhou M, Sparks IA, Rajendran M, Fang D, De Jesus CLY, Carneiro GFR, Cui Q, Weibel DB.
+									<em>ACS Chem Biol</em> 2018; 13(1): 235–246.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/29227619/" target="_blank">PMID: 29227619</a>.</span>
 								</li>
 								<li>
-									Hurley KA*, Santos TMA*, Fensterwald MR, Rajendran M, Moore JT, Balmond EI, Blahnik BJ, Faulkner KC, Foss MH, Heinrich VA, Lammers MG, Moore LC, Reynolds GD, Shearn-Nance GP, Stearns BA, Yao ZW, Shaw JT, Weibel DB.
-									Targeting quinolone- and aminocoumarin-resistant bacteria with new gyramide analogs that inhibit DNA gyrase.
-									<em>MedChemComm</em> 2017; 8(5):942–951.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/30034678/" target="_blank">PMID: 30034678</a>.
+									<span class="pub-title">Targeting quinolone- and aminocoumarin-resistant bacteria with new gyramide analogs that inhibit DNA gyrase.</span>
+									<span class="pub-details">Hurley KA<sup>*</sup>, <strong>Santos TMA</strong><sup>*</sup>, Fensterwald MR, Rajendran M, Moore JT, Balmond EI, Blahnik BJ, Faulkner KC, Foss MH, Heinrich VA, Lammers MG, Moore LC, Reynolds GD, Shearn-Nance GP, Stearns BA, Yao ZW, Shaw JT, Weibel DB.
+									<em>MedChemComm</em> 2017; 8(5): 942–951.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/30034678/" target="_blank">PMID: 30034678</a>.</span>
 								</li>
 								<li>
-									Hurley KA*, Santos TMA*, Nepomuceno GM, Huynh V, Shaw JT, Weibel DB.
-									Targeting the bacterial division protein FtsZ.
-									<em>J Med Chem</em> 2016; 59(15):6975–6998.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/26756351/" target="_blank">PMID: 26756351</a>.
+									<span class="pub-title">Targeting the bacterial division protein FtsZ.</span>
+									<span class="pub-details">Hurley KA<sup>*</sup>, <strong>Santos TMA</strong><sup>*</sup>, Nepomuceno GM, Huynh V, Shaw JT, Weibel DB.
+									<em>J Med Chem</em> 2016; 59(15): 6975–6998.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/26756351/" target="_blank">PMID: 26756351</a>.</span>
 								</li>
 								<li>
-									Lin TY, Santos TMA, Kontur W, Donohue TJ, Weibel DB.
-									A cardiolipin-deficient mutant of Rhodobacter sphaeroides has an altered cell shape that impairs biofilm formation.
-									<em>J Bacteriol</em> 2015; 197(21):3446–3455.
+									<span class="pub-title">A cardiolipin-deficient mutant of <i>Rhodobacter sphaeroides</i> has an altered cell shape that impairs biofilm formation.</span>
+									<span class="pub-details">Lin TY, <strong>Santos TMA</strong>, Kontur W, Donohue TJ, Weibel DB.
+									<em>J Bacteriol</em> 2015; 197(21): 3446–3455.
 									<a href="https://pubmed.ncbi.nlm.nih.gov/26283770/" target="_blank">PMID: 26283770</a>.
-									<br/><em>Highlighted as "Article of Significant Interest Selected by the Editors."</em>
+									<br/><em class="pub-note">Highlighted as "Article of Significant Interest Selected by the Editors."</em></span>
 								</li>
 								<li>
-									Yin N, Stilwell MD, Santos TMA, Wang H, Weibel DB.
-									Agarose particle-templated porous bacterial cellulose and its application in cartilage growth in vitro.
-									<em>Acta Biomater</em> 2015; 12:129–138.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/25449918/" target="_blank">PMID: 25449918</a>.
+									<span class="pub-title">Agarose particle-templated porous bacterial cellulose and its application in cartilage growth in vitro.</span>
+									<span class="pub-details">Yin N, Stilwell MD, <strong>Santos TMA</strong>, Wang H, Weibel DB.
+									<em>Acta Biomater</em> 2015; 12: 129–138.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/25449918/" target="_blank">PMID: 25449918</a>.</span>
 								</li>
 								<li>
-									Foditsch C, Santos TMA, Teixeira AGV, Pereira RVV, Dias JM, Gaeta N, Bicalho RC.
-									Isolation and characterization of Faecalibacterium prausnitzii from calves and piglets.
-									<em>PLoS ONE</em> 2014; 9(12):e116465.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/25551453/" target="_blank">PMID: 25551453</a>.
+									<span class="pub-title">Isolation and characterization of <i>Faecalibacterium prausnitzii</i> from calves and piglets.</span>
+									<span class="pub-details">Foditsch C, <strong>Santos TMA</strong>, Teixeira AGV, Pereira RVV, Dias JM, Gaeta N, Bicalho RC.
+									<em>PLoS ONE</em> 2014; 9(12): e116465.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/25551453/" target="_blank">PMID: 25551453</a>.</span>
 								</li>
 								<li>
-									Santos TMA, Lin TY, Rajendran M, Anderson SM, Weibel DB.
-									Polar localization of Escherichia coli chemoreceptors requires an intact Tol-Pal complex.
-									<em>Mol Microbiol</em> 2014; 92(5):985–1004.
+									<span class="pub-title">Polar localization of <i>Escherichia coli</i> chemoreceptors requires an intact Tol-Pal complex.</span>
+									<span class="pub-details"><strong>Santos TMA</strong>, Lin TY, Rajendran M, Anderson SM, Weibel DB.
+									<em>Mol Microbiol</em> 2014; 92(5): 985–1004.
 									<a href="https://pubmed.ncbi.nlm.nih.gov/24720726/" target="_blank">PMID: 24720726</a>.
-									<br/><em>Highlighted by Faculty of 1000.</em>
+									<br/><em class="pub-note">Highlighted by Faculty of 1000.</em></span>
 								</li>
 								<li>
-									Yin N, Santos TMA, Auer GK, Crooks JA, Oliver PM, Weibel DB.
-									Bacterial cellulose as a substrate for bacterial cell culture.
-									<em>Appl Environ Microbiol</em> 2014; 80(6):1926–1932.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/24441155/" target="_blank">PMID: 24441155</a>.
+									<span class="pub-title">Bacterial cellulose as a substrate for bacterial cell culture.</span>
+									<span class="pub-details">Yin N, <strong>Santos TMA</strong>, Auer GK, Crooks JA, Oliver PM, Weibel DB.
+									<em>Appl Environ Microbiol</em> 2014; 80(6): 1926–1932.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/24441155/" target="_blank">PMID: 24441155</a>.</span>
 								</li>
 								<li>
-									Machado VS, Bicalho ML, Meira-Junior EB, et al.
-									Subcutaneous immunization with inactivated bacterial components and purified protein of Escherichia coli, Fusobacterium necrophorum and Trueperella pyogenes prevents puerperal metritis in Holstein dairy cows.
-									<em>PLoS ONE</em> 2014; 9(3):e91734.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/24638139/" target="_blank">PMID: 24638139</a>.
+									<span class="pub-title">Subcutaneous immunization with inactivated bacterial components and purified protein of <i>Escherichia coli</i>, <i>Fusobacterium necrophorum</i> and <i>Trueperella pyogenes</i> prevents puerperal metritis in Holstein dairy cows.</span>
+									<span class="pub-details">Machado VS, Bicalho ML, Meira-Junior EB, et al.
+									<em>PLoS ONE</em> 2014; 9(3): e91734.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/24638139/" target="_blank">PMID: 24638139</a>.</span>
 								</li>
 								<li>
-									Oliveira MNV*, Santos TMA*, Vale HMM, Cordero AFP, Tótola MR, Costa MD, Ferreira AB, Delvaux JC, Moraes CA, Borges AC.
-									Endophytic microbial diversity in coffee cherries of Coffea arabica from Southeastern Brazil.
-									<em>Can J Microbiol</em> 2013; 59(4):221–230.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/23586745/" target="_blank">PMID: 23586745</a>.
+									<span class="pub-title">Endophytic microbial diversity in coffee cherries of <i>Coffea arabica</i> from Southeastern Brazil.</span>
+									<span class="pub-details">Oliveira MNV<sup>*</sup>, <strong>Santos TMA</strong><sup>*</sup>, Vale HMM, Cordero AFP, Tótola MR, Costa MD, Ferreira AB, Delvaux JC, Moraes CA, Borges AC.
+									<em>Can J Microbiol</em> 2013; 59(4): 221–230.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/23586745/" target="_blank">PMID: 23586745</a>.</span>
 								</li>
 								<li>
-									Santos TMA, Bicalho RC.
-									Diversity and succession of bacterial communities in uteri of postpartum metritic, endometritic and healthy dairy cows.
-									<em>PLoS ONE</em> 2012; 7(12):e53048.
+									<span class="pub-title">Diversity and succession of bacterial communities in uteri of postpartum metritic, endometritic and healthy dairy cows.</span>
+									<span class="pub-details"><strong>Santos TMA</strong>, Bicalho RC.
+									<em>PLoS ONE</em> 2012; 7(12): e53048.
 									<a href="https://pubmed.ncbi.nlm.nih.gov/23300859/" target="_blank">PMID: 23300859</a>.
-									<br/><em>Highlighted Among the Top 10% Most Cited PLoS ONE Articles.</em>
+									<br/><em class="pub-note">Highlighted Among the Top 10% Most Cited PLoS ONE Articles.</em></span>
 								</li>
 								<li>
-									Santos TMA, Pereira RV, Caixeta LS, Guard CL, Bicalho RC.
-									Microbial diversity in bovine papillomatous digital dermatitis in Holstein dairy cows from upstate New York.
-									<em>FEMS Microbiol Ecol</em> 2012; 79(2):518–529.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/22093037/" target="_blank">PMID: 22093037</a>.
+									<span class="pub-title">Microbial diversity in bovine papillomatous digital dermatitis in Holstein dairy cows from upstate New York.</span>
+									<span class="pub-details"><strong>Santos TMA</strong>, Pereira RV, Caixeta LS, Guard CL, Bicalho RC.
+									<em>FEMS Microbiol Ecol</em> 2012; 79(2): 518–529.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/22093037/" target="_blank">PMID: 22093037</a>.</span>
 								</li>
 								<li>
-									Bicalho MLS, Machado VS, Nydam DV, Santos TMA, Bicalho RC.
-									Evaluation of oral administration of bacteriophages to neonatal calves: Phage survival and impact on fecal Escherichia coli.
-									<em>Livest Sci</em> 2012; 144(3):294–299.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/32362952/" target="_blank">PMID: 32362952</a>.
+									<span class="pub-title">Evaluation of oral administration of bacteriophages to neonatal calves: Phage survival and impact on fecal <i>Escherichia coli</i>.</span>
+									<span class="pub-details">Bicalho MLS, Machado VS, Nydam DV, <strong>Santos TMA</strong>, Bicalho RC.
+									<em>Livest Sci</em> 2012; 144(3): 294–299.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/32362952/" target="_blank">PMID: 32362952</a>.</span>
 								</li>
 								<li>
-									Santos TMA, Ledbetter EC, Caixeta LS, Bicalho MLS, Bicalho RC.
-									Isolation and characterization of two bacteriophages with strong in vitro antimicrobial activity against Pseudomonas aeruginosa isolated from canine ocular infection.
-									<em>Am J Vet Res</em> 2011; 72(8):1079–1086.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/21801066/" target="_blank">PMID: 21801066</a>.
+									<span class="pub-title">Isolation and characterization of two bacteriophages with strong in vitro antimicrobial activity against <i>Pseudomonas aeruginosa</i> isolated from canine ocular infection.</span>
+									<span class="pub-details"><strong>Santos TMA</strong>, Ledbetter EC, Caixeta LS, Bicalho MLS, Bicalho RC.
+									<em>Am J Vet Res</em> 2011; 72(8): 1079–1086.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/21801066/" target="_blank">PMID: 21801066</a>.</span>
 								</li>
 								<li>
-									Pereira RVV, Santos TMA, Bicalho ML, Caixeta LS, Machado VS, Bicalho RC.
-									Antimicrobial resistance and prevalence of virulence factor genes in fecal Escherichia coli of Holstein calves fed milk with and without antimicrobials.
-									<em>J Dairy Sci</em> 2011; 94(9):4556–4565.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/21854928/" target="_blank">PMID: 21854928</a>.
+									<span class="pub-title">Antimicrobial resistance and prevalence of virulence factor genes in fecal <i>Escherichia coli</i> of Holstein calves fed milk with and without antimicrobials.</span>
+									<span class="pub-details">Pereira RVV, <strong>Santos TMA</strong>, Bicalho ML, Caixeta LS, Machado VS, Bicalho RC.
+									<em>J Dairy Sci</em> 2011; 94(9): 4556–4565.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/21854928/" target="_blank">PMID: 21854928</a>.</span>
 								</li>
 								<li>
-									Santos TMA, Gilbert RO, Bicalho RC.
-									Metagenomic analysis of the uterine bacterial microbiota in healthy and metritic postpartum dairy cows.
-									<em>J Dairy Sci</em> 2011; 94(1):291–302.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/21183039/" target="_blank">PMID: 21183039</a>.
+									<span class="pub-title">Metagenomic analysis of the uterine bacterial microbiota in healthy and metritic postpartum dairy cows.</span>
+									<span class="pub-details"><strong>Santos TMA</strong>, Gilbert RO, Bicalho RC.
+									<em>J Dairy Sci</em> 2011; 94(1): 291–302.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/21183039/" target="_blank">PMID: 21183039</a>.</span>
 								</li>
 								<li>
-									Santos TMA, Bicalho RC.
-									Complete genome sequence of vB_EcoM_ECO1230-10: A coliphage with therapeutic potential for bovine metritis.
-									<em>Vet Microbiol</em> 2011; 148(2-4):267–275.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/20875932/" target="_blank">PMID: 20875932</a>.
+									<span class="pub-title">Complete genome sequence of vB_EcoM_ECO1230-10: A coliphage with therapeutic potential for bovine metritis.</span>
+									<span class="pub-details"><strong>Santos TMA</strong>, Bicalho RC.
+									<em>Vet Microbiol</em> 2011; 148(2-4): 267–275.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/20875932/" target="_blank">PMID: 20875932</a>.</span>
 								</li>
 								<li>
-									Santos TMA, Caixeta LS, Machado VS, Rauf A, Gilbert RO, Bicalho RC.
-									Antimicrobial resistance and presence of virulence factor genes in Arcanobacterium pyogenes isolated from uterus of postpartum dairy cows.
-									<em>Vet Microbiol</em> 2010; 145(1-2):84–89.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/20346602/" target="_blank">PMID: 20346602</a>.
+									<span class="pub-title">Antimicrobial resistance and presence of virulence factor genes in <i>Arcanobacterium pyogenes</i> isolated from uterus of postpartum dairy cows.</span>
+									<span class="pub-details"><strong>Santos TMA</strong>, Caixeta LS, Machado VS, Rauf A, Gilbert RO, Bicalho RC.
+									<em>Vet Microbiol</em> 2010; 145(1-2): 84–89.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/20346602/" target="_blank">PMID: 20346602</a>.</span>
 								</li>
 								<li>
-									Santos TMA, Gilbert RO, Caixeta LS, Machado VS, Teixeira LM, Bicalho RC.
-									Susceptibility of Escherichia coli isolated from uteri of postpartum dairy cows to antibiotic and environmental bacteriophages. Part II: In vitro antimicrobial activity evaluation of a bacteriophage cocktail and several antibiotics.
-									<em>J Dairy Sci</em> 2010; 93(1):105–114.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/20059909/" target="_blank">PMID: 20059909</a>.
+									<span class="pub-title">Susceptibility of <i>Escherichia coli</i> isolated from uteri of postpartum dairy cows to antibiotic and environmental bacteriophages. Part II: In vitro antimicrobial activity evaluation of a bacteriophage cocktail and several antibiotics.</span>
+									<span class="pub-details"><strong>Santos TMA</strong>, Gilbert RO, Caixeta LS, Machado VS, Teixeira LM, Bicalho RC.
+									<em>J Dairy Sci</em> 2010; 93(1): 105–114.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/20059909/" target="_blank">PMID: 20059909</a>.</span>
 								</li>
 								<li>
-									Bicalho RC, Santos TMA, Gilbert RO, Caixeta LS, Teixeira LM, Bicalho MLS, Machado VS.
-									Susceptibility of Escherichia coli isolated from uteri of postpartum dairy cows to antibiotic and environmental bacteriophages. Part I: Isolation and lytic activity estimation of bacteriophages.
-									<em>J Dairy Sci</em> 2010; 93(1):93–104.
-									<a href="https://pubmed.ncbi.nlm.nih.gov/20059908/" target="_blank">PMID: 20059908</a>.
+									<span class="pub-title">Susceptibility of <i>Escherichia coli</i> isolated from uteri of postpartum dairy cows to antibiotic and environmental bacteriophages. Part I: Isolation and lytic activity estimation of bacteriophages.</span>
+									<span class="pub-details">Bicalho RC, <strong>Santos TMA</strong>, Gilbert RO, Caixeta LS, Teixeira LM, Bicalho MLS, Machado VS.
+									<em>J Dairy Sci</em> 2010; 93(1): 93–104.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/20059908/" target="_blank">PMID: 20059908</a>.</span>
 								</li>
 							</ol>
+						</section>
+
+						<!-- Complete list of publications -->
+						<section>
+							<p style="text-align: center !important; color: #888; margin-bottom: 0;">Complete list of publications:</p>
+							<div class="share-links">
+								<a href="https://scholar.google.com/citations?user=zhUXgDUAAAAJ&hl=en" target="_blank"><i class="fa fa-graduation-cap"></i><span>Google Scholar</span></a>
+								<a href="https://orcid.org/0000-0002-0648-6078" target="_blank"><i class="fa fa-id-badge"></i><span>ORCID</span></a>
+								<a href="https://www.ncbi.nlm.nih.gov/myncbi/1H_1dsrwSi25O/bibliography/public/" target="_blank"><i class="fa fa-book"></i><span>PubMed</span></a>
+							</div>
 						</section>
 
 					</article>
@@ -342,10 +416,10 @@
 			</div>
 
 			<!-- Go to Top Button -->
-		<button id="go-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
-			<div class="arrow-up">&#8963;</div>
-			<span>Back to top</span>
-		</button>
+			<button id="go-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+				<div class="arrow-up">&#8963;</div>
+				<span>Back to top</span>
+			</button>
 
 			<!-- Footer -->
 			<div id="footer">
@@ -381,6 +455,5 @@
 			});
 		</script>
 
-	
 	</body>
 </html>

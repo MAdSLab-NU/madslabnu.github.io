@@ -1,0 +1,450 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>MAdS LAB Publications</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="assets/css/custom.css" />
+		<style>
+			#main ol li {
+				margin-bottom: 1em;
+			}
+
+			/* Highlight PMID links (subtle) */
+			#main ol li a[href*="pubmed.ncbi.nlm.nih.gov"] {
+				display: inline-block;
+				background-color: rgba(39, 129, 145, 0.1);
+				color: #278191 !important;
+				font-size: 0.85em;
+				font-weight: 600;
+				padding: 0 0.5em;
+				border-radius: 0.3em;
+				border-bottom: none;
+				text-decoration: none;
+			}
+			#main ol li a[href*="pubmed.ncbi.nlm.nih.gov"]:hover {
+				background-color: rgba(39, 129, 145, 0.2);
+			}
+
+			/* Shrink the header */
+			#header {
+				min-height: 0 !important;
+				padding: 0 !important;
+			}
+
+			/* Full screen hero */
+			#page-hero {
+				height: calc(100vh - 44px);
+				background-size: cover;
+				background-position: center;
+				background-image: url('images/IMG_3546.jpg');
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+				background-color: #278191;
+			}
+			#page-hero:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(39, 129, 145, 0.6);
+			}
+			#page-hero .hero-content {
+				position: relative;
+				z-index: 1;
+				text-align: center;
+				color: white;
+				padding: 2em;
+				margin-top: -15em;
+				width: 100%;
+			}
+			#page-hero .hero-content h2 {
+				font-size: 3.5em;
+				font-weight: 500;
+				margin: 0 0 0.3em;
+				color: white !important;
+				text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+			}
+			#page-hero .hero-content .hero-tagline {
+				font-size: 1.2em;
+				font-style: italic;
+				opacity: 0.85;
+				margin: 0;
+				text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+			}
+			#page-hero .hero-content p {
+				text-align: center !important;
+			}
+			#page-hero .hero-scroll {
+				position: absolute;
+				bottom: 5em;
+				left: 50%;
+				transform: translateX(-50%);
+				color: white;
+				text-align: center;
+				cursor: pointer;
+				z-index: 1;
+				text-decoration: none;
+			}
+			#page-hero .hero-scroll span {
+				display: block;
+				font-size: 0.7em;
+				letter-spacing: 2px;
+				text-transform: uppercase;
+				opacity: 0.6;
+				margin-bottom: 0.1em;
+			}
+			#page-hero .hero-scroll .arrow {
+				font-size: 2em;
+				opacity: 0.8;
+				animation: bounce 1.5s infinite;
+			}
+			@keyframes bounce {
+				0%, 100% { transform: translateY(0); }
+				50% { transform: translateY(8px); }
+			}
+			#page-hero-caption {
+				position: absolute;
+				bottom: 0.5em;
+				left: 0;
+				width: 100%;
+				text-align: center;
+				z-index: 3;
+				font-size: 0.75em;
+				color: rgba(255,255,255,0.6) !important;
+				font-style: italic;
+			}
+			#page-hero-caption {
+				position: absolute;
+				bottom: 1em;
+				left: 0;
+				width: 100%;
+				text-align: center;
+				z-index: 2;
+				font-size: 0.75em;
+				color: rgba(255,255,255,0.6);
+				font-style: italic;
+			}
+
+			/* bioRxiv and GitHub icons */
+			.share-links {
+				display: flex;
+				justify-content: center;
+				gap: 2em;
+				margin: 1em 0 2em;
+			}
+			.share-links a {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 6px;
+				color: #888;
+				border-bottom: none;
+				text-decoration: none;
+			}
+			.share-links i {
+				font-size: 28px;
+			}
+			.share-links span {
+				font-size: 11px;
+			}
+			.share-links a:hover {
+				color: #278191;
+			}
+		</style>
+	</head>
+	<body class="no-sidebar is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header (nav only) -->
+			<div id="header">
+				<div class="inner">
+					<header>
+						<!-- <h1><a href="index.html" id="logo">MAdS LAB</a></h1> -->
+					</header>
+				</div>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Welcome</a></li>
+						<li><a href="research.html">Research</a></li>
+						<li><a href="team.html">Team</a></li>
+						<li class="active"><a href="publications.html">Publications</a></li>
+						<li><a href="news.html">News</a></li>
+						<li><a href="resources.html">Resources</a></li>
+						<li><a href="culture.html">Culture</a></li>
+						<li><a href="contact.html">Contact</a></li>
+						<li><a href="lab.html">IntraLab</a></li>
+					</ul>
+				</nav>
+			</div>
+
+			<!-- Full Screen Hero -->
+			<div id="page-hero">
+				<div class="hero-content">
+					<h2>Publications</h2>
+					<p class="hero-tagline">Here are some of our contributions to science</p>
+				</div>
+				<a class="hero-scroll scrolly" href="#main">
+					<span>Scroll Down</span>
+					<div class="arrow">&#8964;</div>
+				</a>
+				<div id="page-hero-caption">Caption: Paper, paper, paper | Credit: Photo by TMAdS</div>
+			</div>
+
+			<!-- Main -->
+			<div class="wrapper style1">
+				<div class="container">
+					<article id="main" class="special">
+						<header>
+							<h2>Publications</h2>
+							<p style="font-size: 1.2em; font-style: italic; color: #666; margin-bottom: 0.2em;">We are committed to open science and encourage the sharing of research before formal peer review.</p>
+							<p style="font-size: 1.2em; font-style: italic; color: #666; margin-bottom: 0.2em; margin-top: 0;">Preprints of our work are available on bioRxiv. Code and data associated with our publications are shared on GitHub whenever possible.</p>
+							<div class="share-links">
+								<a href="https://www.biorxiv.org" target="_blank"><i class="fa fa-file-alt"></i><span>bioRxiv</span></a>
+								<a href="https://github.com/MAdSLab-NU" target="_blank"><i class="fab fa-github"></i><span>GitHub</span></a>
+							</div>
+						</header>
+
+						<section>
+							<header>
+								<h3 style="color: #278191;">Recent Publications</h3>
+								<p style="font-size: 0.8em; text-align: left; color: #888;">* denotes equal contribution; † denotes corresponding author</p>
+							</header>
+							<ol reversed start="25">
+								<li>
+									Pinto UM<sup>†</sup>, Santos TMA<sup>†</sup>, Tahrioui A<sup>†</sup>.
+									Editorial: Microbial interactions: from mechanisms to applications in the fight against antimicrobial resistance.
+									<em>Front Microbiol</em> 2026; 17: 2003200.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/42871453/" target="_blank">PMID: 42871453</a>.
+								</li>
+								<li>
+									Thomson BD, Marquez MD, Rawson S, Santos TMA, Harrison SC, Kahne DE.
+									Structures of folding intermediates on BAM show diverse substrates fold by a uniform mechanism.
+									<em>Proc Natl Acad Sci</em> 2026; 123(14): e2534936123.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/41926538/" target="_blank">PMID: 41926538</a>.
+									<a href="https://doi.org/10.1101/2025.10.16.682720" target="_blank">(bioRxiv)</a>.
+								</li>
+								<li>
+									Santos TMA, Thomson BD, Marquez MD, Pan L, Monfared TH, Kahne DE.
+									Native β-barrel substrates pass through two shared intermediates during folding on the BAM complex.
+									<em>Proc Natl Acad Sci</em> 2024; 121(42): e2409672121.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/39378083/" target="_blank">PMID: 39378083</a>.
+									<a href="https://doi.org/10.1101/2024.05.09.593409" target="_blank">(bioRxiv)</a>.
+								</li>
+							</ol>
+						</section>
+
+						<section>
+							<header>
+								<h3 style="color: #278191;">Prior to Joining Northeastern University</h3>
+							</header>
+							<ol reversed start="22">
+								<li>
+									Ortiz B, Jennings J, Gross W, Santos TMA, Lin TY, Weibel DB, Lynn D.
+									Soft materials that intercept, respond to, and sequester bacterial siderophores.
+									<em>Chem Mater</em> 2021; 33(13): 5401–5412.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/35341019/" target="_blank">PMID: 35341019</a>.
+								</li>
+								<li>
+									Lee J, Tomasek D*, Santos TMA*, May MD*, Meuskens I, Kahne D.
+									Formation of a β-barrel membrane protein is catalyzed by the luminal surface of the assembly machine protein BamA.
+									<em>Elife</em> 2019; 8: e49787.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/31724945/" target="_blank">PMID: 31724945</a>.
+								</li>
+								<li>
+									Santos TMA, Lammers MG, Zhou M, Sparks IA, Rajendran M, Fang D, De Jesus CLY, Carneiro GFR, Cui Q, Weibel DB.
+									Small molecule chelators reveal that iron starvation inhibits late stages of bacterial cytokinesis.
+									<em>ACS Chem Biol</em> 2018; 13(1): 235–246.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/29227619/" target="_blank">PMID: 29227619</a>.
+								</li>
+								<li>
+									Hurley KA*, Santos TMA*, Fensterwald MR, Rajendran M, Moore JT, Balmond EI, Blahnik BJ, Faulkner KC, Foss MH, Heinrich VA, Lammers MG, Moore LC, Reynolds GD, Shearn-Nance GP, Stearns BA, Yao ZW, Shaw JT, Weibel DB.
+									Targeting quinolone- and aminocoumarin-resistant bacteria with new gyramide analogs that inhibit DNA gyrase.
+									<em>MedChemComm</em> 2017; 8(5): 942–951.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/30034678/" target="_blank">PMID: 30034678</a>.
+								</li>
+								<li>
+									Hurley KA*, Santos TMA*, Nepomuceno GM, Huynh V, Shaw JT, Weibel DB.
+									Targeting the bacterial division protein FtsZ.
+									<em>J Med Chem</em> 2016; 59(15): 6975–6998.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/26756351/" target="_blank">PMID: 26756351</a>.
+								</li>
+								<li>
+									Lin TY, Santos TMA, Kontur W, Donohue TJ, Weibel DB.
+									A cardiolipin-deficient mutant of Rhodobacter sphaeroides has an altered cell shape that impairs biofilm formation.
+									<em>J Bacteriol</em> 2015; 197(21): 3446–3455.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/26283770/" target="_blank">PMID: 26283770</a>.
+									<br/><em>Highlighted as "Article of Significant Interest Selected by the Editors."</em>
+								</li>
+								<li>
+									Yin N, Stilwell MD, Santos TMA, Wang H, Weibel DB.
+									Agarose particle-templated porous bacterial cellulose and its application in cartilage growth in vitro.
+									<em>Acta Biomater</em> 2015; 12: 129–138.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/25449918/" target="_blank">PMID: 25449918</a>.
+								</li>
+								<li>
+									Foditsch C, Santos TMA, Teixeira AGV, Pereira RVV, Dias JM, Gaeta N, Bicalho RC.
+									Isolation and characterization of Faecalibacterium prausnitzii from calves and piglets.
+									<em>PLoS ONE</em> 2014; 9(12): e116465.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/25551453/" target="_blank">PMID: 25551453</a>.
+								</li>
+								<li>
+									Santos TMA, Lin TY, Rajendran M, Anderson SM, Weibel DB.
+									Polar localization of Escherichia coli chemoreceptors requires an intact Tol-Pal complex.
+									<em>Mol Microbiol</em> 2014; 92(5): 985–1004.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/24720726/" target="_blank">PMID: 24720726</a>.
+									<br/><em>Highlighted by Faculty of 1000.</em>
+								</li>
+								<li>
+									Yin N, Santos TMA, Auer GK, Crooks JA, Oliver PM, Weibel DB.
+									Bacterial cellulose as a substrate for bacterial cell culture.
+									<em>Appl Environ Microbiol</em> 2014; 80(6): 1926–1932.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/24441155/" target="_blank">PMID: 24441155</a>.
+								</li>
+								<li>
+									Machado VS, Bicalho ML, Meira-Junior EB, et al.
+									Subcutaneous immunization with inactivated bacterial components and purified protein of Escherichia coli, Fusobacterium necrophorum and Trueperella pyogenes prevents puerperal metritis in Holstein dairy cows.
+									<em>PLoS ONE</em> 2014; 9(3): e91734.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/24638139/" target="_blank">PMID: 24638139</a>.
+								</li>
+								<li>
+									Oliveira MNV*, Santos TMA*, Vale HMM, Cordero AFP, Tótola MR, Costa MD, Ferreira AB, Delvaux JC, Moraes CA, Borges AC.
+									Endophytic microbial diversity in coffee cherries of Coffea arabica from Southeastern Brazil.
+									<em>Can J Microbiol</em> 2013; 59(4): 221–230.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/23586745/" target="_blank">PMID: 23586745</a>.
+								</li>
+								<li>
+									Santos TMA, Bicalho RC.
+									Diversity and succession of bacterial communities in uteri of postpartum metritic, endometritic and healthy dairy cows.
+									<em>PLoS ONE</em> 2012; 7(12): e53048.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/23300859/" target="_blank">PMID: 23300859</a>.
+									<br/><em>Highlighted Among the Top 10% Most Cited PLoS ONE Articles.</em>
+								</li>
+								<li>
+									Santos TMA, Pereira RV, Caixeta LS, Guard CL, Bicalho RC.
+									Microbial diversity in bovine papillomatous digital dermatitis in Holstein dairy cows from upstate New York.
+									<em>FEMS Microbiol Ecol</em> 2012; 79(2): 518–529.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/22093037/" target="_blank">PMID: 22093037</a>.
+								</li>
+								<li>
+									Bicalho MLS, Machado VS, Nydam DV, Santos TMA, Bicalho RC.
+									Evaluation of oral administration of bacteriophages to neonatal calves: Phage survival and impact on fecal Escherichia coli.
+									<em>Livest Sci</em> 2012; 144(3): 294–299.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/32362952/" target="_blank">PMID: 32362952</a>.
+								</li>
+								<li>
+									Santos TMA, Ledbetter EC, Caixeta LS, Bicalho MLS, Bicalho RC.
+									Isolation and characterization of two bacteriophages with strong in vitro antimicrobial activity against Pseudomonas aeruginosa isolated from canine ocular infection.
+									<em>Am J Vet Res</em> 2011; 72(8): 1079–1086.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/21801066/" target="_blank">PMID: 21801066</a>.
+								</li>
+								<li>
+									Pereira RVV, Santos TMA, Bicalho ML, Caixeta LS, Machado VS, Bicalho RC.
+									Antimicrobial resistance and prevalence of virulence factor genes in fecal Escherichia coli of Holstein calves fed milk with and without antimicrobials.
+									<em>J Dairy Sci</em> 2011; 94(9): 4556–4565.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/21854928/" target="_blank">PMID: 21854928</a>.
+								</li>
+								<li>
+									Santos TMA, Gilbert RO, Bicalho RC.
+									Metagenomic analysis of the uterine bacterial microbiota in healthy and metritic postpartum dairy cows.
+									<em>J Dairy Sci</em> 2011; 94(1): 291–302.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/21183039/" target="_blank">PMID: 21183039</a>.
+								</li>
+								<li>
+									Santos TMA, Bicalho RC.
+									Complete genome sequence of vB_EcoM_ECO1230-10: A coliphage with therapeutic potential for bovine metritis.
+									<em>Vet Microbiol</em> 2011; 148(2-4): 267–275.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/20875932/" target="_blank">PMID: 20875932</a>.
+								</li>
+								<li>
+									Santos TMA, Caixeta LS, Machado VS, Rauf A, Gilbert RO, Bicalho RC.
+									Antimicrobial resistance and presence of virulence factor genes in Arcanobacterium pyogenes isolated from uterus of postpartum dairy cows.
+									<em>Vet Microbiol</em> 2010; 145(1-2): 84–89.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/20346602/" target="_blank">PMID: 20346602</a>.
+								</li>
+								<li>
+									Santos TMA, Gilbert RO, Caixeta LS, Machado VS, Teixeira LM, Bicalho RC.
+									Susceptibility of Escherichia coli isolated from uteri of postpartum dairy cows to antibiotic and environmental bacteriophages. Part II: In vitro antimicrobial activity evaluation of a bacteriophage cocktail and several antibiotics.
+									<em>J Dairy Sci</em> 2010; 93(1): 105–114.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/20059909/" target="_blank">PMID: 20059909</a>.
+								</li>
+								<li>
+									Bicalho RC, Santos TMA, Gilbert RO, Caixeta LS, Teixeira LM, Bicalho MLS, Machado VS.
+									Susceptibility of Escherichia coli isolated from uteri of postpartum dairy cows to antibiotic and environmental bacteriophages. Part I: Isolation and lytic activity estimation of bacteriophages.
+									<em>J Dairy Sci</em> 2010; 93(1): 93–104.
+									<a href="https://pubmed.ncbi.nlm.nih.gov/20059908/" target="_blank">PMID: 20059908</a>.
+								</li>
+
+								<section>
+									<!-- <header><h3>Publications</h3></header> -->
+									<p>Complete list of publications:</p>
+									<div style="display: flex; gap: 1.5rem; align-items: center; margin-top: 0.5em;">
+										<a href="https://scholar.google.com/citations?user=zhUXgDUAAAAJ&hl=en" target="_blank" style="display: flex; flex-direction: column; align-items: center; gap: 6px; text-decoration: none; color: #888;"><i class="fa fa-graduation-cap" style="font-size: 28px;"></i><span style="font-size: 11px;">Google Scholar</span></a>
+										<a href="https://orcid.org/0000-0002-0648-6078" target="_blank" style="display: flex; flex-direction: column; align-items: center; gap: 6px; text-decoration: none; color: #888;"><i class="fa fa-id-badge" style="font-size: 28px;"></i><span style="font-size: 11px;">ORCID</span></a>
+										<a href="https://www.ncbi.nlm.nih.gov/myncbi/1H_1dsrwSi25O/bibliography/public/" target="_blank" style="display: flex; flex-direction: column; align-items: center; gap: 6px; text-decoration: none; color: #888;"><i class="fa fa-book" style="font-size: 28px;"></i><span style="font-size: 11px;">PubMed</span></a>
+<!-- 										<a href="../assets/CV_ThiagoSantos_Website_20260405.pdf" target="_blank" style="display: flex; flex-direction: column; align-items: center; gap: 6px; text-decoration: none; color: #888;"><i class="fa fa-file-alt" style="font-size: 28px;"></i><span style="font-size: 11px;">CV</span></a>
+ -->									</div>
+								</section>
+
+							</ol>
+						</section>
+
+					</article>
+				</div>
+			</div>
+
+			<!-- Go to Top Button -->
+		<button id="go-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+			<div class="arrow-up">&#8963;</div>
+			<span>Back to top</span>
+		</button>
+
+			<!-- Footer -->
+			<div id="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="copyright">
+								<ul class="menu">
+									<li>&copy; MAdS LAB. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+		<script>
+			document.querySelector('.hero-scroll').addEventListener('click', function(e) {
+				e.preventDefault();
+				document.querySelector('#main').scrollIntoView({ behavior: 'smooth' });
+			});
+		</script>
+
+	
+	</body>
+</html>
