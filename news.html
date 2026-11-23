@@ -13,6 +13,206 @@
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<link rel="stylesheet" href="assets/css/custom.css" />
 		<style>
+			/* ===== Year filter buttons ===== */
+			.news-filter {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 0.6em;
+				margin: 1.5em 0 0.5em;
+			}
+			.news-filter button {
+				background: transparent;
+				border: 2px solid #278191;
+				color: #278191;
+				border-radius: 2em;
+				padding: 0.35em 1.3em;
+				font-size: 0.9em;
+				font-weight: 600;
+				letter-spacing: 1px;
+				line-height: 1.6;
+				height: auto;
+				cursor: pointer;
+				box-shadow: none;
+				transition: background-color 0.25s, color 0.25s;
+			}
+			.news-filter button:hover,
+			.news-filter button.active {
+				background: #278191;
+				color: #fff;
+			}
+
+			/* ===== One section per year ===== */
+			.news-year-section {
+				margin-top: 2.5em;
+			}
+			.news-year-section.hidden {
+				display: none;
+			}
+			.news-hint {
+				font-size: 0.9em;
+				color: #888;
+				font-style: italic;
+				margin: 0.5em 0 0;
+			}
+
+			/* ===== Timeline ===== */
+			.timeline {
+				position: relative;
+				max-width: 1000px;
+				margin: 0 auto;
+				padding: 0.5em 0 1em;
+				text-align: left;
+			}
+			/* The vertical line */
+			.timeline:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 50%;
+				width: 3px;
+				background: rgba(39, 129, 145, 0.3);
+				transform: translateX(-50%);
+			}
+			/* Year badge sitting on the line */
+			.tl-year {
+				position: relative;
+				z-index: 2;
+				display: block;
+				width: max-content;
+				margin: 0 auto 1.5em;
+				padding: 0.15em 1.1em;
+				border-radius: 2em;
+				background: #278191;
+				color: #fff !important;
+				font-size: 1.8em;
+				font-weight: 600;
+				letter-spacing: 1px;
+			}
+			/* One event: left side, right side, left side... */
+			.tl-item {
+				position: relative;
+				width: 50%;
+				padding: 0 2.6em 1.4em 0;
+				box-sizing: border-box;
+			}
+			.tl-item.right {
+				margin-left: 50%;
+				padding: 0 0 1.4em 2.6em;
+			}
+			/* The round icon on the line */
+			.tl-icon {
+				position: absolute;
+				top: 0.55em;
+				right: -1.3em;
+				width: 2.6em;
+				height: 2.6em;
+				border-radius: 50%;
+				background: #278191;
+				color: #fff;
+				border: 3px solid #fff;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1em;
+				z-index: 1;
+				transition: transform 0.25s ease;
+			}
+			.tl-item.right .tl-icon {
+				right: auto;
+				left: -1.3em;
+			}
+			/* The card: closed, it shows date and title */
+			.tl-card {
+				background: rgba(39, 129, 145, 0.06);
+				border-radius: 0.75em;
+				padding: 0.9em 1.2em;
+				cursor: pointer;
+				outline: none;
+				transition: background-color 0.25s ease, box-shadow 0.25s ease;
+			}
+			.tl-meta {
+				display: block;
+				font-size: 0.72em;
+				font-weight: 600;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+				color: #278191;
+			}
+			.tl-card h4 {
+				margin: 0.2em 0 0;
+				font-size: 1.05em;
+				color: #483949;
+			}
+			/* The hidden text that opens */
+			.tl-body {
+				max-height: 0;
+				overflow: hidden;
+				opacity: 0;
+				transition: max-height 0.45s ease, opacity 0.3s ease, margin-top 0.3s ease;
+			}
+			.tl-body p {
+				font-size: 0.95em;
+				line-height: 1.6;
+				margin: 0;
+			}
+			/* Open: mouse over, keyboard focus, or tapped */
+			.tl-item.open .tl-card,
+			.tl-card:focus-within {
+				background: rgba(39, 129, 145, 0.12);
+				box-shadow: 0 8px 20px rgba(39, 129, 145, 0.18);
+			}
+			.tl-item.open .tl-body,
+			.tl-card:focus-within .tl-body {
+				max-height: 30em;
+				opacity: 1;
+				margin-top: 0.6em;
+			}
+			.tl-item.open .tl-icon {
+				transform: scale(1.15);
+			}
+			@media (hover: hover) {
+				.tl-item:hover .tl-card {
+					background: rgba(39, 129, 145, 0.12);
+					box-shadow: 0 8px 20px rgba(39, 129, 145, 0.18);
+				}
+				.tl-item:hover .tl-body {
+					max-height: 30em;
+					opacity: 1;
+					margin-top: 0.6em;
+				}
+				.tl-item:hover .tl-icon {
+					transform: scale(1.15);
+				}
+			}
+			/* Phones: line on the left, all cards on the right */
+			@media screen and (max-width: 736px) {
+				.timeline:before {
+					left: 1.3em;
+				}
+				.tl-year {
+					margin-left: 0;
+					font-size: 1.4em;
+				}
+				.tl-item,
+				.tl-item.right {
+					width: 100%;
+					margin-left: 0;
+					padding: 0 0 1.2em 3.4em;
+				}
+				.tl-icon,
+				.tl-item.right .tl-icon {
+					left: 0;
+					right: auto;
+				}
+			}
+			@media (prefers-reduced-motion: reduce) {
+				.tl-body, .tl-icon, .tl-card {
+					transition: none;
+				}
+			}
+
 			/* Shrink the header */
 			#header {
 				min-height: 0 !important;
@@ -95,17 +295,6 @@
 			}
 			#page-hero-caption {
 				position: absolute;
-				bottom: 0.5em;
-				left: 0;
-				width: 100%;
-				text-align: center;
-				z-index: 3;
-				font-size: 0.75em;
-				color: rgba(255,255,255,0.6) !important;
-				font-style: italic;
-			}
-			#page-hero-caption {
-				position: absolute;
 				bottom: 1em;
 				left: 0;
 				width: 100%;
@@ -165,179 +354,296 @@
 							<p style="font-size: 1.2em; font-style: italic; color: #666; margin-bottom: 0.2em;">Exciting things are always happening in the MAdS LAB. Here is what we have been up to:</p>
 						</header>
 
-						<section>
-							<!-- ===== 2026 ===== -->
-							<!-- TODO: move this placeholder under the correct year once the award month/year is known -->
-							<h3 class="news-year">2026</h3>
+						<!-- Year filter: add a button here when you add a new year -->
+						<div class="news-filter">
+							<button class="active" data-year="all">All</button>
+							<button data-year="2026">2026</button>
+							<button data-year="2025">2025</button>
+							<button data-year="2024">2024</button>
+						</div>
 
-							<div class="news-month">
-								<strong>December</strong>
-								<ul>
-									<li>Thiago Sousa represented the MAdS team at the HHMI Science Meeting, where he presented a poster!</li>
-								</ul>
+						<p class="news-hint">Hover over an event (or tap it on your phone) to read more.</p>
+
+						<!-- To add a news item, copy one tl-item and put it inside the right year, newest first.
+						     Alternate "tl-item" and "tl-item right" so the cards zigzag along the line.
+						<div class="tl-item">
+							<div class="tl-icon"><i class="fas fa-trophy"></i></div>
+							<div class="tl-card" tabindex="0">
+								<span class="tl-meta">Month Year · Category</span>
+								<h4>Short title</h4>
+								<div class="tl-body"><p>Full news text here!</p></div>
 							</div>
+						</div>
+						Icons used on this page:
+						  Award = fa-trophy | Welcome = fa-user-plus | Farewell = fa-plane
+						  Conference = fa-chalkboard-teacher | Symposium = fa-flask
+						  Lab Trip = fa-bus | Lab News = fa-building | Lab opening = fa-door-open
+						-->
 
-							<div class="news-month">
-								<strong>September</strong>
-								<ul>
-									<li>Welcome to our new MAdS LAB members for the fall semester: undergraduate students Jules-Hanz Canlapan, Francisco Martinez, and Florentina Sahaya, and master's students Jeongwon Bae, Pavithra Mahadevan, Chadarajupalli Pandarinadh, and Neha Varma Nadimpally! We are so happy to have you on the team!</li>
-								</ul>
+						<!-- ===== 2026 ===== -->
+						<section class="news-year-section" data-year="2026">
+							<div class="timeline">
+								<h3 class="tl-year">2026</h3>
+
+								<div class="tl-item">
+									<div class="tl-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">December 2026 · Conference</span>
+										<h4>HHMI Science Meeting</h4>
+										<div class="tl-body"><p>Thiago Sousa represented the MAdS team at the HHMI Science Meeting, where he presented a poster!</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item right">
+									<div class="tl-icon"><i class="fas fa-user-plus"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">September 2026 · Welcome</span>
+										<h4>Welcome, fall 2026 members!</h4>
+										<div class="tl-body"><p>Welcome to our new MAdS LAB members for the fall semester: undergraduate students Jules-Hanz Canlapan, Francisco Martinez, and Florentina Sahaya, and master's students Jeongwon Bae, Pandarinadh Chadarajupalli, Pavithra Mahadevan, and Neha Varma Nadimpally! We are so happy to have you on the team!</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item">
+									<div class="tl-icon"><i class="fas fa-plane"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">August 2026 · Farewell</span>
+										<h4>Farewell, Ozlem!</h4>
+										<div class="tl-body"><p>Ozlem Oyardi is heading back to Turkey. Thank you, Ozlem, for all the great work over the past months!</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item right">
+									<div class="tl-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">July 2026 · Conference</span>
+										<h4>Protein Society Symposium (PS40)</h4>
+										<div class="tl-body"><p>Prof. Thiago Santos, Liana Annable, and Amy Ballesteros attended the <a href="https://ps.memberclicks.net/program-ps40" target="_blank" rel="noopener noreferrer">Protein Society Annual Symposium 2026 (PS40)</a>, celebrating the Society's 40th anniversary here in Boston! Liana and Amy presented posters and represented the MAdS team.</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item">
+									<div class="tl-icon"><i class="fas fa-globe-americas"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">July 2026 · Conference</span>
+										<h4>CBDMicro 2026 in Manaus</h4>
+										<div class="tl-body"><p>The MAdS team was represented by our Thiago duo, Prof. Thiago Santos and Thiago Sousa, at the <a href="https://cbdmicro26.com.br/" target="_blank" rel="noopener noreferrer">1st Brazilian Congress of Microbial Diversity (CBDMicro 2026)</a>, "Perspectives and Challenges in the Face of Climate Change," in Manaus, Brazil! Thiago Sousa presented a poster.</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item right">
+									<div class="tl-icon"><i class="fas fa-plane"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">June 2026 · Farewell</span>
+										<h4>Farewell, Gleucinei!</h4>
+										<div class="tl-body"><p>Gleucinei Castro is heading back to Brazil to continue his studies. Thank you, Gleucinei, for all the great work over the past months!</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item">
+									<div class="tl-icon"><i class="fas fa-trophy"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">May 2026 · Award</span>
+										<h4>AIC Award for Thiago Sousa</h4>
+										<div class="tl-body"><p>Congratulations to Thiago Sousa on being selected to receive The American Institute of Chemists Award!</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item right">
+									<div class="tl-icon"><i class="fas fa-user-plus"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">May 2026 · Welcome</span>
+										<h4>Welcome, Prof. Ozlem Oyardi!</h4>
+										<div class="tl-body"><p>Welcome to the MAdS LAB Prof. Ozlem Oyardi! Ozlem is an Associate Professor at Gazi University, Turkey. We are excited to have you here!</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item">
+									<div class="tl-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">April 2026 · Conference</span>
+										<h4>RISE 2026</h4>
+										<div class="tl-body"><p>Amalia Costa and Ben Loew represented the MAdS team at <a href="https://undergraduate.northeastern.edu/research/rise-2025" target="_blank" rel="noopener noreferrer">RISE 2026</a>, Northeastern's Research, Innovation, and Scholarship Expo!</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item right">
+									<div class="tl-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">March 2026 · Conference</span>
+										<h4>ACS Spring 2026 in Atlanta</h4>
+										<div class="tl-body"><p>Arezou Dilmaghani-Marand represented the MAdS team at the <a href="https://www.acs.org/events/spring.html" target="_blank" rel="noopener noreferrer">American Chemical Society Spring 2026 meeting (ACS Spring 2026)</a> in Atlanta, where she presented a poster!</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item">
+									<div class="tl-icon"><i class="fas fa-flask"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">March 2026 · Symposium</span>
+										<h4>NEB Symposium</h4>
+										<div class="tl-body"><p>The MAdS team attended the <a href="https://www.neb.com/en/events/unorthodox-genomes-redefining-life" target="_blank" rel="noopener noreferrer">New England Biolabs 2026 Symposium, "Unorthodox Genomes: Redefining Life"</a>, in Boston.</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item right">
+									<div class="tl-icon"><i class="fas fa-user-plus"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">January 2026 · Welcome</span>
+										<h4>Welcome, spring 2026 members!</h4>
+										<div class="tl-body"><p>Welcome to our new MAdS LAB members for the spring semester: undergraduate students Michael Liotta and Elysse Yachne, and master's students Pooshana Dhanasekaran, Pankti Lakhani, Santhiyaa Ramaraj, and Angela Tan! We are so happy to have you on the team!</p></div>
+									</div>
+								</div>
 							</div>
-
-							<div class="news-month">
-								<strong>August</strong>
-								<ul>
-									<li>Ozlem Oyardi is heading back to Turkey. Thank you, Ozlem, for all the great work over the past months!</li>
-								</ul>
-							</div>
-
-							<div class="news-month">
-								<strong>July</strong>
-								<ul>
-									<li>Prof. Thiago Santos, Liana Annable, and Amy Ballesteros attended the <a href="https://ps.memberclicks.net/program-ps40" target="_blank">Protein Society Annual Symposium 2026 (PS40)</a>, celebrating the Society's 40th anniversary here in Boston! Liana and Amy presented posters and represented the MAdS team.</li>
-									<li>The MAdS team was represented by our Thiago duo, Prof. Thiago Santos and Thiago Sousa, at the <a href="https://cbdmicro26.com.br/" target="_blank" rel="noopener noreferrer">1st Brazilian Congress of Microbial Diversity (CBDMicro 2026)</a>, "Perspectives and Challenges in the Face of Climate Change," in Manaus, Brazil! Thiago Sousa presented a poster.</li>
-								</ul>
-							</div>
-							
-							<div class="news-month">
-								<strong>June</strong>
-								<ul>
-									<li>Gleucinei Castro is heading back to Brazil to continue his studies. Thank you, Gleucinei, for all the great work over the past months!</li>
-								</ul>
-							</div>
-
-							<div class="news-month">
-								<strong>May</strong>
-								<ul>
-									<li>Congratulations to Thiago Sousa on being selected to receive The American Institute of Chemists Award!</li>
-									<li>Welcome to the MAdS LAB Prof. Ozlem Oyardi! Ozlem is an Associate Professor at Gazi University, Turkey. We are excited to have you here!</li>
-								</ul>
-							</div>
-
-							<div class="news-month">
-								<strong>April</strong>
-								<ul>
-									<li>Amalia Costa and Ben Loew represented the MAdS team at <a href="https://undergraduate.northeastern.edu/research/rise-2025" target="_blank">RISE 2026</a>, Northeastern's Research, Innovation, and Scholarship Expo!</li>
-								</ul>
-							</div>
-
-							<div class="news-month">
-								<strong>March</strong>
-								<ul>
-									<li>Arezou Dilmaghani-Marand represented the MAdS team at the <a href="https://www.acs.org/events/spring.html" target="_blank">American Chemical Society Spring 2026 meeting (ACS Spring 2026)</a> in Atlanta, where she presented a poster!</li>
-									<li>The MAdS team attended the <a href="https://www.neb.com/en/events/unorthodox-genomes-redefining-life" target="_blank" rel="noopener noreferrer">New England Biolabs 2026 Symposium, "Unorthodox Genomes: Redefining Life"</a>, in Boston.</li>
-								</ul>
-							</div>
-
-							<div class="news-month">
-								<strong>Janeiro</strong>
-								<ul>
-									<li>Welcome to our new MAdS LAB members for the spring semester: undergraduate students Michael Liotta and Elysse Yachne, and master's students Pooshana Dhanasekaran, Pankti Lakhani, Santhiyaa Ramaraj, and Angela Tan! We are so happy to have you on the team!</li>
-								</ul>
-							</div>
-
-                         
-							<!-- ===== 2025 ===== -->
-							<!-- TODO: move this placeholder under the correct year once the award month/year is known -->
-							<h3 class="news-year">2025</h3>
-
-							<div class="news-month">
-								<strong>December</strong>
-								<ul>
-									<li>Amy Ballesteros represented the MAdS team at the HHMI Science Meeting, where she presented a poster!</li>
-								</ul>
-							</div>
-
-							<div class="news-month">
-								<strong>October</strong>
-								<ul>
-									<li>Welcome to the MAdS LAB visiting graduate student Gleucinei Castro! Gleucinei is a graduate student in the group of Prof. Gilvan Silva at Embrapa Amazônia Ocidental in the beautiful city of Manaus, Brazil. He will be with us for nine months!</li>
-								</ul>
-							</div>
-
-							<div class="news-month">
-								<strong>September</strong>
-								<ul>
-									<li>Welcome back to the MAdS LAB Dr. Thiago Sousa! We are so happy to have you back!</li>
-									<li>Congratulations to Ben Loew on being selected to receive a <a href="https://undergraduate.northeastern.edu/research/news/celebrating-the-fall-2025-peak-fellowships-cohort/" target="_blank">2025-2026 PEAK Base Camp Fellowship</a>!</li>
-								</ul>
-							</div>
-
-							<div class="news-month">
-								<strong>July</strong>
-								<ul>
-									<li>MAdS TRIP! Our first lab trip took us to <a href="https://www.neb.com" target="_blank" rel="noopener noreferrer">New England Biolabs</a> in Ipswich, MA, to visit their facilities. Thank you, NEB, for welcoming our team and giving us such a great opportunity!</li>
-								</ul>
-							</div>
-
-							<div class="news-month">
-								<strong>June</strong>
-								<ul>
-									<li>The MAdS LAB has a new home! We moved (just across the T tracks) to the EXP building and are happy to be sharing space with our friends at the <a href="https://iphi.northeastern.edu" target="_blank" rel="noopener noreferrer">Institute for Plant-Human Interface (IPHI)</a>.</li>
-								</ul>
-							</div>
-
-							<div class="news-month">
-								<strong>April</strong>
-								<ul>
-									<li>Congratulations to Amalia Costa on being selected to receive a <a href="https://cos.northeastern.edu/announcing-the-2025-2026-advancing-women-in-science-scholars/" target="_blank">2025-2026 Advancing Women in Science Scholarship</a>!</li>
-									<li>Prof. Thiago Santos, Liana Annable, and Bakar Abbasi represented the MAdS team at the 26th Northeast Student Chemistry Research Conference (NSCRC), organized by the <a href="https://www.nesacs.org" target="_blank" rel="noopener noreferrer">Northeastern Section of the American Chemical Society (NESACS)</a> and held here at Northeastern University. Liana and Bakar presented a poster!</li>
-								</ul>
-							</div>
-
-							<div class="news-month">
-								<strong>January</strong>
-								<ul>
-									<li>A new CCB graduate student has joined the MAdS team. Welcome, Amy Ballesteros!</li>
-								</ul>
-							</div>
-
-							<!-- ===== 2024 ===== -->
-							<h3 class="news-year">2024</h3>
-
-							<div class="news-month">
-								<strong>December</strong>
-								<ul>
-									<li>Thiago Sousa is heading back to Brazil to complete his PhD. Thank you for all your help, Thiago! We wish you a safe trip home and hope to see you back soon!</li>
-								</ul>
-							</div>
-
-							<div class="news-month">
-								<strong>October</strong>
-								<ul>
-									<li>Welcome to the MAdS LAB Prof. Irene Coelho! Irene is a Visiting Professor from Universidade Federal Rural do Rio de Janeiro, Brazil. It will be a pleasure to have you working with us for the next month!</li>
-								</ul>
-							</div>
-
-							<div class="news-month">
-								<strong>September</strong>
-								<ul>
-									<li>Welcome to the MAdS LAB Luiza Monteiro! Please pardon our mess and thank you for helping us keep everything in order!</li>
-								</ul>
-							</div>
-
-							<div class="news-month">
-								<strong>June</strong>
-								<ul>
-									<li>Welcome to the MAdS LAB visiting graduate student Thiago Sousa (aka Little Thiago, to avoid confusion)! Thiago is a graduate student in the group of Prof. Gilvan Silva at Embrapa Amazônia Ocidental in the beautiful city of Manaus, Brazil. He will be with us for six months!</li>
-								</ul>
-							</div>
-
-							<div class="news-month">
-								<strong>May</strong>
-								<ul>
-									<li>Welcome to the MAdS LAB CCB graduate students Liana Annable, Arezou Dilmaghani-Marand, and Bakar Abbasi! (Their first initials spell LAB! Coincidence? We don't think so...)</li>
-								</ul>
-							</div>
-
-							<div class="news-month">
-								<strong>January</strong>
-								<ul>
-									<li>The MAdS LAB opens its doors in Hurtig Hall at Northeastern University. It's time to get to work!!!</li>
-								</ul>
-							</div>
-
 						</section>
+
+						<!-- ===== 2025 ===== -->
+						<section class="news-year-section" data-year="2025">
+							<div class="timeline">
+								<h3 class="tl-year">2025</h3>
+
+								<div class="tl-item">
+									<div class="tl-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">December 2025 · Conference</span>
+										<h4>HHMI Science Meeting</h4>
+										<div class="tl-body"><p>Amy Ballesteros represented the MAdS team at the HHMI Science Meeting, where she presented a poster!</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item right">
+									<div class="tl-icon"><i class="fas fa-user-plus"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">October 2025 · Welcome</span>
+										<h4>Welcome, Gleucinei!</h4>
+										<div class="tl-body"><p>Welcome to the MAdS LAB visiting graduate student Gleucinei Castro! Gleucinei is a graduate student in the group of Prof. Gilvan Silva at Embrapa Amazônia Ocidental in the beautiful city of Manaus, Brazil. He will be with us for nine months!</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item">
+									<div class="tl-icon"><i class="fas fa-user-plus"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">September 2025 · Welcome Back</span>
+										<h4>Welcome back, Thiago Sousa!</h4>
+										<div class="tl-body"><p>Welcome back to the MAdS LAB Dr. Thiago Sousa! We are so happy to have you back!</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item right">
+									<div class="tl-icon"><i class="fas fa-trophy"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">September 2025 · Award</span>
+										<h4>PEAK Fellowship for Ben Loew</h4>
+										<div class="tl-body"><p>Congratulations to Ben Loew on being selected to receive a <a href="https://undergraduate.northeastern.edu/research/news/celebrating-the-fall-2025-peak-fellowships-cohort/" target="_blank" rel="noopener noreferrer">2025-2026 PEAK Base Camp Fellowship</a>!</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item">
+									<div class="tl-icon"><i class="fas fa-bus"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">July 2025 · Lab Trip</span>
+										<h4>First MAdS TRIP: NEB</h4>
+										<div class="tl-body"><p>MAdS TRIP! Our first lab trip took us to <a href="https://www.neb.com" target="_blank" rel="noopener noreferrer">New England Biolabs</a> in Ipswich, MA, to visit their facilities. Thank you, NEB, for welcoming our team and giving us such a great opportunity!</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item right">
+									<div class="tl-icon"><i class="fas fa-building"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">June 2025 · Lab News</span>
+										<h4>A new home in EXP</h4>
+										<div class="tl-body"><p>The MAdS LAB has a new home! We moved (just across the T tracks) to the EXP building and are happy to be sharing space with our friends at the <a href="https://iphi.northeastern.edu" target="_blank" rel="noopener noreferrer">Institute for Plant-Human Interface (IPHI)</a>.</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item">
+									<div class="tl-icon"><i class="fas fa-trophy"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">April 2025 · Award</span>
+										<h4>Scholarship for Amalia Costa</h4>
+										<div class="tl-body"><p>Congratulations to Amalia Costa on being selected to receive a <a href="https://cos.northeastern.edu/announcing-the-2025-2026-advancing-women-in-science-scholars/" target="_blank" rel="noopener noreferrer">2025-2026 Advancing Women in Science Scholarship</a>!</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item right">
+									<div class="tl-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">April 2025 · Conference</span>
+										<h4>26th NSCRC</h4>
+										<div class="tl-body"><p>Prof. Thiago Santos, Liana Annable, and Bakar Abbasi represented the MAdS team at the 26th Northeast Student Chemistry Research Conference (NSCRC), organized by the <a href="https://www.nesacs.org" target="_blank" rel="noopener noreferrer">Northeastern Section of the American Chemical Society (NESACS)</a> and held here at Northeastern University. Liana and Bakar presented a poster!</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item">
+									<div class="tl-icon"><i class="fas fa-user-plus"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">January 2025 · Welcome</span>
+										<h4>Welcome, Amy Ballesteros!</h4>
+										<div class="tl-body"><p>A new CCB graduate student has joined the MAdS team. Welcome, Amy Ballesteros!</p></div>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<!-- ===== 2024 ===== -->
+						<section class="news-year-section" data-year="2024">
+							<div class="timeline">
+								<h3 class="tl-year">2024</h3>
+
+								<div class="tl-item">
+									<div class="tl-icon"><i class="fas fa-plane"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">December 2024 · Farewell</span>
+										<h4>See you soon, Thiago Sousa!</h4>
+										<div class="tl-body"><p>Thiago Sousa is heading back to Brazil to complete his PhD. Thank you for all your help, Thiago! We wish you a safe trip home and hope to see you back soon!</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item right">
+									<div class="tl-icon"><i class="fas fa-user-plus"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">October 2024 · Welcome</span>
+										<h4>Welcome, Prof. Irene Coelho!</h4>
+										<div class="tl-body"><p>Welcome to the MAdS LAB Prof. Irene Coelho! Irene is a Visiting Professor from Universidade Federal Rural do Rio de Janeiro, Brazil. It will be a pleasure to have you working with us for the next month!</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item">
+									<div class="tl-icon"><i class="fas fa-user-plus"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">September 2024 · Welcome</span>
+										<h4>Welcome, Luiza Monteiro!</h4>
+										<div class="tl-body"><p>Welcome to the MAdS LAB Luiza Monteiro! Please pardon our mess and thank you for helping us keep everything in order!</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item right">
+									<div class="tl-icon"><i class="fas fa-user-plus"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">June 2024 · Welcome</span>
+										<h4>Welcome, Thiago Sousa!</h4>
+										<div class="tl-body"><p>Welcome to the MAdS LAB visiting graduate student Thiago Sousa (aka Little Thiago, to avoid confusion)! Thiago is a graduate student in the group of Prof. Gilvan Silva at Embrapa Amazônia Ocidental in the beautiful city of Manaus, Brazil. He will be with us for six months!</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item">
+									<div class="tl-icon"><i class="fas fa-user-plus"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">May 2024 · Welcome</span>
+										<h4>Welcome, L-A-B!</h4>
+										<div class="tl-body"><p>Welcome to the MAdS LAB CCB graduate students Liana Annable, Arezou Dilmaghani-Marand, and Bakar Abbasi! (Their first initials spell LAB! Coincidence? We don't think so...)</p></div>
+									</div>
+								</div>
+
+								<div class="tl-item right">
+									<div class="tl-icon"><i class="fas fa-door-open"></i></div>
+									<div class="tl-card" tabindex="0">
+										<span class="tl-meta">January 2024 · Lab News</span>
+										<h4>The MAdS LAB opens its doors</h4>
+										<div class="tl-body"><p>The MAdS LAB opens its doors in Hurtig Hall at Northeastern University. It's time to get to work!!!</p></div>
+									</div>
+								</div>
+							</div>
+						</section>
+
 					</article>
 				</div>
 			</div>
@@ -376,6 +682,33 @@
 		<script src="assets/js/main.js"></script>
 
 		<script>
+			// Year filter: show one year, or all years
+			document.querySelectorAll('.news-filter button').forEach(function(button) {
+				button.addEventListener('click', function() {
+					const year = this.getAttribute('data-year');
+					document.querySelectorAll('.news-filter button').forEach(function(b) {
+						b.classList.toggle('active', b === button);
+					});
+					document.querySelectorAll('.news-year-section').forEach(function(section) {
+						section.classList.toggle('hidden', year !== 'all' && section.getAttribute('data-year') !== year);
+					});
+				});
+			});
+
+			// Tap (or click) a card to open or close it; links inside still work
+			document.querySelectorAll('.tl-card').forEach(function(card) {
+				card.addEventListener('click', function(e) {
+					if (e.target.closest('a')) return;
+					card.parentElement.classList.toggle('open');
+				});
+				card.addEventListener('keydown', function(e) {
+					if (e.key === 'Enter' || e.key === ' ') {
+						e.preventDefault();
+						card.parentElement.classList.toggle('open');
+					}
+				});
+			});
+
 			document.querySelector('.hero-scroll').addEventListener('click', function(e) {
 				e.preventDefault();
 				document.querySelector('#main').scrollIntoView({ behavior: 'smooth' });
