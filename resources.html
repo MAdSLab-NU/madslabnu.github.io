@@ -13,6 +13,74 @@
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<link rel="stylesheet" href="assets/css/custom.css" />
 		<style>
+			/* Icon links (databases) */
+			.share-links {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 2.5em;
+				margin: 1.5em 0 1em;
+			}
+			.share-links a {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 6px;
+				color: #888;
+				border-bottom: none;
+				text-decoration: none;
+			}
+			.share-links i {
+				font-size: 28px;
+			}
+			.share-links span {
+				font-size: 11px;
+			}
+			.share-links a:hover {
+				color: #278191;
+			}
+
+			.share-links .custom-icon {
+				width: 28px;
+				height: 28px;
+			}
+			.link-groups {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				align-items: flex-start;
+				gap: 1.5em 0;
+				margin-top: 1.5em;
+			}
+			.link-group {
+				padding: 0 1.75em;
+				border-left: 1px solid #e5e5e5;
+			}
+			.link-group:first-child {
+				border-left: none;
+			}
+			.link-group .share-links {
+				gap: 1.75em;
+			}
+			@media screen and (max-width: 736px) {
+				.link-group {
+					border-left: none;
+					padding: 0 1em;
+				}
+			}
+			.link-group h4 {
+				text-align: center;
+				font-size: 0.75em;
+				font-weight: 400;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+				color: #999;
+				margin: 0;
+			}
+			.link-group .share-links {
+				margin-top: 0.8em;
+			}
+
 			/* Shrink the header */
 			#header {
 				min-height: 0 !important;
@@ -95,17 +163,6 @@
 			}
 			#page-hero-caption {
 				position: absolute;
-				bottom: 0.5em;
-				left: 0;
-				width: 100%;
-				text-align: center;
-				z-index: 3;
-				font-size: 0.75em;
-				color: rgba(255,255,255,0.6) !important;
-				font-style: italic;
-			}
-			#page-hero-caption {
-				position: absolute;
 				bottom: 1em;
 				left: 0;
 				width: 100%;
@@ -146,13 +203,13 @@
 			<div id="page-hero">
 				<div class="hero-content">
 					<h2>Resources</h2>
-					<p class="hero-tagline">Tools, funding, and databases for our research</p>
+					<p class="hero-tagline">Funding, databases, and tools</p>
 				</div>
 				<a class="hero-scroll scrolly" href="#main">
 					<span>Scroll Down</span>
 					<div class="arrow">&#8964;</div>
 				</a>
-				<div id="page-hero-caption">Caption: Coming soon | Credit: Coming soon</div>
+				<div id="page-hero-caption">The office | Credit: Photo by TMAdS</div>
 			</div>
 
 			<!-- Main -->
@@ -162,42 +219,147 @@
 
 						<header>
 							<h2>Resources</h2>
-							<p style="font-size: 1.2em; font-style: italic; color: #666; margin-bottom: 0.2em;">Coming soon</p>
+							<p style="font-size: 1.2em; font-style: italic; color: #666; margin-bottom: 0.2em;">A selection of funding opportunities, databases, and tools that support our research and our scientists.</p>
 						</header>
 
+						<!-- Funding -->
 						<section>
 							<header>
 								<h3 style="color: #278191;">Funding Opportunities</h3>
+								<p style="font-size: 1em; color: #666; margin-bottom: 0.2em;">We strongly encourage all group members to pursue external funding. Here are some opportunities for each career stage.</p>
 							</header>
-							<p><em>Coming soon. We will be adding funding opportunities for undergraduate, graduate, and postdoctoral researchers, including NSF GRFP, NIH F31/F32, and Northeastern-specific awards such as PEAK.</em></p>
+
+							<div class="card-grid">
+								<div class="info-card">
+									<i class="fas fa-vial"></i>
+									<h4>Undergraduate Students</h4>
+									<p>Awards and fellowships that support undergraduate research.</p>
+									<div class="card-actions">
+										<a class="card-button" href="https://undergraduate.northeastern.edu/research/awards/peak-fellowships-overview/" target="_blank">PEAK Award</a>
+										<a class="card-button" href="https://undergraduate.northeastern.edu/research/fellowships-scholarships/search/#/" target="_blank">Other Opportunities</a>
+									</div>
+								</div>
+								<div class="info-card">
+									<i class="fas fa-flask"></i>
+									<h4>Graduate Students</h4>
+									<p>Fellowships and grants that support graduate training and research.</p>
+									<div class="card-actions">
+										<a class="card-button" href="https://www.nsf.gov/funding/opportunities/grfp-nsf-graduate-research-fellowship-program" target="_blank">NSF GRFP</a>
+										<a class="card-button" href="https://grants.nih.gov/grants/guide/pa-files/PA-25-422.html" target="_blank">NIH F31</a>
+										<a class="card-button" href="https://www.hhmi.org/programs/gilliam-fellows" target="_blank">HHMI Gilliam Fellows Program</a>
+									</div>
+								</div>
+								<div class="info-card">
+									<i class="fas fa-dna"></i>
+									<h4>Postdoctoral Researchers</h4>
+									<p>Fellowships and career development awards for postdoctoral scientists.</p>
+									<div class="card-actions">
+										<a class="card-button" href="https://grants.nih.gov/grants/guide/pa-files/PA-25-423.html" target="_blank">NIH F32</a>
+										<a class="card-button" href="https://www.hhmi.org/programs/hanna-h-gray-fellows" target="_blank">Hanna H. Gray Fellows Program</a>
+									</div>
+								</div>
+							</div>
+
+							<!-- Funding databases (all career stages) -->
+							<div class="callout">
+								<i class="fa fa-lightbulb"></i>
+								<div>
+									<p>Looking for more? These databases list funding opportunities for every career stage:</p>
+									<div class="card-actions" style="justify-content: flex-start; margin-top: 0.6em;">
+										<a class="card-button" href="https://www.grantforward.com/search" target="_blank">GrantForward</a>
+										<a class="card-button" href="https://www.cientificolatino.com" target="_blank">Científico Latino</a>
+									</div>
+								</div>
+							</div>
 						</section>
 
-						<section>
-							<header>
-								<h3 style="color: #278191;">Software and Tools</h3>
-							</header>
-							<p><em>Coming soon. We will be sharing a list of software and tools commonly used in the lab.</em></p>
-						</section>
-
-						<section>
+						<!-- Protocols (hidden until content is ready: remove the comment markers to show)
+						<section style="border-top: 1px solid #ddd; padding-top: 2em;">
 							<header>
 								<h3 style="color: #278191;">Protocols</h3>
 							</header>
-							<p><em>Coming soon. We will be sharing protocols and methods developed in the lab.</em></p>
+							<p>Protocols and methods developed in the lab.</p>
+						</section>
+						-->
+
+						<!-- Databases -->
+						<section style="border-top: 1px solid #ddd; padding-top: 2em;">
+							<header>
+								<h3 style="color: #278191;">Databases</h3>
+								<p style="font-size: 1em; color: #666; margin-bottom: 0.2em;">Databases we frequently use in our research.</p>
+							</header>
+
+							<div class="link-groups">
+								<div class="link-group">
+									<h4>Proteins and structures</h4>
+									<div class="share-links">
+										<a href="https://www.rcsb.org" target="_blank"><i class="fas fa-cube"></i><span>PDB</span></a>
+										<a href="https://alphafold.ebi.ac.uk" target="_blank"><i class="fas fa-cubes"></i><span>AlphaFold DB</span></a>
+										<a href="https://www.uniprot.org" target="_blank"><i class="fas fa-stream"></i><span>UniProt</span></a>
+									</div>
+								</div>
+
+								<div class="link-group">
+									<h4>Genomes and pathways</h4>
+									<div class="share-links">
+										<a href="https://biocyc.org" target="_blank"><i class="fas fa-bacteria"></i><span>BioCyc</span></a>
+										<a href="https://www.kegg.jp" target="_blank"><i class="fas fa-project-diagram"></i><span>KEGG</span></a>
+										<a href="https://www.ncbi.nlm.nih.gov" target="_blank"><i class="fas fa-database"></i><span>NCBI</span></a>
+									</div>
+								</div>
+
+								<div class="link-group">
+									<h4>Literature</h4>
+									<div class="share-links">
+										<a href="https://library.northeastern.edu" target="_blank"><i class="fas fa-university"></i><span>NU Library</span></a>
+										<a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank"><i class="fas fa-book"></i><span>PubMed</span></a>
+									</div>
+								</div>
+							</div>
 						</section>
 
-						<section>
+						<!-- Software and Tools -->
+						<section style="border-top: 1px solid #ddd; padding-top: 2em;">
 							<header>
-								<h3 style="color: #278191;">Databases and External Resources</h3>
+								<h3 style="color: #278191;">Software and Tools</h3>
+								<p style="font-size: 1em; color: #666; margin-bottom: 0.2em;">Software and tools we frequently use in our research.</p>
 							</header>
-							<p>The following databases are frequently used in our research:</p>
-							<ul>
-								<li><a href="https://www.rcsb.org" target="_blank">Protein Data Bank (PDB)</a></li>
-								<li><a href="https://www.uniprot.org" target="_blank">UniProt</a></li>
-								<li><a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank">PubMed</a></li>
-								<li><a href="https://www.ncbi.nlm.nih.gov" target="_blank">NCBI</a></li>
-							</ul>
-							<p><em>Additional resources coming soon.</em></p>
+
+							<div class="link-groups">
+								<div class="link-group">
+									<h4>Sequence analysis</h4>
+									<div class="share-links">
+										<a href="https://blast.ncbi.nlm.nih.gov" target="_blank"><i class="fas fa-search"></i><span>BLAST</span></a>
+										<a href="https://www.ebi.ac.uk/jdispatcher/msa/clustalo" target="_blank"><i class="fas fa-align-left"></i><span>Clustal Omega</span></a>
+									</div>
+								</div>
+
+								<div class="link-group">
+									<h4>Molecular visualization</h4>
+									<div class="share-links">
+										<a href="https://www.rbvi.ucsf.edu/chimerax/" target="_blank"><i class="fas fa-laptop"></i><span>ChimeraX</span></a>
+										<a href="https://pymol.org" target="_blank"><i class="fas fa-desktop"></i><span>PyMOL</span></a>
+									</div>
+								</div>
+
+								<div class="link-group">
+									<h4>Chemistry and molecular biology</h4>
+									<div class="share-links">
+										<a href="https://connect.revvitysignals.com/sitesubscription/" target="_blank"><i class="fas fa-atom"></i><span>ChemDraw</span></a>
+										<a href="https://www.benchling.com" target="_blank"><i class="fas fa-clipboard"></i><span>Benchling</span></a>
+									</div>
+								</div>
+
+								<div class="link-group">
+									<h4>Imaging, data, and references</h4>
+									<div class="share-links">
+										<a href="https://imagej.net/ij/" target="_blank"><i class="fas fa-image"></i><span>ImageJ</span></a>
+										<a href="https://www.r-project.org" target="_blank"><i class="fas fa-chart-bar"></i><span>R</span></a>
+										<a href="https://www.python.org" target="_blank"><i class="fab fa-python"></i><span>Python</span></a>
+										<a href="https://www.zotero.org" target="_blank"><i class="fas fa-bookmark"></i><span>Zotero</span></a>
+									</div>
+								</div>
+							</div>
 						</section>
 
 					</article>
@@ -205,10 +367,10 @@
 			</div>
 
 			<!-- Go to Top Button -->
-		<button id="go-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
-			<div class="arrow-up">&#8963;</div>
-			<span>Back to top</span>
-		</button>
+			<button id="go-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+				<div class="arrow-up">&#8963;</div>
+				<span>Back to top</span>
+			</button>
 
 			<!-- Footer -->
 			<div id="footer">
@@ -244,6 +406,5 @@
 			});
 		</script>
 
-	
 	</body>
 </html>
