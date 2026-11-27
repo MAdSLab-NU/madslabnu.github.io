@@ -67,7 +67,7 @@
 				color: #888;
 			}
 
-			/* Photo category buttons (same style as the News year buttons) */
+			/* Photo category buttons */
 			.photo-filter {
 				display: flex;
 				flex-wrap: wrap;
@@ -75,28 +75,20 @@
 				gap: 0.6em;
 				margin: 1.5em 0 0.5em;
 			}
-			.photo-filter button {
-				background: transparent;
-				border: 2px solid #278191;
-				color: #278191;
-				border-radius: 2em;
-				padding: 0.35em 1.2em;
-				font-size: 0.85em;
-				font-weight: 600;
-				letter-spacing: 1px;
-				line-height: 1.6;
-				height: auto;
+			/* Category buttons use the site's .card-button style (same as the Email buttons on Contact).
+			   The selected category is shown at full strength, the others a little lighter. */
+			.photo-filter .card-button {
 				cursor: pointer;
-				box-shadow: none;
-				transition: background-color 0.25s, color 0.25s;
+				transition: opacity 0.25s;
 			}
-			.photo-filter button i {
+			.photo-filter .card-button i {
 				margin-right: 0.4em;
 			}
-			.photo-filter button:hover,
-			.photo-filter button.active {
-				background: #278191;
-				color: #fff;
+			.photo-filter .card-button:not(.active) {
+				opacity: 0.55;
+			}
+			.photo-filter .card-button:hover {
+				opacity: 1;
 			}
 
 			/* One block per photo category */
@@ -111,24 +103,44 @@
 				align-items: center;
 				justify-content: center;
 				gap: 0.6em;
-				color: #483949;
+				color: #278191 !important;
 				margin: 0 0 0.3em;
 			}
 			.photo-category-title i {
 				display: inline-flex;
 				align-items: center;
 				justify-content: center;
-				width: 2.2em;
-				height: 2.2em;
-				border-radius: 50%;
-				background: #278191;
-				color: #fff;
+				width: 2em;
+				height: 2em;
+				border-radius: 0.3em;
+				background-color: rgba(39, 129, 145, 0.06);
+				color: rgba(39, 129, 145, 0.75);
 				font-size: 0.9em;
 			}
 			.photo-category-text {
 				font-size: 0.95em;
 				color: #666;
 				margin: 0 0 0.5em;
+			}
+
+			/* Categories sorted by date: masonry look, newest first (left to right, top to bottom).
+			   The script below places each photo in the shortest column, in date order. */
+			.photo-category.by-date .masonry-grid.js-masonry {
+				columns: auto;
+				display: flex;
+				align-items: flex-start;
+				gap: 12px;
+			}
+			.masonry-col {
+				flex: 1;
+				min-width: 0;
+				display: flex;
+				flex-direction: column;
+				gap: 12px;
+			}
+			.masonry-col .masonry-item,
+			.masonry-col .album-cover {
+				margin: 0;
 			}
 
 			/* Masonry grid */
@@ -246,17 +258,25 @@
 				font-size: 0.8em;
 				opacity: 0.85;
 			}
+			.album-cover.linked {
+				box-shadow: 0 0 0 4px #278191;
+			}
 			.album-count {
 				position: absolute;
 				top: 0.8em;
 				right: 0.8em;
-				background: rgba(39, 129, 145, 0.9);
-				color: #fff;
-				font-size: 0.75em;
-				font-weight: 600;
-				letter-spacing: 1px;
-				border-radius: 2em;
-				padding: 0.25em 0.9em;
+				background-color: rgba(240, 247, 248, 0.92);
+				color: #278191;
+				font-size: 0.8em;
+				font-weight: 400;
+				letter-spacing: 0;
+				border-radius: 0.3em;
+				padding: 0.15em 0.6em;
+				transition: background-color 0.25s;
+			}
+			.album-cover:hover .album-count,
+			.album-cover:focus .album-count {
+				background-color: rgba(220, 236, 239, 0.96);
 			}
 			.album-count i {
 				margin-right: 0.4em;
@@ -589,12 +609,13 @@
 
 							<!-- Category buttons -->
 							<div class="photo-filter">
-								<button class="active" data-category="all">All</button>
-								<button data-category="presentations"><i class="fas fa-globe-americas"></i>Around the World</button>
-								<button data-category="fun"><i class="fas fa-smile"></i>Lab Fun</button>
-								<button data-category="art"><i class="fas fa-palette"></i>Lab Art</button>
-								<button data-category="events"><i class="fas fa-calendar-alt"></i>Lab Events</button>
-								<button data-category="mascots"><i class="fas fa-paw"></i>Lab Mascots</button>
+								<a class="card-button active" href="#" role="button" data-category="all">All</a>
+								<a class="card-button" href="#" role="button" data-category="scientists"><i class="fas fa-users"></i>MAdS Scientists</a>
+								<a class="card-button" href="#" role="button" data-category="presentations"><i class="fas fa-globe-americas"></i>MAdS Out and About</a>
+								<a class="card-button" href="#" role="button" data-category="fun"><i class="fas fa-smile"></i>Day to Day at MAdS</a>
+								<a class="card-button" href="#" role="button" data-category="art"><i class="fas fa-palette"></i>MAdS Art Gallery</a>
+								<a class="card-button" href="#" role="button" data-category="events"><i class="fas fa-calendar-alt"></i>MAdS Events</a>
+								<a class="card-button" href="#" role="button" data-category="mascots"><i class="fas fa-paw"></i>MAdS Mascots</a>
 							</div>
 
 							<!-- To add a photo to a category:
@@ -606,51 +627,164 @@
 								<div class="masonry-caption">What happened, Month Year | Credit: Name</div>
 							</div>
 							     3. Add a matching line to that group's list in the script at the bottom of the page.
+							     4. Add data-date="YEAR-MONTH" (for example data-date="2026-07") to the photo or album:
+							        newer photos and albums appear first, starting at the top left.
 							-->
 
-							<!-- ===== Lab Presentations Around the World ===== -->
-							<div class="photo-category" data-category="presentations">
-								<h4 class="photo-category-title"><i class="fas fa-globe-americas"></i>Lab Presentations Around the World</h4>
+							<!-- ===== MAdS Scientists (one album of group photos per year) ===== -->
+							<div class="photo-category by-date" data-category="scientists">
+								<h4 class="photo-category-title"><i class="fas fa-users"></i>MAdS Scientists</h4>
+								<p class="photo-category-text">Our yearly group photos: the people behind the science.</p>
+								<div class="masonry-grid">
+									<!-- Album: click the cover to see all photos of the "scientists2026" group -->
+									<div class="album-cover" id="album-scientists2026" data-date="2026-04" onclick="openLightbox('scientists2026', 0)" tabindex="0" role="button" aria-label="Open album: MAdS Scientists 2026">
+										<img src="images/PMT07131.jpg" alt="MAdS LAB group photo, spring 2026" />
+										<span class="album-count"><i class="fas fa-images"></i>2 photos</span>
+										<div class="album-cover-title">
+											<strong>MAdS Scientists 2026</strong>
+											<span>Click to see the album</span>
+										</div>
+									</div>
+
+									<!-- Album: click the cover to see all photos of the "scientists2025" group -->
+									<div class="album-cover" id="album-scientists2025" data-date="2025-05" onclick="openLightbox('scientists2025', 0)" tabindex="0" role="button" aria-label="Open album: MAdS Scientists 2025">
+										<img src="images/scientists-2025-01.jpg" alt="MAdS LAB group photo outdoors, 2025" />
+										<span class="album-count"><i class="fas fa-images"></i>1 photo</span>
+										<div class="album-cover-title">
+											<strong>MAdS Scientists 2025</strong>
+											<span>Click to see the album</span>
+										</div>
+									</div>
+
+									<!-- Album: click the cover to see all photos of the "scientists2024" group -->
+									<div class="album-cover" id="album-scientists2024" data-date="2024-09" onclick="openLightbox('scientists2024', 0)" tabindex="0" role="button" aria-label="Open album: MAdS Scientists 2024">
+										<img src="images/scientists-2024-01.jpg" alt="MAdS LAB group photo in lab coats, 2024" />
+										<span class="album-count"><i class="fas fa-images"></i>1 photo</span>
+										<div class="album-cover-title">
+											<strong>MAdS Scientists 2024</strong>
+											<span>Click to see the album</span>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- ===== MAdS LAB Out and About ===== -->
+							<div class="photo-category by-date" data-category="presentations">
+								<h4 class="photo-category-title"><i class="fas fa-globe-americas"></i>MAdS LAB Out and About</h4>
 								<p class="photo-category-text">Sharing our science at conferences and meetings, near and far.</p>
 								<div class="masonry-grid">
-									<div class="masonry-item">
-										<div class="masonry-placeholder" style="height: 240px;">(Coming soon)</div>
-										<div class="masonry-caption">Conference, City, Month Year</div>
+									<!-- Album: click the cover to see all photos of the "ps40" group -->
+									<div class="album-cover" id="album-ps40" data-date="2026-07" onclick="openLightbox('ps40', 0)" tabindex="0" role="button" aria-label="Open album: Protein Society Symposium 2026 (PS40)">
+										<img src="images/ps40-2026-01.jpg" alt="MAdS LAB members holding a Protein Society sign at PS40" />
+										<span class="album-count"><i class="fas fa-images"></i>1 photo</span>
+										<div class="album-cover-title">
+											<strong>Protein Society Symposium 2026 (PS40)</strong>
+											<span>Boston, MA · Click to see the album</span>
+										</div>
 									</div>
-									<div class="masonry-item">
-										<div class="masonry-placeholder" style="height: 300px;">(Coming soon)</div>
-										<div class="masonry-caption">Conference, City, Month Year</div>
+
+									<!-- Album: click the cover to see all photos of the "rise2026" group -->
+									<div class="album-cover" id="album-rise2026" data-date="2026-04" onclick="openLightbox('rise2026', 0)" tabindex="0" role="button" aria-label="Open album: RISE 2026">
+										<img src="images/rise-2026-01.jpg" alt="Two MAdS LAB undergraduates in front of their poster at RISE 2026" />
+										<span class="album-count"><i class="fas fa-images"></i>4 photos</span>
+										<div class="album-cover-title">
+											<strong>RISE 2026</strong>
+											<span>Boston, MA · Click to see the album</span>
+										</div>
 									</div>
-									<div class="masonry-item">
-										<div class="masonry-placeholder" style="height: 220px;">(Coming soon)</div>
-										<div class="masonry-caption">Conference, City, Month Year</div>
+
+									<!-- Album: click the cover to see all photos of the "acs2026" group -->
+									<div class="album-cover" id="album-acs2026" data-date="2026-03" onclick="openLightbox('acs2026', 0)" tabindex="0" role="button" aria-label="Open album: ACS Spring 2026">
+										<img src="images/acs-2026-01.jpg" alt="A MAdS LAB graduate student next to her poster at ACS Spring 2026" />
+										<span class="album-count"><i class="fas fa-images"></i>1 photo</span>
+										<div class="album-cover-title">
+											<strong>ACS Spring 2026</strong>
+											<span>Atlanta, GA · Click to see the album</span>
+										</div>
+									</div>
+
+									<!-- Album: click the cover to see all photos of the "hhmi2025" group -->
+									<div class="album-cover" id="album-hhmi2025" data-date="2025-12" onclick="openLightbox('hhmi2025', 0)" tabindex="0" role="button" aria-label="Open album: HHMI Science Meeting 2025">
+										<img src="images/hhmi-2025-01.jpg" alt="A MAdS LAB graduate student next to her digital poster at the HHMI Science Meeting" />
+										<span class="album-count"><i class="fas fa-images"></i>3 photos</span>
+										<div class="album-cover-title">
+											<strong>HHMI Science Meeting 2025</strong>
+											<span>Click to see the album</span>
+										</div>
 									</div>
 								</div>
 							</div>
 
-							<!-- ===== Lab Fun ===== -->
-							<div class="photo-category" data-category="fun">
-								<h4 class="photo-category-title"><i class="fas fa-smile"></i>Lab Fun</h4>
+							<!-- ===== Day to Day at the MAdS LAB ===== -->
+							<div class="photo-category by-date" data-category="fun">
+								<h4 class="photo-category-title"><i class="fas fa-smile"></i>Day to Day at the MAdS LAB</h4>
 								<p class="photo-category-text">Science is better together, and so is everything else.</p>
 								<div class="masonry-grid">
-									<div class="masonry-item">
-										<div class="masonry-placeholder" style="height: 260px;">(Coming soon)</div>
-										<div class="masonry-caption">(Coming soon)</div>
+									<!-- Album: click the cover to see all photos of the "worldcup" group -->
+									<div class="album-cover" id="album-worldcup" data-date="2026-06" onclick="openLightbox('worldcup', 0)" tabindex="0" role="button" aria-label="Open album: World Cup 2026">
+										<img src="images/worldcup-2026-01.jpg" alt="MAdS LAB members in Brazil and Mexico soccer jerseys" />
+										<span class="album-count"><i class="fas fa-images"></i>2 photos</span>
+										<div class="album-cover-title">
+											<strong>World Cup 2026</strong>
+											<span>Click to see the album</span>
+										</div>
 									</div>
-									<div class="masonry-item">
-										<div class="masonry-placeholder" style="height: 220px;">(Coming soon)</div>
-										<div class="masonry-caption">(Coming soon)</div>
+
+									<!-- Album: click the cover to see all photos of the "snow" group -->
+									<div class="album-cover" id="album-snow" data-date="2025-12" onclick="openLightbox('snow', 0)" tabindex="0" role="button" aria-label="Open album: Snow Time 2025">
+										<img src="images/snow-2025-01.jpg" alt="MAdS LAB members taking a selfie in the snow" />
+										<span class="album-count"><i class="fas fa-images"></i>3 photos</span>
+										<div class="album-cover-title">
+											<strong>Snow Time 2025</strong>
+											<span>Click to see the album</span>
+										</div>
 									</div>
-									<div class="masonry-item">
-										<div class="masonry-placeholder" style="height: 300px;">(Coming soon)</div>
-										<div class="masonry-caption">(Coming soon)</div>
+
+									<!-- Album: click the cover to see all photos of the "naptime" group -->
+									<div class="album-cover" id="album-naptime" data-date="2026-01" onclick="openLightbox('naptime', 0)" tabindex="0" role="button" aria-label="Open album: Nap Time">
+										<img src="images/nap-time-01.jpg" alt="Two MAdS LAB members napping at their desks" />
+										<span class="album-count"><i class="fas fa-images"></i>1 photo</span>
+										<div class="album-cover-title">
+											<strong>Nap Time</strong>
+											<span>Click to see the album</span>
+										</div>
+									</div>
+
+									<!-- Album: click the cover to see all photos of the "expscreens" group -->
+									<div class="album-cover" id="album-expscreens" data-date="2026-02" onclick="openLightbox('expscreens', 0)" tabindex="0" role="button" aria-label="Open album: On the EXP Screens">
+										<img src="images/exp-screens-01.jpg" alt="A MAdS LAB member posing next to a screen showing her in the lab" />
+										<span class="album-count"><i class="fas fa-images"></i>2 photos</span>
+										<div class="album-cover-title">
+											<strong>On the EXP Screens</strong>
+											<span>Click to see the album</span>
+										</div>
+									</div>
+
+									<div class="masonry-item" data-date="2025-03" onclick="openLightbox('fun', 0)">
+										<img src="images/fun-style.jpg" alt="MAdS LAB members in lab coats with face gems" />
+										<div class="masonry-caption">Science and style go hand in hand around here!</div>
+									</div>
+
+									<div class="masonry-item" data-date="2025-04" onclick="openLightbox('fun', 1)">
+										<img src="images/fun-qual-prep.jpg" alt="MAdS LAB members gathered in the lab to help a labmate prepare for her qualifying exam" />
+										<div class="masonry-caption">Let’s help Arezou get ready for her qualifying exam! Go, MAdS Team!</div>
+									</div>
+
+									<div class="masonry-item" data-date="2025-09" onclick="openLightbox('fun', 2)">
+										<img src="images/fun-welcome-back-thiago.jpg" alt="Two MAdS LAB members under a Bem-vindo Thiago banner" />
+										<div class="masonry-caption">Ready to welcome Little Thiago back!</div>
+									</div>
+
+									<div class="masonry-item" data-date="2026-11" onclick="openLightbox('fun', 3)">
+										<img src="images/fun-shades-of-green.jpg" alt="A MAdS LAB member with green hair laughing at a protein structure on screen" />
+										<div class="masonry-caption">Liana in her fifty shades of green.</div>
 									</div>
 								</div>
 							</div>
 
-							<!-- ===== Lab Art ===== -->
+							<!-- ===== MAdS Art Gallery ===== -->
 							<div class="photo-category" data-category="art">
-								<h4 class="photo-category-title"><i class="fas fa-palette"></i>Lab Art</h4>
+								<h4 class="photo-category-title"><i class="fas fa-palette"></i>MAdS Art Gallery</h4>
 								<p class="photo-category-text">Our MicrobiArt and other works of art gifted to the lab.</p>
 								<div class="masonry-grid">
 									<div class="masonry-item" onclick="openLightbox('art', 0)">
@@ -661,24 +795,16 @@
 										<img src="images/Mcclure3.jpg" alt="Microbial Art - Freya McClure" />
 										<div class="masonry-caption">MicrobiArt | A drawing gifted by Freya McClure</div>
 									</div>
-									<div class="masonry-item" onclick="openLightbox('art', 2)">
-										<img src="images/Mcclure0.jpg" alt="Art - Nila McClure" />
-										<div class="masonry-caption">Art | A painting gifted by Nila McClure</div>
-									</div>
-									<div class="masonry-item" onclick="openLightbox('art', 3)">
-										<img src="images/Mcclure1.jpg" alt="Art - Nila McClure" />
-										<div class="masonry-caption">Art | A painting gifted by Nila McClure</div>
-									</div>
 								</div>
 							</div>
 
-							<!-- ===== Lab Events ===== -->
-							<div class="photo-category" data-category="events">
-								<h4 class="photo-category-title"><i class="fas fa-calendar-alt"></i>Lab Events</h4>
+							<!-- ===== MAdS Events ===== -->
+							<div class="photo-category by-date" data-category="events">
+								<h4 class="photo-category-title"><i class="fas fa-calendar-alt"></i>MAdS Events</h4>
 								<p class="photo-category-text">Group photos, celebrations, and milestones.</p>
 								<div class="masonry-grid">
 									<!-- Album: click the cover to see all photos of the "madsgiving" group -->
-									<div class="album-cover" onclick="openLightbox('madsgiving', 0)" tabindex="0" role="button" aria-label="Open album: MAdSGiving">
+									<div class="album-cover" id="album-madsgiving" data-date="2026-11" onclick="openLightbox('madsgiving', 0)" tabindex="0" role="button" aria-label="Open album: MAdSGiving">
 										<img src="images/madsgiving-01.jpg" alt="The MAdS team at MAdSGiving 2026" />
 										<span class="album-count"><i class="fas fa-images"></i>6 photos</span>
 										<div class="album-cover-title">
@@ -687,8 +813,48 @@
 										</div>
 									</div>
 
+									<!-- Album: click the cover to see all photos of the "neb2026" group -->
+									<div class="album-cover" id="album-neb2026" data-date="2026-03" onclick="openLightbox('neb2026', 0)" tabindex="0" role="button" aria-label="Open album: NEB Symposium 2026: Unorthodox Genomes">
+										<img src="images/neb-2026-01.jpg" alt="The MAdS team at the New England Biolabs 2026 Symposium" />
+										<span class="album-count"><i class="fas fa-images"></i>2 photos</span>
+										<div class="album-cover-title">
+											<strong>NEB Symposium 2026: Unorthodox Genomes</strong>
+											<span>Click to see the album</span>
+										</div>
+									</div>
+
+									<!-- Album: click the cover to see all photos of the "farewell" group -->
+									<div class="album-cover" id="album-farewell" data-date="2025-12" onclick="openLightbox('farewell', 0)" tabindex="0" role="button" aria-label="Open album: Farewell">
+										<img src="images/farewell-01.jpg" alt="MAdS LAB undergraduates in party hats at their farewell" />
+										<span class="album-count"><i class="fas fa-images"></i>4 photos</span>
+										<div class="album-cover-title">
+											<strong>Farewell</strong>
+											<span>Click to see the album</span>
+										</div>
+									</div>
+
+									<!-- Album: click the cover to see all photos of the "bowling" group -->
+									<div class="album-cover" id="album-bowling" data-date="2026-02" onclick="openLightbox('bowling', 0)" tabindex="0" role="button" aria-label="Open album: MAdS Bowling">
+										<img src="images/bowling-01.jpg" alt="The MAdS team at a bowling alley" />
+										<span class="album-count"><i class="fas fa-images"></i>2 photos</span>
+										<div class="album-cover-title">
+											<strong>MAdS Bowling</strong>
+											<span>Click to see the album</span>
+										</div>
+									</div>
+
+									<!-- Album: click the cover to see all photos of the "potluck" group -->
+									<div class="album-cover" id="album-potluck" data-date="2025-07" onclick="openLightbox('potluck', 0)" tabindex="0" role="button" aria-label="Open album: Summer Potluck">
+										<img src="images/potluck-01.jpg" alt="The MAdS team at the summer 2025 potluck" />
+										<span class="album-count"><i class="fas fa-images"></i>2 photos</span>
+										<div class="album-cover-title">
+											<strong>Summer Potluck</strong>
+											<span>Click to see the album</span>
+										</div>
+									</div>
+
 									<!-- Album: click the cover to see all photos of the "moving" group -->
-									<div class="album-cover" onclick="openLightbox('moving', 0)" tabindex="0" role="button" aria-label="Open album: Bye bye, Hurtig. Hello, EXP!">
+									<div class="album-cover" id="album-moving" data-date="2025-06" onclick="openLightbox('moving', 0)" tabindex="0" role="button" aria-label="Open album: Bye bye, Hurtig. Hello, EXP!">
 										<img src="images/moving-2025-01.jpg" alt="The MAdS team moving to the EXP building" />
 										<span class="album-count"><i class="fas fa-images"></i>6 photos</span>
 										<div class="album-cover-title">
@@ -697,24 +863,35 @@
 										</div>
 									</div>
 
-									<div class="masonry-item" onclick="openLightbox('events', 0)">
-										<img src="images/PMT07131.jpg" alt="Group photo - ISEC - Spring 2026" />
-										<div class="masonry-caption">Group photo - Spring 2026 | Credit: Photo by Paige Tolan, Northeastern University</div>
+									<!-- Album: click the cover to see all photos of the "farewellirene" group -->
+									<div class="album-cover" id="album-farewellirene" data-date="2024-11" onclick="openLightbox('farewellirene', 0)" tabindex="0" role="button" aria-label="Open album: Farewell, Irene">
+										<img src="images/farewell-irene-01.jpg" alt="The MAdS team at a farewell dinner for Prof. Irene Coelho" />
+										<span class="album-count"><i class="fas fa-images"></i>2 photos</span>
+										<div class="album-cover-title">
+											<strong>Farewell, Irene</strong>
+											<span>Click to see the album</span>
+										</div>
 									</div>
-									<div class="masonry-item" onclick="openLightbox('events', 1)">
-										<img src="images/PMT07013.jpg" alt="Group photo 2 - ISEC - Spring 2026" />
-										<div class="masonry-caption">Group photo - Spring 2026 | Credit: Photo by Paige Tolan, Northeastern University</div>
+
+									<!-- Album: click the cover to see all photos of the "summer2024" group -->
+									<div class="album-cover" id="album-summer2024" data-date="2024-07" onclick="openLightbox('summer2024', 0)" tabindex="0" role="button" aria-label="Open album: Summer 2024">
+										<img src="images/summer-2024-01.jpg" alt="Four MAdS LAB members outdoors under the trees" />
+										<span class="album-count"><i class="fas fa-images"></i>2 photos</span>
+										<div class="album-cover-title">
+											<strong>Summer 2024</strong>
+											<span>Click to see the album</span>
+										</div>
 									</div>
 								</div>
 							</div>
 
-							<!-- ===== Lab Mascots ===== -->
+							<!-- ===== MAdS Mascots ===== -->
 							<div class="photo-category" data-category="mascots">
-								<h4 class="photo-category-title"><i class="fas fa-paw"></i>Lab Mascots</h4>
+								<h4 class="photo-category-title"><i class="fas fa-paw"></i>MAdS Mascots</h4>
 								<p class="photo-category-text">Meet the furry (and not-so-furry) members of the MAdS LAB.</p>
 								<div class="masonry-grid">
 									<!-- Album: click the cover to see all photos of the "penny" group -->
-									<div class="album-cover" onclick="openLightbox('penny', 0)" tabindex="0" role="button" aria-label="Open album: Penelope, or Penny to her friends">
+									<div class="album-cover" id="album-penny" data-date="2025-09" onclick="openLightbox('penny', 0)" tabindex="0" role="button" aria-label="Open album: Penelope, or Penny to her friends">
 										<img src="images/mascot-penny-01.jpg" alt="Penny, the MAdS LAB mascot" />
 										<span class="album-count"><i class="fas fa-images"></i>2 photos</span>
 										<div class="album-cover-title">
@@ -780,17 +957,70 @@
 				outreach: [
 					// { src: 'images/FILE-NAME.jpg', caption: 'Event name, Month Year | Credit: Name' },
 				],
-				presentations: [
-					// { src: 'images/FILE-NAME.jpg', caption: 'Conference, City, Month Year | Credit: Name' },
+				// Album "MAdS Scientists 2026" (yearly group photos)
+				scientists2026: [
+					{ src: 'images/PMT07131.jpg', caption: 'MAdS Scientists, spring 2026 | Credit: Photo by Paige Tolan, Northeastern University' },
+					{ src: 'images/PMT07013.jpg', caption: 'MAdS Scientists, spring 2026 | Credit: Photo by Paige Tolan, Northeastern University' },
 				],
+				// Album "MAdS Scientists 2025" (yearly group photo)
+				scientists2025: [
+					{ src: 'images/scientists-2025-01.jpg', caption: 'MAdS Scientists, 2025' },
+				],
+				// Album "MAdS Scientists 2024" (yearly group photo)
+				scientists2024: [
+					{ src: 'images/scientists-2024-01.jpg', caption: 'MAdS Scientists, 2024' },
+				],
+				// Album "Protein Society Symposium 2026 (PS40)"
+				ps40: [
+					{ src: 'images/ps40-2026-01.jpg', caption: 'Boston, MA. Liana and Amy did an excellent job representing our team!' },
+				],
+				// Album "RISE 2026"
+				rise2026: [
+					{ src: 'images/rise-2026-01.jpg', caption: 'Boston, MA. Amalia and Ben did an excellent job representing our team!' },
+					{ src: 'images/rise-2026-02.jpg', caption: 'Amalia’s poster: Disrupting Gram-Negative Outer Membranes to Combat Antibiotic Resistance.' },
+					{ src: 'images/rise-2026-03.jpg', caption: 'Sharing our science at RISE.' },
+					{ src: 'images/rise-2026-04.jpg', caption: 'Ben’s poster: Mechanisms of Outer Membrane Biogenesis in Gram-Negative Bacteria.' },
+				],
+				// Album "ACS Spring 2026"
+				acs2026: [
+					{ src: 'images/acs-2026-01.jpg', caption: 'Atlanta, GA. Arezou Dilmaghani-Marand did an excellent job representing our team!' },
+				],
+				// Album "HHMI Science Meeting 2025"
+				hhmi2025: [
+					{ src: 'images/hhmi-2025-01.jpg', caption: 'Amy did an excellent job representing our team!' },
+					{ src: 'images/hhmi-2025-02.jpg', caption: 'Pushing the (Bacterial Cell) Envelope: Mechanisms and Inhibitors of Outer Membrane Biogenesis.' },
+					{ src: 'images/hhmi-2025-03.jpg', caption: 'Explaining how we design precision inhibitors of bacterial β-barrel assembly.' },
+				],
+				// Single Lab Fun photos (in the order they appear on the page)
 				fun: [
-					// { src: 'images/FILE-NAME.jpg', caption: 'What happened, Month Year | Credit: Name' },
+					{ src: 'images/fun-style.jpg', caption: 'Science and style go hand in hand around here!' },
+					{ src: 'images/fun-qual-prep.jpg', caption: 'Let’s help Arezou get ready for her qualifying exam! Go, MAdS Team!' },
+					{ src: 'images/fun-welcome-back-thiago.jpg', caption: 'Ready to welcome Little Thiago back!' },
+					{ src: 'images/fun-shades-of-green.jpg', caption: 'Liana in her fifty shades of green.' },
+				],
+				// Album "On the EXP Screens"
+				expscreens: [
+					{ src: 'images/exp-screens-01.jpg', caption: 'Liana became our lab celebrity!' },
+					{ src: 'images/exp-screens-02.jpg', caption: 'Luiza and Thiago had their two seconds of fame!' },
+				],
+				// Album "Nap Time"
+				naptime: [
+					{ src: 'images/nap-time-01.jpg', caption: 'Nap time! Science can be exhausting.' },
+				],
+				// Album "World Cup 2026"
+				worldcup: [
+					{ src: 'images/worldcup-2026-01.jpg', caption: 'Vai, Brasil! ¡Dale, México!' },
+					{ src: 'images/worldcup-2026-02.jpg', caption: 'Working in full World Cup mood!' },
+				],
+				// Album "Snow Time 2025"
+				snow: [
+					{ src: 'images/snow-2025-01.jpg', caption: 'A little break from science to enjoy the snow.' },
+					{ src: 'images/snow-2025-02.jpg', caption: 'Gleucinei’s snow angel!' },
+					{ src: 'images/snow-2025-03.jpg', caption: 'A little bit more fun!' },
 				],
 				art: [
 					{ src: 'images/Mcclure2.jpg', caption: 'MicrobiArt | A painting gifted by Nila McClure' },
 					{ src: 'images/Mcclure3.jpg', caption: 'MicrobiArt | A drawing gifted by Freya McClure' },
-					{ src: 'images/Mcclure0.jpg', caption: 'Art | A painting gifted by Nila McClure' },
-					{ src: 'images/Mcclure1.jpg', caption: 'Art | A painting gifted by Nila McClure' },
 				],
 				// Album "MAdSGiving"
 				madsgiving: [
@@ -799,7 +1029,39 @@
 					{ src: 'images/madsgiving-03.jpg', caption: 'And why not video games, too?' },
 					{ src: 'images/madsgiving-04.jpg', caption: 'MAdSGiving 2025: our first celebration!' },
 					{ src: 'images/madsgiving-05.jpg', caption: 'MAdSGiving 2025: true science chefs in this lab!' },
-					{ src: 'images/madsgiving-06.jpg', caption: 'Delicious and beautiful. We loved it, Arezou!' },
+					{ src: 'images/madsgiving-06.jpg', caption: 'Arezou is our official baker! Delicious and beautiful. We loved it, Arezou!' },
+				],
+				// Album "NEB Symposium 2026: Unorthodox Genomes"
+				neb2026: [
+					{ src: 'images/neb-2026-01.jpg', caption: 'The MAdS team was there!' },
+					{ src: 'images/neb-2026-02.jpg', caption: 'One more snapshot from this amazing symposium.' },
+				],
+				// Album "MAdS Bowling"
+				bowling: [
+					{ src: 'images/bowling-01.jpg', caption: 'Bowling time!' },
+					{ src: 'images/bowling-02.jpg', caption: 'Yachne was the champion of our tournament!' },
+				],
+				// Album "Farewell"
+				farewell: [
+					{ src: 'images/farewell-01.jpg', caption: 'Our undergrad team will be smaller next semester. We wish lots of success to those who are graduating, and see you soon to those heading off on co-op!' },
+					{ src: 'images/farewell-02.jpg', caption: 'Good food and games to celebrate!' },
+					{ src: 'images/farewell-03.jpg', caption: 'More games!' },
+					{ src: 'images/farewell-04.jpg', caption: 'Liana is the best at explaining new games!' },
+				],
+				// Album "Summer Potluck"
+				potluck: [
+					{ src: 'images/potluck-01.jpg', caption: 'Summer 2025: celebrating the good weather and the move, which, according to Luiza, never really ends!' },
+					{ src: 'images/potluck-02.jpg', caption: 'Good food, always present!' },
+				],
+				// Album "Farewell, Irene"
+				farewellirene: [
+					{ src: 'images/farewell-irene-01.jpg', caption: 'We’re going to miss our little flower!' },
+					{ src: 'images/farewell-irene-02.jpg', caption: 'A farewell dinner for Irene.' },
+				],
+				// Album "Summer 2024"
+				summer2024: [
+					{ src: 'images/summer-2024-01.jpg', caption: 'Our very first MAdS LAB get-together!' },
+					{ src: 'images/summer-2024-02.jpg', caption: 'Making new friends!' },
 				],
 				// Album "Bye bye, Hurtig. Hello, EXP!": write each caption between the quotes
 				moving: [
@@ -809,10 +1071,6 @@
 					{ src: 'images/moving-2025-05.jpg', caption: 'Our last selfie before leaving Hurtig!' },
 					{ src: 'images/moving-2025-06.jpg', caption: 'One last photo before leaving our first lab building, which we will never forget.' },
 					{ src: 'images/moving-2025-07.jpg', caption: 'Our first selfie at EXP!' },
-				],
-				events: [
-					{ src: 'images/PMT07131.jpg', caption: 'Group photo - Spring 2026 | Credit: Photo by Paige Tolan, Northeastern University' },
-					{ src: 'images/PMT07013.jpg', caption: 'Group photo - Spring 2026 | Credit: Photo by Paige Tolan, Northeastern University' },
 				],
 				// Album "Penelope, or Penny to her friends"
 				penny: [
@@ -842,6 +1100,9 @@
 
 			function closeLightbox() {
 				document.getElementById('lightbox').classList.remove('active');
+				if (location.hash.indexOf('#album-') === 0) {
+					history.replaceState(null, '', location.pathname + location.search);
+				}
 			}
 
 			function changeSlide(direction) {
@@ -872,11 +1133,82 @@
 				});
 			});
 
+			// Masonry layout in date order: newest first, reading left to right.
+			// Each photo or album (sorted by data-date="YYYY-MM") goes into the shortest column,
+			// so the photos keep their natural shapes and still fit together.
+			function columnCount() {
+				if (window.innerWidth <= 600) return 1;
+				if (window.innerWidth <= 1000) return 2;
+				return 3;
+			}
+
+			function itemHeight(item) {
+				const img = item.querySelector('img');
+				if (img && img.naturalWidth) return img.naturalHeight / img.naturalWidth;
+				return 0.75;
+			}
+
+			function layoutByDate() {
+				const count = columnCount();
+				document.querySelectorAll('.photo-category.by-date .masonry-grid').forEach(function(grid) {
+					const items = Array.prototype.slice.call(grid.querySelectorAll('[data-date]'));
+					items.sort(function(a, b) {
+						return b.getAttribute('data-date').localeCompare(a.getAttribute('data-date'));
+					});
+					grid.classList.add('js-masonry');
+					grid.innerHTML = '';
+					const cols = [];
+					const heights = [];
+					for (let i = 0; i < count; i++) {
+						const col = document.createElement('div');
+						col.className = 'masonry-col';
+						grid.appendChild(col);
+						cols.push(col);
+						heights.push(0);
+					}
+					items.forEach(function(item) {
+						let shortest = 0;
+						for (let i = 1; i < count; i++) {
+							if (heights[i] < heights[shortest] - 0.05) shortest = i;
+						}
+						cols[shortest].appendChild(item);
+						heights[shortest] += itemHeight(item) + 0.05;
+					});
+				});
+			}
+
+			let lastColumnCount = columnCount();
+			layoutByDate();
+			window.addEventListener('load', layoutByDate);
+			window.addEventListener('resize', function() {
+				if (columnCount() !== lastColumnCount) {
+					lastColumnCount = columnCount();
+					layoutByDate();
+				}
+			});
+
+			// Links from other pages (for example News) can open an album directly:
+			// culture.html#album-ps40 opens the "ps40" album.
+			function openAlbumFromHash() {
+				const match = location.hash.match(/^#album-(\w+)$/);
+				if (!match || !photoGroups[match[1]] || !photoGroups[match[1]].length) return;
+				const cover = document.getElementById('album-' + match[1]);
+				if (!cover) return;
+				const block = cover.closest('.photo-category');
+				const button = block && document.querySelector('.photo-filter [data-category="' + block.getAttribute('data-category') + '"]');
+				if (button) button.click();
+				document.querySelectorAll('.album-cover.linked').forEach(function(c) { c.classList.remove('linked'); });
+				cover.classList.add('linked');
+				cover.scrollIntoView({ block: 'center' });
+				openLightbox(match[1], 0);
+			}
+
 			// Photo category buttons: show one category, or all of them
-			document.querySelectorAll('.photo-filter button').forEach(function(button) {
-				button.addEventListener('click', function() {
+			document.querySelectorAll('.photo-filter [data-category]').forEach(function(button) {
+				button.addEventListener('click', function(e) {
+					e.preventDefault();
 					const category = this.getAttribute('data-category');
-					document.querySelectorAll('.photo-filter button').forEach(function(b) {
+					document.querySelectorAll('.photo-filter [data-category]').forEach(function(b) {
 						b.classList.toggle('active', b === button);
 					});
 					document.querySelectorAll('.photo-category').forEach(function(block) {
@@ -884,6 +1216,9 @@
 					});
 				});
 			});
+
+			window.addEventListener('load', openAlbumFromHash);
+			window.addEventListener('hashchange', openAlbumFromHash);
 
 			document.querySelector('.hero-scroll').addEventListener('click', function(e) {
 				e.preventDefault();
