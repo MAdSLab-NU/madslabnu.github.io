@@ -21,25 +21,17 @@
 				gap: 0.6em;
 				margin: 1.5em 0 0.5em;
 			}
-			.news-filter button {
-				background: transparent;
-				border: 2px solid #278191;
-				color: #278191;
-				border-radius: 2em;
-				padding: 0.35em 1.3em;
-				font-size: 0.9em;
-				font-weight: 600;
-				letter-spacing: 1px;
-				line-height: 1.6;
-				height: auto;
+			/* Year buttons use the site's .card-button style (same as the Email buttons on Contact).
+			   The selected year is shown at full strength, the others a little lighter. */
+			.news-filter .card-button {
 				cursor: pointer;
-				box-shadow: none;
-				transition: background-color 0.25s, color 0.25s;
+				transition: opacity 0.25s;
 			}
-			.news-filter button:hover,
-			.news-filter button.active {
-				background: #278191;
-				color: #fff;
+			.news-filter .card-button:not(.active) {
+				opacity: 0.55;
+			}
+			.news-filter .card-button:hover {
+				opacity: 1;
 			}
 
 			/* ===== One section per year ===== */
@@ -132,19 +124,59 @@
 				outline: none;
 				transition: background-color 0.25s ease, box-shadow 0.25s ease;
 			}
+			/* Date · category label, same style as the Culture page buttons */
 			.tl-meta {
-				display: block;
-				font-size: 0.72em;
-				font-weight: 600;
-				letter-spacing: 1px;
-				text-transform: uppercase;
+				display: inline-block;
+				font-size: 0.8em;
+				font-weight: 400;
+				letter-spacing: 0;
+				text-transform: none;
+				color: rgba(39, 129, 145, 0.75);
+				background-color: rgba(39, 129, 145, 0.08);
+				border-radius: 0.3em;
+				padding: 0.1em 0.6em;
+				transition: background-color 0.25s, color 0.25s;
+			}
+			.tl-item.open .tl-meta,
+			.tl-card:focus-within .tl-meta {
+				background-color: rgba(39, 129, 145, 0.15);
 				color: #278191;
 			}
+			@media (hover: hover) {
+				.tl-item:hover .tl-meta {
+					background-color: rgba(39, 129, 145, 0.15);
+					color: #278191;
+				}
+			}
 			.tl-card h4 {
-				margin: 0.2em 0 0;
+				margin: 0.4em 0 0;
 				font-size: 1.05em;
 				color: #483949;
 			}
+			/* "See the photos" link and camera badge for events with an album */
+			.tl-photos {
+				display: inline-block;
+				margin-top: 0.7em;
+				padding: 0.3em 1em;
+				border-radius: 2em;
+				background: #278191;
+				color: #fff !important;
+				font-size: 0.85em;
+				font-weight: 600;
+				text-decoration: none;
+				border-bottom: 0;
+			}
+			.tl-photos:hover {
+				background: #1f6a77;
+			}
+			.tl-photos i,
+			.tl-meta i {
+				margin-right: 0.35em;
+			}
+			.tl-meta i {
+				margin-left: 0.35em;
+			}
+
 			/* The hidden text that opens */
 			.tl-body {
 				max-height: 0;
@@ -354,12 +386,13 @@
 							<p style="font-size: 1.2em; font-style: italic; color: #666; margin-bottom: 0.2em;">Exciting things are always happening in the MAdS LAB. Here is what we have been up to:</p>
 						</header>
 
-						<!-- Year filter: add a button here when you add a new year -->
+						<!-- Year filter: add a card-button here when you add a new year, e.g.
+						     <a class="card-button" href="#" role="button" data-year="2027">2027</a> -->
 						<div class="news-filter">
-							<button class="active" data-year="all">All</button>
-							<button data-year="2026">2026</button>
-							<button data-year="2025">2025</button>
-							<button data-year="2024">2024</button>
+							<a class="card-button active" href="#" role="button" data-year="all">All</a>
+							<a class="card-button" href="#" role="button" data-year="2026">2026</a>
+							<a class="card-button" href="#" role="button" data-year="2025">2025</a>
+							<a class="card-button" href="#" role="button" data-year="2024">2024</a>
 						</div>
 
 						<p class="news-hint">Hover over an event (or tap it on your phone) to read more.</p>
@@ -372,6 +405,9 @@
 								<span class="tl-meta">Month Year · Category</span>
 								<h4>Short title</h4>
 								<div class="tl-body"><p>Full news text here!</p></div>
+								(If the event has an album on the Culture page, end tl-body with:
+								 <a class="tl-photos" href="culture.html#album-ALBUMNAME"><i class="fas fa-images"></i>See the photos</a>
+								 and add <i class="fas fa-camera"></i> at the end of tl-meta.)
 							</div>
 						</div>
 						Icons used on this page:
@@ -415,9 +451,9 @@
 								<div class="tl-item right">
 									<div class="tl-icon"><i class="fas fa-chalkboard-teacher"></i></div>
 									<div class="tl-card" tabindex="0">
-										<span class="tl-meta">July 2026 · Conference</span>
+										<span class="tl-meta">July 2026 · Conference <i class="fas fa-camera" aria-label="has photos"></i></span>
 										<h4>Protein Society Symposium (PS40)</h4>
-										<div class="tl-body"><p>Prof. Thiago Santos, Liana Annable, and Amy Ballesteros attended the <a href="https://ps.memberclicks.net/program-ps40" target="_blank" rel="noopener noreferrer">Protein Society Annual Symposium 2026 (PS40)</a>, celebrating the Society's 40th anniversary here in Boston! Liana and Amy presented posters and represented the MAdS team.</p></div>
+										<div class="tl-body"><p>Prof. Thiago Santos, Liana Annable, and Amy Ballesteros attended the <a href="https://ps.memberclicks.net/program-ps40" target="_blank" rel="noopener noreferrer">Protein Society Annual Symposium 2026 (PS40)</a>, celebrating the Society's 40th anniversary here in Boston! Liana and Amy presented posters and represented the MAdS team.</p><a class="tl-photos" href="culture.html#album-ps40"><i class="fas fa-images"></i>See the photos</a></div>
 									</div>
 								</div>
 
@@ -460,27 +496,27 @@
 								<div class="tl-item">
 									<div class="tl-icon"><i class="fas fa-chalkboard-teacher"></i></div>
 									<div class="tl-card" tabindex="0">
-										<span class="tl-meta">April 2026 · Conference</span>
+										<span class="tl-meta">April 2026 · Conference <i class="fas fa-camera" aria-label="has photos"></i></span>
 										<h4>RISE 2026</h4>
-										<div class="tl-body"><p>Amalia Costa and Ben Loew represented the MAdS team at <a href="https://undergraduate.northeastern.edu/research/rise-2025" target="_blank" rel="noopener noreferrer">RISE 2026</a>, Northeastern's Research, Innovation, and Scholarship Expo!</p></div>
+										<div class="tl-body"><p>Amalia Costa and Ben Loew represented the MAdS team at <a href="https://undergraduate.northeastern.edu/research/rise-2025" target="_blank" rel="noopener noreferrer">RISE 2026</a>, Northeastern's Research, Innovation, and Scholarship Expo!</p><a class="tl-photos" href="culture.html#album-rise2026"><i class="fas fa-images"></i>See the photos</a></div>
 									</div>
 								</div>
 
 								<div class="tl-item right">
 									<div class="tl-icon"><i class="fas fa-chalkboard-teacher"></i></div>
 									<div class="tl-card" tabindex="0">
-										<span class="tl-meta">March 2026 · Conference</span>
+										<span class="tl-meta">March 2026 · Conference <i class="fas fa-camera" aria-label="has photos"></i></span>
 										<h4>ACS Spring 2026 in Atlanta</h4>
-										<div class="tl-body"><p>Arezou Dilmaghani-Marand represented the MAdS team at the <a href="https://www.acs.org/events/spring.html" target="_blank" rel="noopener noreferrer">American Chemical Society Spring 2026 meeting (ACS Spring 2026)</a> in Atlanta, where she presented a poster!</p></div>
+										<div class="tl-body"><p>Arezou Dilmaghani-Marand represented the MAdS team at the <a href="https://www.acs.org/events/spring.html" target="_blank" rel="noopener noreferrer">American Chemical Society Spring 2026 meeting (ACS Spring 2026)</a> in Atlanta, where she presented a poster!</p><a class="tl-photos" href="culture.html#album-acs2026"><i class="fas fa-images"></i>See the photos</a></div>
 									</div>
 								</div>
 
 								<div class="tl-item">
 									<div class="tl-icon"><i class="fas fa-flask"></i></div>
 									<div class="tl-card" tabindex="0">
-										<span class="tl-meta">March 2026 · Symposium</span>
+										<span class="tl-meta">March 2026 · Symposium <i class="fas fa-camera" aria-label="has photos"></i></span>
 										<h4>NEB Symposium</h4>
-										<div class="tl-body"><p>The MAdS team attended the <a href="https://www.neb.com/en/events/unorthodox-genomes-redefining-life" target="_blank" rel="noopener noreferrer">New England Biolabs 2026 Symposium, "Unorthodox Genomes: Redefining Life"</a>, in Boston.</p></div>
+										<div class="tl-body"><p>The MAdS team attended the <a href="https://www.neb.com/en/events/unorthodox-genomes-redefining-life" target="_blank" rel="noopener noreferrer">New England Biolabs 2026 Symposium, "Unorthodox Genomes: Redefining Life"</a>, in Boston.</p><a class="tl-photos" href="culture.html#album-neb2026"><i class="fas fa-images"></i>See the photos</a></div>
 									</div>
 								</div>
 
@@ -503,9 +539,9 @@
 								<div class="tl-item">
 									<div class="tl-icon"><i class="fas fa-chalkboard-teacher"></i></div>
 									<div class="tl-card" tabindex="0">
-										<span class="tl-meta">December 2025 · Conference</span>
+										<span class="tl-meta">December 2025 · Conference <i class="fas fa-camera" aria-label="has photos"></i></span>
 										<h4>HHMI Science Meeting</h4>
-										<div class="tl-body"><p>Amy Ballesteros represented the MAdS team at the HHMI Science Meeting, where she presented a poster!</p></div>
+										<div class="tl-body"><p>Amy Ballesteros represented the MAdS team at the HHMI Science Meeting, where she presented a poster!</p><a class="tl-photos" href="culture.html#album-hhmi2025"><i class="fas fa-images"></i>See the photos</a></div>
 									</div>
 								</div>
 
@@ -548,9 +584,9 @@
 								<div class="tl-item right">
 									<div class="tl-icon"><i class="fas fa-building"></i></div>
 									<div class="tl-card" tabindex="0">
-										<span class="tl-meta">June 2025 · Lab News</span>
+										<span class="tl-meta">June 2025 · Lab News <i class="fas fa-camera" aria-label="has photos"></i></span>
 										<h4>A new home in EXP</h4>
-										<div class="tl-body"><p>The MAdS LAB has a new home! We moved (just across the T tracks) to the EXP building and are happy to be sharing space with our friends at the <a href="https://iphi.northeastern.edu" target="_blank" rel="noopener noreferrer">Institute for Plant-Human Interface (IPHI)</a>.</p></div>
+										<div class="tl-body"><p>The MAdS LAB has a new home! We moved (just across the T tracks) to the EXP building and are happy to be sharing space with our friends at the <a href="https://iphi.northeastern.edu" target="_blank" rel="noopener noreferrer">Institute for Plant-Human Interface (IPHI)</a>.</p><a class="tl-photos" href="culture.html#album-moving"><i class="fas fa-images"></i>See the photos</a></div>
 									</div>
 								</div>
 
@@ -683,10 +719,11 @@
 
 		<script>
 			// Year filter: show one year, or all years
-			document.querySelectorAll('.news-filter button').forEach(function(button) {
-				button.addEventListener('click', function() {
+			document.querySelectorAll('.news-filter [data-year]').forEach(function(button) {
+				button.addEventListener('click', function(e) {
+					e.preventDefault();
 					const year = this.getAttribute('data-year');
-					document.querySelectorAll('.news-filter button').forEach(function(b) {
+					document.querySelectorAll('.news-filter [data-year]').forEach(function(b) {
 						b.classList.toggle('active', b === button);
 					});
 					document.querySelectorAll('.news-year-section').forEach(function(section) {
